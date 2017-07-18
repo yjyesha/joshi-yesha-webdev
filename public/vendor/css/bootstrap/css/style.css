@@ -14,6 +14,25 @@ body
     width:350px;
 }
 
+.wd-widget > img
+{
+    width: 100%;
+}
+
+.wd-widget .youtube-video > iframe
+{
+    width: 100%;
+    padding-bottom: 60px;
+}
+
+.wd-widget > .wd-widget-toolbar {
+    position: absolute;
+    right : 12px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 2px;
+}
+
 .list-group-item
 {
     border: 0px;
