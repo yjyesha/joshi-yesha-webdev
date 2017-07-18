@@ -1,6 +1,5 @@
 body
 {
-
     margin:auto;
     padding-top: 60px;
 }
@@ -11,8 +10,6 @@ body
 }
 .yj-login,.yj-profile,.yj-register,.yj-website-list,.yj-page-list
 {
-    overflow: auto;
-    margin:auto;
     height:450px;
     width:350px;
 }
