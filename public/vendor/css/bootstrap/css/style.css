@@ -2,6 +2,7 @@ body
 {
     margin:auto;
     padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .yj-widget-gly
@@ -17,12 +18,13 @@ body
 .wd-widget > img
 {
     width: 100%;
+    height: 300px;
 }
 
 .wd-widget .youtube-video > iframe
 {
     width: 100%;
-    padding-bottom: 60px;
+    height: 300px;
 }
 
 .wd-widget > .wd-widget-toolbar {
