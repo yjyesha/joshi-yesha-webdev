@@ -2,7 +2,7 @@ body
 {
     margin:auto;
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
 }
 
 .yj-widget-gly
@@ -25,6 +25,7 @@ body
 {
     width: 100%;
     height: 300px;
+    padding-bottom: 30px;
 }
 
 .wd-widget > .wd-widget-toolbar {
