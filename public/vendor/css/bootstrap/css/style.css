@@ -8,11 +8,12 @@ body
 {
     color:#337ab7;
 }
-.yj-login,.yj-profile,.yj-register,.yj-website-list,.yj-page-list
+.yj-login,.yj-profile,.yj-register
 {
     height:450px;
     width:350px;
 }
+
 .list-group-item
 {
     border: 0px;

@@ -13,19 +13,27 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="widget-list.html">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="navbar-brand" href="#">
-                Heading Widget
-            </a>
-            <p class="navbar-text pull-right">
-                <a href="widget-chooser.html" class="navbar-link">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </p>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <p class="navbar-text pull-left">
+                    <a href="widget-list.html"><span class="glyphicon glyphicon-chevron-left pull-left"></span></a>
+                </p>
+                <div class="navbar-brand">Widget Edit</div>
+                <p class="navbar-text pull-right">
+                    <a href="widget-list.html"><span class="glyphicon glyphicon-ok pull-right"></span></a>
+                </p>
+            </div>
         </div>
+    </div>
+</nav>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="../user/profile.html">
+                    <span class="pull-right glyphicon glyphicon-user"></span>
+                </a></li>
+        </ul>
     </div>
 </nav>
 
@@ -49,19 +57,9 @@
            placeholder=""
            id="size" />
 
-    <a class="btn btn-block btn-danger" href="#">Delete</a>
+    <a class="btn btn-block btn-danger" href="widget-list.html">Delete</a>
 
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <p class="navbar-text pull-right">
-            <a href="../user/profile.html" class="navbar-link">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </p>
-    </div>
-</nav>
 
 </body>
 </html>
