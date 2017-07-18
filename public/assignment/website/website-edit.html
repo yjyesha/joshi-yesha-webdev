@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>New Website</title>
+    <link href="../../vendor/css/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="../../vendor/css/bootstrap/css/style.css"
+          rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <p class="navbar-text pull-left">
+                    <a href="website-list.html">
+                        <span class="glyphicon glyphicon-chevron-left pull-left"></span></a>
+                </p>
+                <div class="navbar-brand">Edit Website</div>
+                <p class="navbar-text pull-right">
+                    <a href="website-list.html">
+                        <span class="glyphicon glyphicon-ok pull-right"></span></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="../user/profile.html">
+                <span class="pull-right glyphicon glyphicon-user"></span>
+            </a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 visible-md">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#">Address Book App</a>
+                    <a href="#"><span class="pull-right glyphicon glyphicon-cog"></span></a>
+                </li>
+                <li class="list-group-item"><a href="#">Blogger</a>
+                    <a href="#">
+                        <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
+                <li class="list-group-item"><a href="#">Blogging App</a>
+                    <a href="#">
+                        <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
+                <li class="list-group-item"><a href="#">Script Testing App</a>
+                    <a href="#">
+                        <span class="pull-right glyphicon glyphicon-cog"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9 col-xs-12">
+            <form action=""
+                  method="post"
+                  class="">
+                <div class="col-xs-12">
+                    <label for="name">Website Name</label>
+                    <input class="form-control"
+                           placeholder="Name"
+                           value="Blogger"
+                           id="name"/>
+
+                    <label for="description">Website Description</label>
+                    <textarea id="description"
+                              rows="3"
+                              placeholder="Description"
+                              class="form-control">Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google at a subdomain of blogspot.com. Blogs can also be hosted in the registered custom domain of the blogger (like www.example.com).[4] A user can have up to 100 blogs per account.[5]
+Up until May 1, 2010, Blogger allowed users to publish blogs on other hosts, via FTP. All such blogs had (or still have) to be moved to Google's own servers, with domains other than blogspot.com allowed via custom URLs.[6] Unlike WordPress.com, Blogger allows its users to use their own domain free of charge, while WordPress.com charges around $13 to use a custom domain.[7] Blogger cannot be installed on a web server. One has to use DNS facilities to redirect a custom URL to a blogspot domain.[8]</textarea>
+                    <a class="btn btn-lg btn-danger btn-block"
+                       href="website-list.html"
+                       type="submit">Delete</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Profile</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../vendor/css/bootstrap/css/style.css" rel="stylesheet">
+
+</head>
+
+<body >
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar navbar-default navbar-fixed-top">
+                        <div class="container-fluid">
+                            <div class="navbar-brand">Profile</div>
+                            <p class="navbar-text pull-right">
+                                <a href="profile.html"><span class="glyphicon glyphicon-ok pull-right"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user pull-right"></span>
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="container-fluid yj-profile">
+        <form class="form-signin" >
+            <label for="inputUsername">Username</label>
+            <input readonly type="text"
+                   value="yeshajoshi"
+                   id="inputUsername" class="form-control"
+                   placeholder="yeshajoshi"
+                   required
+                   autofocus>
+            <label for="email">
+                Email
+            </label>
+            <input type="email"
+                   id="email"
+                   class="form-control"
+                   placeholder="yj.yesha@gmail.com"
+                   required>
+            <label for="firstName">
+                First Name
+            </label>
+            <input type="text"
+                   id="firstName"
+                   class="form-control"
+                   placeholder="Yesha"
+                   required>
+            <label for="lastName">
+                Last Name
+            </label>
+            <input type="text"
+                   id="lastName"
+                   class="form-control"
+                   placeholder="Joshi"
+                   required>
+            <label for="dob">
+                Date of Birth
+            </label>
+            <input type="date" id="dob" class="form-control" required>
+            <a class="btn btn-lg btn-primary btn-block"
+               href="../website/website-list.html"
+               role="button"
+               type="submit">Websites</a>
+            <a class="btn btn-lg btn-danger btn-block"
+               href="login.html"
+               type="submit">Logout</a>
+        </form>
+    </div> <!-- /container -->
+</body>
+</html>

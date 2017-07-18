@@ -1,0 +1,48 @@
+body
+{
+
+    margin:auto;
+    padding-top: 60px;
+}
+
+.yj-widget-gly
+{
+    color:#337ab7;
+}
+.yj-login,.yj-profile,.yj-register,.yj-website-list,.yj-page-list
+{
+    overflow: auto;
+    margin:auto;
+    height:450px;
+    width:350px;
+}
+.list-group-item
+{
+    border: 0px;
+}
+.list-group a
+{
+    text-decoration: none;
+    color: #337ab7;
+}
+h2,input,label,a,button,textarea {
+    margin-bottom: 5px;
+}
+
+.nav .navbar-nav,a.navbar-link
+{
+    color: white;
+}
+.navbar
+{
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.navbar-default .navbar-brand,.navbar-nav,.navbar-collapse li,a
+{
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
