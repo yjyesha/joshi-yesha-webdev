@@ -1,9 +1,19 @@
 body
 {
-    margin:auto;
     padding-top: 60px;
     padding-bottom: 20px;
 }
+
+html {
+    /* To make use of full height of page*/
+    min-height: 100%;
+    margin: 0;
+}
+body {
+    min-height: 100%;
+    margin: 0;
+}
+
 
 .yj-widget-gly
 {
@@ -17,12 +27,6 @@ body
 
 .wd-widget > img {
     width: 100%;
-}
-
-.wd-widget .youtube-video > iframe
-{
-    width: 100%;
-    padding-bottom: 30px;
 }
 
 .wd-widget > .wd-widget-toolbar {
@@ -46,7 +50,7 @@ h2,input,label,a,button,textarea {
     margin-bottom: 5px;
 }
 
-.nav .navbar-nav,a.navbar-link
+.nav .navbar-nav,a.navbar-link,.navbar-text
 {
     color: white;
 }
@@ -61,7 +65,7 @@ h2,input,label,a,button,textarea {
 }
 .videoWrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     padding-top: 25px;
     height: 0;
 }
