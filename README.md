@@ -35,4 +35,4 @@ Root to the hosted environment on Heroku: https://joshi-yesha-webdev.herokuapp.c
 
 Link to your project: https://joshi-yesha-webdev.herokuapp.com/project/index.html (will be updated later)
 
-Link to your assignment: https://joshi-yesha-webdev.herokuapp.com/assignment/index.html (will be updated later)
+Link to your assignment: https://joshi-yesha-webdev.herokuapp.com/assignment/user/index.html (will be updated later)
