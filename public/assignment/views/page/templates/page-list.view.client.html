@@ -1,0 +1,34 @@
+<div>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <a role="button" type="submit" href="#!/user/{{model.userId}}/website">
+                <span class="glyphicon glyphicon-chevron-left pull-left"></span></a>
+        </p>
+        <div class="navbar-brand">Pages</div>
+        <p class="navbar-text pull-right">
+            <a role="button" type="submit" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+                <span class="glyphicon glyphicon-plus pull-right"></span></a>
+        </p>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#!/user/{{model.userId}}"><span class="pull-right glyphicon glyphicon-user"></span>
+            </a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid yj-page-list">
+    <div class="website-list">
+        <ul class="list-group">
+            <li ng-repeat="page in model.pages" class="list-group-item"><a role="button" type="submit" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a role="button" type="submit" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"><span class="pull-right glyphicon glyphicon-cog"></span></a>
+            </li>
+        </ul>
+    </div>
+</div> <!-- /container -->
+</div>

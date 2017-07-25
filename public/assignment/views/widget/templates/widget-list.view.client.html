@@ -1,0 +1,47 @@
+<div>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <p class="navbar-text pull-left">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page"><span class="glyphicon glyphicon-chevron-left pull-left"></span></a>
+                </p>
+                <div class="navbar-brand">Widget List</div>
+                <p class="navbar-text pull-right">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"><span class="glyphicon glyphicon-plus pull-right"></span></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a role="button" type="submit" href="#!/user/{{model.userId}}"><span class="pull-right glyphicon glyphicon-user"></span>
+            </a></li>
+        </ul>
+    </div>
+</nav>
+    <div class="container-fluid yj-widget-gly">
+        <div class="col-md-6 col-md-offset-3 col-sm-12">
+            <div ng-repeat="widget in model.widgets">
+                <div ng-switch="widget.widgetType">
+                    <div ng-switch-when="HEADING">
+                        <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
+                </div>
+                    <div ng-switch-when="IMAGE">
+                        <ng-include src="'views/widget/templates/widget-image.view.client.html'">
+                    </div>
+                    <div ng-switch-when="YOUTUBE">
+                        <ng-include src="'views/widget/templates/widget-youtube.view.client.html'">
+                    </div>
+                    <div ng-switch-when="HTML" ng-bind-html="model.trustHtmlContent(widget.text)">
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+</div>

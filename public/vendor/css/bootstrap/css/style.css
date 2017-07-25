@@ -1,3 +1,8 @@
+.yj-header-navbar{
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
 body
 {
     padding-top: 60px;
@@ -14,15 +19,9 @@ body {
     margin: 0;
 }
 
-
-.yj-widget-gly
+.yj-widget-gly,.container-fluid > .navbar-fixed-top
 {
     color:#337ab7;
-}
-.yj-login,.yj-profile,.yj-register
-{
-    height:450px;
-    width:350px;
 }
 
 .wd-widget > img {
@@ -35,6 +34,7 @@ body {
     background-color: white;
     padding: 5px;
     border-radius: 2px;
+    z-index: 1;
 }
 
 .list-group-item
