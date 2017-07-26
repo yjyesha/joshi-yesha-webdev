@@ -3,12 +3,27 @@
     border-color: #428bca;
 }
 
+body
+{
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
 .yj-widget-list
 {
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
 }
 
+html {
+    /* To make use of full height of page*/
+    min-height: 100%;
+    margin: 0;
+}
+body {
+    min-height: 100%;
+    margin: 0;
+}
 
 .yj-widget-gly,.container-fluid > .navbar-fixed-top
 {
