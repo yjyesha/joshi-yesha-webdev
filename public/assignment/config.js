@@ -12,8 +12,8 @@
 
             .when("/login",
                 {templateUrl: "views/user/templates/login.view.client.html",
-                controller: "loginController",
-                controllerAs: "model"})
+                    controller: "loginController",
+                    controllerAs: "model"})
             .when("/",
                 {templateUrl: "views/user/templates/login.view.client.html",
                     controller: "loginController",
@@ -30,7 +30,7 @@
                 {templateUrl: "views/user/templates/profile.view.client.html",
                     controller: "profileController",
                     controllerAs: "model"})
-        //website routes
+            //website routes
             .when("/user/:uid/website",
                 {templateUrl: "views/website/templates/website-list.view.client.html",
                     controller: "websiteListController",
@@ -39,7 +39,7 @@
                 {templateUrl: "views/website/templates/website-new.view.client.html",
                     controller: "websiteNewController",
                     controllerAs: "model"
-                    })
+                })
             .when("/user/:uid/website/:wid",
                 {templateUrl: "views/website/templates/website-edit.view.client.html",
                     controller: "websiteEditController",

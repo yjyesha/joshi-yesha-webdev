@@ -11,14 +11,15 @@
         var model = this;
         var userId = $routeParams["uid"];
 
+        model.updateUser = updateUser;
+        model.deleteUser = deleteUser;
+
         function init()
         {
             model.user = userService.findUserById(userId);
         }
         init();
 
-        model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
 
         function updateUser(user)
         {
@@ -35,7 +36,7 @@
         function deleteUser(userId)
         {
             userService.deleteUser(userId);
-                $location.url("/login");
+            $location.url("/login");
         }
     }
 })();

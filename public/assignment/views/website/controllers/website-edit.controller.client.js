@@ -23,12 +23,14 @@
         }
         init();
 
-        function updateWebsite(website) {
+        function updateWebsite(website)
+        {
             var _website = websiteService.updateWebsite(model.websiteId,website);
             $location.url("/user/"+userId+"/website");
 
         }
-        function deleteWebsite(website) {
+        function deleteWebsite(website)
+        {
             websiteService.deleteWebsite(model.websiteId);
             $location.url("/user/"+userId+"/website");
         }

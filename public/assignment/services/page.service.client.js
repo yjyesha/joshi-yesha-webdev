@@ -46,7 +46,7 @@
             {
                 if(pages[p]._id === pageId)
                 {
-                    return(pages[p]);
+                    return angular.copy(pages[p]);
                 }
             }
             return null;
@@ -66,9 +66,12 @@
 
         }
 
-        function deletePage(pageId) {
-            for(var p in pages){
-                if(pages[p]._id === pageId){
+        function deletePage(pageId)
+        {
+            for(var p in pages)
+            {
+                if(pages[p]._id === pageId)
+                {
                     pages.splice(p,1);
                 }
             }

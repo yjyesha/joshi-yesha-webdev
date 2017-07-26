@@ -24,12 +24,15 @@
         }
         init();
 
-        function deletePage() {
+        function deletePage()
+        {
             pageService.deletePage(pageId);
             $location.url("/user/"+userId+"/website/"+websiteId+"/page");
 
         }
-        function updatePage(page) {
+
+        function updatePage(page)
+        {
             var _page = pageService.updatePage(pageId, page);
             $location.url("/user/"+userId+"/website/"+websiteId+"/page");
 

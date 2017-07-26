@@ -50,7 +50,7 @@
             {
                 if(websites[w]._id === websiteId)
                 {
-                    return(websites[w]);
+                    return angular.copy(websites[w]);
                 }
             }
             return null;
@@ -70,9 +70,12 @@
 
         }
 
-        function deleteWebsite(websiteId) {
-            for(var w in websites){
-                if(websites[w]._id === websiteId){
+        function deleteWebsite(websiteId)
+        {
+            for(var w in websites)
+            {
+                if(websites[w]._id === websiteId)
+                {
                     websites.splice(w,1);
                 }
             }

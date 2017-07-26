@@ -8,16 +8,16 @@
 
     function widgetEditController($routeParams, widgetService, $location) {
         var model = this;
-
-        model.updateWidget = updateWidget;
-        model.deleteWidget = deleteWidget;
-
         var userId =  $routeParams["uid"];
         var websiteId =  $routeParams["wid"];
         var pageId = $routeParams["pid"];
         var widgetId = $routeParams["wgid"];
 
-        function init() {
+        model.updateWidget = updateWidget;
+        model.deleteWidget = deleteWidget;
+
+        function init()
+        {
             model.userId = userId;
             model.websiteId = websiteId;
             model.pageId = pageId;
@@ -27,12 +27,14 @@
         }
         init();
 
-        function updateWidget(widget) {
+        function updateWidget(widget)
+        {
             var _widget = widgetService.updateWidget(widgetId, widget);
             $location.url("/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
         }
 
-        function deleteWidget() {
+        function deleteWidget()
+        {
             widgetService.deleteWidget(widgetId);
             $location.url("/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
         }

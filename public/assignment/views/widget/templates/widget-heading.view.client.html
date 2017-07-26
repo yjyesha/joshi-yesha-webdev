@@ -1,29 +1,32 @@
 <div class="wd-widget">
     <div class="wd-widget-toolbar">
-        <a type="submit" role="button" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-            <span class="yj-widget-gly glyphicon glyphicon-align-justify pull-right"></span></a>
+        <a type="submit"
+           role="button"
+           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span class="yj-widget-gly glyphicon glyphicon-align-justify pull-right">
+            </span></a>
         <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
             <span class="yj-widget-gly glyphicon glyphicon-cog pull-right"></span>
         </a>
     </div>
-<div ng-switch="widget.size">
-    <div ng-switch-when="1">
-        <h1>{{widget.text}}</h1>
+    <div ng-switch="widget.size">
+        <div ng-switch-when="1">
+            <h1>{{widget.text}}</h1>
+        </div>
+        <div ng-switch-when="2">
+            <h2>{{widget.text}}</h2>
+        </div>
+        <div ng-switch-when="3">
+            <h3>{{widget.text}}</h3>
+        </div>
+        <div ng-switch-when="4">
+            <h4>{{widget.text}}</h4>
+        </div>
+        <div ng-switch-when="5">
+            <h5>{{widget.text}}</h5>
+        </div>
+        <div ng-switch-when="6">
+            <h6>{{widget.text}}</h6>
+        </div>
     </div>
-    <div ng-switch-when="2">
-        <h2>{{widget.text}}</h2>
-    </div>
-    <div ng-switch-when="3">
-        <h3>{{widget.text}}</h3>
-    </div>
-    <div ng-switch-when="4">
-        <h4>{{widget.text}}</h4>
-    </div>
-    <div ng-switch-when="5">
-        <h5>{{widget.text}}</h5>
-    </div>
-    <div ng-switch-when="6">
-        <h6>{{widget.text}}</h6>
-    </div>
-</div>
 </div>

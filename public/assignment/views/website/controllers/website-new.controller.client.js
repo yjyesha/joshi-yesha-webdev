@@ -12,14 +12,17 @@
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
         model.createWebsite=createWebsite;
-        function init() {
+        function init()
+        {
             model.userId = userId;
             model.websites = websiteService.findWebsitesForUser(userId);
             var website = websiteService.findWebsiteById(websiteId);
             model.website = website;
-        }init();
+        }
+        init();
 
-        function createWebsite(website) {
+        function createWebsite(website)
+        {
             var _website = websiteService.createWebsite(userId,website);
             $location.url("/user/" + userId + "/website");
         }

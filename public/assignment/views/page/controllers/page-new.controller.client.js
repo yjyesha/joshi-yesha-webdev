@@ -21,10 +21,10 @@
             var page = pageService.findPageById(pageId);
             model.page = page;
         }
-
         init();
 
-        function createPage(page) {
+        function createPage(page)
+        {
             var _page = pageService.createPage(websiteId,page);
             $location.url("/user/" + userId + "/website/" + websiteId + "/page");
         }
