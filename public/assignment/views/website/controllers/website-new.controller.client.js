@@ -9,22 +9,30 @@
 
     function websiteNewController($routeParams,$location,websiteService) {
         var model = this;
-        var userId = $routeParams["uid"];
-        var websiteId = $routeParams["wid"];
+        model.userId = $routeParams.uid;
+        var websiteId = $routeParams.wid;
+
         model.createWebsite=createWebsite;
+
         function init()
         {
-            model.userId = userId;
-            model.websites = websiteService.findWebsitesForUser(userId);
-            var website = websiteService.findWebsiteById(websiteId);
-            model.website = website;
+            websiteService
+                .findWebsitesForUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
+            //var website = websiteService.findWebsiteById(websiteId);
+            //model.website = website;
         }
         init();
 
         function createWebsite(website)
         {
-            var _website = websiteService.createWebsite(userId,website);
-            $location.url("/user/" + userId + "/website");
+            websiteService.createWebsite(model.userId,website)
+                .then(function()
+                {
+                    $location.url("/user/" + model.userId + "/website");
+                });
         }
     }
 })();

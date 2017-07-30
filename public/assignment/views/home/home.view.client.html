@@ -16,14 +16,14 @@
     <div class="jumbotron">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <h1>This is where I start</h1>
-    <div ng-show="!model.currentUser" class="jumbotron">
+    <div ng-show="!currentUser" class="jumbotron">
         <h2>Are you new? </h2>
 
         <h5>Let's get to know you,go ahead register and join us</h5>
         <h2>Are you an old friend?</h2> <h5>Login and we can continue where we left</h5>
         </div>
-    <div ng-show="model.currentUser" class="jumbotron">
-        <h2>Hey {{model.currentUser.name}} , it's great to see you again</h2>
+    <div ng-show="currentUser" class="jumbotron">
+        <h2>Hey {{currentUser.name}} , it's great to see you again</h2>
     </div>
 </div>
 </div>

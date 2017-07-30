@@ -9,17 +9,23 @@
 
     function websiteEditController($routeParams,websiteService,$location) {
         var model = this;
-        var userId = $routeParams["uid"];
-        var websiteId = $routeParams["wid"];
+        model.userId = $routeParams.uid;
+        model.websiteId = $routeParams.wid;
         model.updateWebsite=updateWebsite;
         model.deleteWebsite=deleteWebsite;
 
         function init()
         {
-            model.userId = userId;
-            model.websiteId = websiteId;
-            model.websites = websiteService.findWebsitesForUser(userId);
-            model.website = websiteService.findWebsiteById(websiteId);
+            websiteService
+                .findWebsitesForUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
+            websiteService
+                .findWebsiteById(model.userId,model.websiteId)
+                .then(function (response) {
+                    model.website = response.data;
+                });
         }
         init();
 
@@ -27,8 +33,8 @@
         {
             var _website = websiteService.updateWebsite(model.websiteId,website);
             $location.url("/user/"+userId+"/website");
-
         }
+
         function deleteWebsite(website)
         {
             websiteService.deleteWebsite(model.websiteId);

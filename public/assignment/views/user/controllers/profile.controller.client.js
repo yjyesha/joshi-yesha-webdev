@@ -14,29 +14,43 @@
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
 
-        function init()
-        {
-            model.user = userService.findUserById(userId);
+        function init() {
+            userService.findUserById(userId)
+            .then(function (response) {
+                model.user = response.data;
+            });
         }
+
         init();
 
 
-        function updateUser(user)
-        {
-            var _user = userService.updateUser(userId, user);
-            if(!_user){
-                model.error = "Error updating profile";
-            }
-            else{
-                model.successMessage = "Profile updated!";
-                $location.url("/user/"+_user._id);
-            }
+        function updateUser(user) {
+            userService.updateUser(userId, user)
+            .then(function (response) {
+                var _user = response.data;
+                if (!_user) {
+                    model.error = "Error updating profile";
+                }
+                else {
+                    model.successMessage = "Profile updated!";
+                    $location.url("/user/" + _user._id);
+                }
+            });
         }
 
-        function deleteUser(userId)
-        {
-            userService.deleteUser(userId);
-            $location.url("/login");
+        function deleteUser(userId) {
+            userService.deleteUser(userId)
+            .then(function (response) {
+                $location.url("/login");
+            });
+        }
+
+        function logout() {
+            if ($rootScope.currentUser) {
+                delete $rootScope.currentUser;
+                $location.url("/login");
+            }
+
         }
     }
 })();
