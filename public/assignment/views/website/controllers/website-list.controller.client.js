@@ -20,11 +20,6 @@
                 .then(function (websites) {
                     model.websites = websites;
                 });
-           // websiteService.findWebsiteById(websiteId)
-             //   .then(function (response)
-           // {
-             //   model.website = response.data;
-            //});
         }init();
     }
 })();

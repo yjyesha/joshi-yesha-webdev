@@ -18,9 +18,10 @@ var websites =
 // http handlers
 
 app.get("/api/user/:userId/website", findWebsitesForUser);
-app.get ("/api/user/:userId/website/:websiteId", findWebsiteById);
+app.get ("/api/website/:websiteId", findWebsiteById);
 app.post("/api/user/:userId/website", createWebsite);
-
+app.put("/api/website/:websiteId", updateWebsite);
+app.delete("/api/website/:websiteId", deleteWebsite);
 function findWebsitesForUser(req,res) {
     var userId = req.params.userId;
 
@@ -48,7 +49,37 @@ function findWebsiteById(req, res) {
     for(var w in websites) {
         if(websites[w]._id === req.params.websiteId) {
             res.json(websites[w]);
+            return;
         }
     }
     res.sendStatus(404);
+}
+
+function updateWebsite(req, res)
+{
+    websiteId = req.params.websiteId;
+    website = req.body;
+    for(var w in websites)
+    {
+        if(websites[w]._id === websiteId)
+        {
+            websites[w] = website;
+            res.send(website);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
+
+function deleteWebsite(req,res)
+{
+    websiteId = req.params.websiteId;
+    for(var w in websites)
+    {
+        if(websites[w]._id === websiteId)
+        {
+            websites.splice(w,1);
+        }
+    }
+    res.send("0");
 }

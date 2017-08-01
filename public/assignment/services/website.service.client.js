@@ -11,8 +11,8 @@
         this.findWebsitesForUser = findWebsitesForUser;
         this.createWebsite = createWebsite;
         this.findWebsiteById = findWebsiteById;
-        //this.updateWebsite = updateWebsite;
-        //this.deleteWebsite = deleteWebsite;
+        this.updateWebsite = updateWebsite;
+        this.deleteWebsite = deleteWebsite;
 
         function createWebsite(userId, website)
         {
@@ -29,35 +29,23 @@
                 });
         }
 
-        function findWebsiteById(userId,websiteId)
+        function findWebsiteById(websiteId)
         {
-            var url = "/api/user/" + userId + "/website/"+websiteId;
+            var url = "/api/website/"+websiteId;
             return $http.get(url);
         }
 
         function updateWebsite(websiteId, website)
         {
-            website._id = websiteId;
-            for(var w in websites)
-            {
-                if(websites[w]._id === websiteId)
-                {
-                    websites[w] = website;
-                }
-            }
-            return website;
-
+            var url = "/api/website/"+websiteId;
+            return $http.put(url,website);
         }
 
         function deleteWebsite(websiteId)
         {
-            for(var w in websites)
-            {
-                if(websites[w]._id === websiteId)
-                {
-                    websites.splice(w,1);
-                }
-            }
+            var url = "/api/website/"+websiteId;
+            return $http.delete(url,websiteId);
+
         }
 
     }

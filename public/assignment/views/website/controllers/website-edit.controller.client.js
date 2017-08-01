@@ -22,9 +22,10 @@
                     model.websites = websites;
                 });
             websiteService
-                .findWebsiteById(model.userId,model.websiteId)
+                .findWebsiteById(model.websiteId)
                 .then(function (response) {
-                    model.website = response.data;
+                    var website = Object.assign({}, response.data);
+                    model.website = website;
                 });
         }
         init();
@@ -32,13 +33,13 @@
         function updateWebsite(website)
         {
             var _website = websiteService.updateWebsite(model.websiteId,website);
-            $location.url("/user/"+userId+"/website");
+            $location.url("/user/"+model.userId+"/website");
         }
 
         function deleteWebsite(website)
         {
             websiteService.deleteWebsite(model.websiteId);
-            $location.url("/user/"+userId+"/website");
+            $location.url("/user/"+model.userId+"/website");
         }
     }
 })();
