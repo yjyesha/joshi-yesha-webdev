@@ -14,11 +14,14 @@
         var pageId = $routeParams["pid"];
 
         function init() {
-            model.websiteId = websiteId;
             model.userId = userId;
+            model.websiteId = websiteId;
             model.pageId = pageId;
-            model.pages = pageService.findPageByWebsiteId(websiteId);
-            model.page = pageService.findPageById(pageId);
+           pageService.findPagesForWebsite(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+
         }init();
     }
 })();

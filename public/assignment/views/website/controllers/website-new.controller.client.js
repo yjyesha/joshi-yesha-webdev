@@ -21,8 +21,6 @@
                 .then(function (websites) {
                     model.websites = websites;
                 });
-            //var website = websiteService.findWebsiteById(websiteId);
-            //model.website = website;
         }
         init();
 

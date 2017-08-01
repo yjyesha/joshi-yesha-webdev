@@ -8,25 +8,31 @@
         .controller("pageNewController", pageNewController);
 
     function pageNewController($routeParams,$location,pageService) {
-        var userId = $routeParams["uid"];
-        var websiteId = $routeParams["wid"];
-        var pageId = $routeParams["pid"];
         var model = this;
+        model.userId = $routeParams["uid"];
+        model.websiteId = $routeParams["wid"];
+        model.pageId = $routeParams["pid"];
+
         model.createPage = createPage;
 
         function init() {
-            model.userId = userId;
-            model.websiteId = websiteId;
-            model.pages = pageService.findPageByWebsiteId(websiteId);
-            var page = pageService.findPageById(pageId);
-            model.page = page;
+            pageService
+                .findPagesForWebsite(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
         }
         init();
 
         function createPage(page)
         {
-            var _page = pageService.createPage(websiteId,page);
-            $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            pageService.createPage(model.websiteId,page)
+                .then(function(response)
+            {
+                model.page = response.data;
+                $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+            });
+
         }
     }
 })();

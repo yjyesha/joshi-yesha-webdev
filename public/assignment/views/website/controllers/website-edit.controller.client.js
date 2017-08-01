@@ -13,9 +13,13 @@
         model.websiteId = $routeParams.wid;
         model.updateWebsite=updateWebsite;
         model.deleteWebsite=deleteWebsite;
+        var userId =  $routeParams["uid"];
+        var websiteId =  $routeParams["wid"];
+        var pageId = $routeParams["pid"];
 
-        function init()
-        {
+        function init() {
+            model.userId = userId;
+            model.websiteId = websiteId;
             websiteService
                 .findWebsitesForUser(model.userId)
                 .then(function (websites) {
@@ -32,14 +36,21 @@
 
         function updateWebsite(website)
         {
-            var _website = websiteService.updateWebsite(model.websiteId,website);
-            $location.url("/user/"+model.userId+"/website");
+            websiteService.updateWebsite(model.websiteId,website)
+                .then (function (response)
+            {
+                website = response.data;
+                $location.url("/user/"+model.userId+"/website");
+            });
+
         }
 
-        function deleteWebsite(website)
-        {
-            websiteService.deleteWebsite(model.websiteId);
-            $location.url("/user/"+model.userId+"/website");
+        function deleteWebsite(website) {
+            websiteService.deleteWebsite(model.websiteId)
+                .then(function (response) {
+
+                    $location.url("/user/" + model.userId + "/website");
+                });
         }
     }
 })();

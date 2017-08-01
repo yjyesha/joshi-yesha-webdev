@@ -8,8 +8,8 @@
         .controller("pageEditController", pageEditController);
 
     function pageEditController($routeParams,pageService,$location) {
-        var userId =  $routeParams["uid"];
-        var websiteId =  $routeParams["wid"];
+        var userId = $routeParams["uid"];
+        var websiteId = $routeParams["wid"];
         var pageId = $routeParams["pid"];
         var model = this;
         model.updatePage = updatePage;
@@ -18,25 +18,35 @@
         function init() {
             model.userId = userId;
             model.websiteId = websiteId;
-            model.pages = pageService.findPageByWebsiteId(websiteId);
-            var page = pageService.findPageById(pageId);
-            model.page = page;
+            model.pageId = pageId;
+            pageService
+                .findPagesForWebsite(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+            pageService
+                .findPageById(model.pageId)
+                .then(function (response) {
+                    var page = Object.assign({}, response.data);
+                    model.page = page;
+                });
         }
+
         init();
 
-        function deletePage()
-        {
-            pageService.deletePage(pageId);
-            $location.url("/user/"+userId+"/website/"+websiteId+"/page");
-
+        function deletePage() {
+            pageService.deletePage(model.pageId)
+                .then(function (response) {
+                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                });
         }
 
-        function updatePage(page)
-        {
-            var _page = pageService.updatePage(pageId, page);
-            $location.url("/user/"+userId+"/website/"+websiteId+"/page");
-
+        function updatePage(page) {
+            pageService.updatePage(model.pageId, page)
+                .then(function (response) {
+                    page = response.data;
+                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                });
         }
-
     }
 })();
