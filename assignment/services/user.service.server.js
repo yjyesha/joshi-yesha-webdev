@@ -21,28 +21,27 @@ app.get("/api/user/:userId", getUserById);
 app.get("/api/user", findUser);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
+app.delete("/api/user/:userId", deleteUser);
 
-function findUserByCredentials(req,res) {
-    var username = req.query.username;
-    var password = req.query.password;
-    for (var u in users) {
-        var _user = users[u];
-        if (_user.username === username && _user.password === password) {
-            res.send(_user);
-            return;
+
+function getAllUsers(req, res) {
+    res.send(users);
+}
+
+function deleteUser(req,res) {
+    var userId = req.params.userId;
+    for(var u in users){
+        if(users[u]._id === userId){
+            users.splice(u,1);
         }
     }
     res.send("0");
 }
 
-function getAllUsers(req, response) {
-    response.send(users);
-}
-
-function getUserById(req, response) {
+function getUserById(req, res) {
     for(var u in users) {
         if(users[u]._id === req.params.userId) {
-            response.send(users[u]);
+            res.send(users[u]);
         }
     }
 }
@@ -54,7 +53,7 @@ function updateUser(req, res) {
     for(var u in users) {
         if(users[u]._id === userId) {
             users[u] = user;
-            res.send(user)
+            res.send(user);
             return;
         }
     }

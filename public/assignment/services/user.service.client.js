@@ -24,11 +24,7 @@
         }
 
         function deleteUser(userId) {
-            for (var u in users) {
-                if (users[u]._id === userId) {
-                    users.splice(u, 1);
-                }
-            }
+            return $http.delete("/api/user/"+userId);
         }
 
         function createUser(user) {

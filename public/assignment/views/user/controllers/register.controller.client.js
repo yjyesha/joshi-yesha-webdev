@@ -30,6 +30,7 @@
                 })
                 .then(function (response) {
                     _user = response.data;
+                    $rootScope.currentUser = _user;
                     $location.url("/user/" + _user._id);
                 });
         }
