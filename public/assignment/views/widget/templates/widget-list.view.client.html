@@ -29,6 +29,14 @@
     <div class="container-fluid yj-widget-gly yj-widget-list">
         <div class="col-md-8 col-md-offset-2 col-sm-12">
             <div ng-repeat="widget in model.widgets">
+                <div class="wd-widget">
+                    <div class="wd-widget-toolbar">
+                        <span class="glyphicon glyphicon-align-justify pull-right"></span>
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                            <span class="yj-widget-gly glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
                 <div ng-switch="widget.widgetType">
                     <div ng-switch-when="HEADING">
                         <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
