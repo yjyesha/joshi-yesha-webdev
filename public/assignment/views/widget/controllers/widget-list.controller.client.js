@@ -13,7 +13,7 @@
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
         var pageId = $routeParams["pid"];
-
+        var widgetId = $routeParams["wgid"];
         model.trustUrl = trustUrl;
         model.trustHtmlContent = trustHtmlContent;
 
@@ -22,8 +22,11 @@
             model.websiteId = websiteId;
             model.userId = userId;
             model.pageId = pageId;
-            model.widgets = widgetService.findWidgetsByPageId(pageId);
-
+            model.widgetId  = widgetId;
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
         }
         init();
 

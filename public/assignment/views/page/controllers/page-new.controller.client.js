@@ -32,7 +32,6 @@
                 model.page = response.data;
                 $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
             });
-
         }
     }
 })();
