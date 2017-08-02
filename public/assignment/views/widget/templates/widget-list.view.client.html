@@ -27,11 +27,12 @@
         </div>
     </nav>
     <div class="container-fluid yj-widget-gly yj-widget-list">
-        <div class="col-md-8 col-md-offset-2 col-sm-12">
+        <div class="col-md-8 col-md-offset-2 col-sm-12 ui-sortable" id="widget-list" >
             <div ng-repeat="widget in model.widgets">
                 <div class="wd-widget">
                     <div class="wd-widget-toolbar">
-                        <span class="glyphicon glyphicon-align-justify pull-right"></span>
+                        <a href="#" role="button">
+                        <span class="yj-widget-gly glyphicon glyphicon-align-justify pull-right handle"></span></a>
                         <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                             <span class="yj-widget-gly glyphicon glyphicon-cog pull-right"></span>
                         </a>

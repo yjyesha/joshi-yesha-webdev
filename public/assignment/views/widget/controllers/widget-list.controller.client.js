@@ -27,6 +27,8 @@
                 .then(function (widgets) {
                     model.widgets = widgets;
                 });
+            $('#widget-list')
+                .sortable();
         }
         init();
 

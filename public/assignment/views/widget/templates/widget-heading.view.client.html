@@ -1,15 +1,4 @@
-<div class="wd-widget">
-    <div class="wd-widget-toolbar">
-        <a type="submit"
-           role="button"
-           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-            <span class="yj-widget-gly glyphicon glyphicon-align-justify pull-right">
-            </span></a>
-        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-            <span class="yj-widget-gly glyphicon glyphicon-cog pull-right"></span>
-        </a>
-    </div>
-    <div ng-switch="widget.size">
+        <div ng-switch="widget.size">
         <div ng-switch-when="1">
             <h1>{{widget.text}}</h1>
         </div>
@@ -29,4 +18,3 @@
             <h6>{{widget.text}}</h6>
         </div>
     </div>
-</div>
