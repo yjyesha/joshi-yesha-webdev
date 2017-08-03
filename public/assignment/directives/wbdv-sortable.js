@@ -6,12 +6,24 @@
         .module("WebAppMaker")
         .directive('wbdvSortable', wbdvSortableDir);
 
-    function wbdvSortableDir() {
+    function wbdvSortableDir($routeParams, widgetService, $http) {
         function linkFunction(scope, element) {
             console.log(element);
+            var pageId = $routeParams["pid"];
             $(element).sortable({
                 axis: 'y',
-                handle: '.handle'
+                handle: '.handle',
+                start: function (event, ui) {
+                    startIndex = $(ui.item).index();
+                }
+                ,
+                stop: function (event, ui) {
+                    endIndex = $(ui.item).index();
+                    console.log([startIndex, endIndex]);
+                    /*var url = "/api/page/" + pageId + "/widget?start=" + startIndex + "&end=" + endIndex;
+                     $http.put(url);*/
+                    widgetService.sendIndexOrder(pageId, startIndex, endIndex);
+                }
             });
         }
 

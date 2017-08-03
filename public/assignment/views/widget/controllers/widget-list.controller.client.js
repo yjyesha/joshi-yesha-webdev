@@ -27,10 +27,6 @@
                 .then(function (widgets) {
                     model.widgets = widgets;
                 });
-         /*   $('#widget-list')
-                .sortable({
-                    axis: 'y',
-                handle:".handle"}); */
         }
         init();
 

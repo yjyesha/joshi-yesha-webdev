@@ -13,6 +13,7 @@
         this.findWidgetsByPageId = findWidgetsByPageId;
         this.updateWidget = updateWidget;
         this.deleteWidget = deleteWidget;
+        this.sendIndexOrder = sendIndexOrder;
 
         function createWidget(pageId, widget)
         {
@@ -25,6 +26,17 @@
             var url = "/api/page/" + pageId + "/widget";
             return $http.get(url)
                 .then(function(response)
+                {
+                    return response.data;
+                });
+        }
+
+        function sendIndexOrder(pageId,startIndex,endIndex)
+        {
+
+            var url = "/api/page/"+pageId+"/widget?start=" + startIndex + "&end=" + endIndex;
+            return $http.put(url).then(
+                function(response)
                 {
                     return response.data;
                 });

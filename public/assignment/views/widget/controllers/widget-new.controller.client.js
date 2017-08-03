@@ -32,12 +32,12 @@
         function createWidget(widgetType) {
             var widget = {widgetType: widgetType};
             widgetService.createWidget(pageId, widget).then(function (response) {
-                var _widget = response.data;
-                if (_widget) {
-                    model.successMessage = "Widget created!";
-                }
-                $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + '/widget/' + _widget._id);
-            },
+                    var _widget = response.data;
+                    if (_widget) {
+                        model.successMessage = "Widget created!";
+                    }
+                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + '/widget/' + _widget._id);
+                },
                 function (error) {
                     console.log("error encountered");
                 });

@@ -26,6 +26,7 @@ app.post("/api/page/:pageId/widget", createWidget);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
+app.put("/api/page/:pageId/widget",orderWidgets);
 
 function findWidgetsByPageId(req,res) {
 
@@ -95,6 +96,26 @@ function getWidgetById(widgetId) {
         }
     }
     return null;
+}
+
+function orderWidgets(req,res) {
+    var pageId = req.params.pageId;
+    var initial = req.query.start;
+    var final = req.query.end;
+
+    var widgetsForPage = [];
+    var widgetsRest = [];
+    for ( var w in widgets) {
+        if (widgets[w].pageId === pageId) {
+            widgetsForPage.push(widgets[w]);
+        }
+        else
+            widgetsRest.push(widgets[w]);
+    }
+    widgetsForPage.splice(final, 0, widgetsForPage.splice(initial, 1)[0]);
+    widgets = widgetsRest.concat(widgetsForPage);
+    res.sendStatus(200);
+    //res.send([pageId, initial, final]);
 }
 
 function uploadImage(req, res) {

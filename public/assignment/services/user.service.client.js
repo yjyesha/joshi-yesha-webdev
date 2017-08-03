@@ -29,7 +29,7 @@
 
         function createUser(user) {
             var url = "/api/user";
-                    return $http.post(url,user);
+            return $http.post(url,user);
         }
 
         function findUserByCredentials(username, password) {
