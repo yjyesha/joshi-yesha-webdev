@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("wbdvDirectives",[])
         .directive('wbdvSortable', wbdvSortableDir);
 
     function wbdvSortableDir($routeParams, widgetService, $http) {

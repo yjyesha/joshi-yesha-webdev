@@ -3,5 +3,5 @@
  */
 (function () {
     //iife
-    angular.module("WebAppMaker", ["ngRoute"])
+    angular.module("WebAppMaker", ["ngRoute","wbdvDirectives"])
 })();
