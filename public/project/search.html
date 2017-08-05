@@ -6,7 +6,9 @@
 <button ng-click="model.searchFoodSpotByCity(city)" class="btn btn-primary btn-block">
     Search
 </button>
+<button ng-click="model.geoFindMe()">Try It</button>
 
+<div id="out"></div>
 <table class="table">
     <tr ng-repeat="movie in model.movies.Search">
         <td>
