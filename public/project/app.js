@@ -16,7 +16,7 @@
                 controller: "searchController",
                 controllerAs: "model"
             })
-            .when("/details/:imdbID", {
+            .when("/details/:eId", {
                 templateUrl: "details.html",
                 controller: "detailsController",
                 controllerAs: "model"
@@ -30,24 +30,22 @@
 
         function init() {
             foodService
-                .searchMovieByImdbId(imdbID)
-                .then(renderMovie);
+                .searchEatSpotById(eId)
+                .then(renderEatery);
         }
         init();
 
-        function renderMovie(movie) {
-            model.movie = movie;
+        function renderEatery(response) {
+            model.eatSpot = response.data;
         }
     }
 
     function searchController(foodService) {
         var model = this;
-
         model.searchFoodSpotByCity = searchFoodSpotByCity;
         model.searchFoodSpotByLocation = searchFoodSpotByLocation;
         model.geoFindMe = geoFindMe;
         function init() {
-            console.log("ko");
         }
         init();
 
@@ -57,21 +55,19 @@
                 .then(renderFoodSpots);
         }
 
-        function searchFoodSpotByLocation() {
+        function searchFoodSpotByLocation(lat,lon) {
             foodService
-                .searchFoodSpotByLocation()
+                .searchFoodSpotByLocation(lat,lon)
                 .then(renderFoodSpots);
         }
 
         function renderFoodSpots(response) {
-            model.movies = response.data;
+            model.eatSpots = response.data;
         }
 
         function geoFindMe() {
             var output = document.getElementById("out");
-            console.log("lkuh");
             if (!navigator.geolocation){
-                console.log("ink")
                 output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
                 return;
             }
@@ -101,26 +97,22 @@
     function foodService($http) {
         this.searchFoodSpotByCity = searchFoodSpotByCity;
         this.searchFoodSpotByLocation = searchFoodSpotByLocation;
-        this.searchMovieByImdbId = searchMovieByImdbId;
+        this.searchEatSpotById = searchEatSpotById;
 
-        function searchMovieByImdbId(imdbID) {
-            var url = "http://www.omdbapi.com/?s="+movieTitle+"&apikey=852159f0";
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
+        function searchEatSpotById(eId) {
+            return $http.get('https://api.yelp.com/v3/businesses/'+eId, {
+                headers: {'Content-Type':'application/x-www-form-urlencoded','Authorization': 'Bearer ZTE-0HHqsbQLo0zbqEAOvDuFKplK6l1N1zTw7T3_w-Hzja7x1VdenPu1-lA1P82VDjogZeywIoLN_WdOxFxJdt3Isl14v1Re73YOWiNOrB2H_4b5Ozg-LBwi3--DWXYx'}
+            });
         }
 
 
         function searchFoodSpotByLocation(lat,lng) {
-            console.log("ehhh");
             return $http.get('https://api.yelp.com/v3/businesses/search?term=food&latitude='+lat+'&longitude='+lng, {
                 headers: {'Content-Type':'application/x-www-form-urlencoded','Authorization': 'Bearer ZTE-0HHqsbQLo0zbqEAOvDuFKplK6l1N1zTw7T3_w-Hzja7x1VdenPu1-lA1P82VDjogZeywIoLN_WdOxFxJdt3Isl14v1Re73YOWiNOrB2H_4b5Ozg-LBwi3--DWXYx'}
             });
         }
 
         function searchFoodSpotByCity(city) {
-        console.log("is");
             return $http.get('https://api.yelp.com/v3/businesses/search?term=food&location='+city, {
                 headers: {'Content-Type':'application/x-www-form-urlencoded','Authorization': 'Bearer ZTE-0HHqsbQLo0zbqEAOvDuFKplK6l1N1zTw7T3_w-Hzja7x1VdenPu1-lA1P82VDjogZeywIoLN_WdOxFxJdt3Isl14v1Re73YOWiNOrB2H_4b5Ozg-LBwi3--DWXYx'}
             });

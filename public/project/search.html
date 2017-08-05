@@ -1,23 +1,23 @@
 <h1>YelpFusion API</h1>
 <h2>Search Eat Spot By City</h2>
 <input placeholder="boston"
-       ng-model="movieTitle"
+       ng-model="city"
        class="form-control"/>
 <button ng-click="model.searchFoodSpotByCity(city)" class="btn btn-primary btn-block">
-    Search
+    Find me food in this city
 </button>
-<button ng-click="model.geoFindMe()">Try It</button>
+<button ng-click="model.geoFindMe()">Find me food nearby</button>
 
 <div id="out"></div>
 <table class="table">
-    <tr ng-repeat="movie in model.movies.Search">
+    <tr ng-repeat="eatery in model.eatSpots.Search">
         <td>
-            <a href="#!/details/{{movie.id}}">
-                {{movie.Title}}
+            <a href="#!/details/{{eatery.id}}">
+                {{eatery.name}}
             </a>
         </td>
         <td>
-            <img ng-src="{{movie.img_url}}"/>
+            <img ng-src="{{eatery.img_url}}"/>
         </td>
     </tr>
 </table>
