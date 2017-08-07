@@ -4,7 +4,7 @@
  */
 
 var app = require("../../express");
-
+var userModel = require("../models/user.model.server");
 
 var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
@@ -39,32 +39,47 @@ function deleteUser(req,res) {
 }
 
 function getUserById(req, res) {
-    for(var u in users) {
-        if(users[u]._id === req.params.userId) {
-            res.send(users[u]);
-        }
+    userModel.findUserById(req.params.userId)
+        .then(function (user) {
+        res.json(user);
+        })
+
+//    for(var u in users) {
+  //      if(users[u]._id === req.params.userId) {
+    //        res.send(users[u]);
+      //  }
     }
-}
+
 
 function updateUser(req, res) {
     var userId = req.params.userId;
     var user = req.body;
 
-    for(var u in users) {
-        if(users[u]._id === userId) {
-            users[u] = user;
-            res.send(user);
-            return;
-        }
-    }
-    res.sendStatus(404);
+//    for(var u in users) {
+  //      if(users[u]._id === userId) {
+    //        users[u] = user;
+      //      res.send(user);
+        //    return;
+        //}
+    userModel.updateUser(userId,user)
+        .then(function (status)
+    {
+        res.json(status);
+    },function (err) {
+            res.status(404).send(err);
+        });
 }
 
 function createUser(req, res) {
     var user = req.body;
-    user._id = (new Date()).getTime() + "";
-    users.push(user);
-    res.send(user);
+    userModel.createUser(user)
+    .then(function(user)
+    {
+        res.json(user);
+    })
+    //user._id = (new Date()).getTime() + "";
+    //users.push(user);
+    //res.send(user);
 }
 
 function findUser(req, res) {
@@ -72,20 +87,17 @@ function findUser(req, res) {
     var password = req.query.password;
 
     if(username && password) {
-        for(var u in users) {
-            var _user = users[u];
-            if(_user.username === username && _user.password === password) {
-                res.send(_user);
+        userModel.findUserByCredentials(username,password)
+            .then(function (user) {
+                res.json(user);
                 return;
-            }
-        }
+            },function (err) {
+                res.sendStatus(404).send(err);
+                return;
+            });
+        return;
     } else if(username) {
-        for(var u in users) {
-            if(users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
-        }
+
     }
     res.send("0");
 }
