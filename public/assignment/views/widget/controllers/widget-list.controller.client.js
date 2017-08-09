@@ -23,9 +23,9 @@
             model.userId = userId;
             model.pageId = pageId;
             model.widgetId  = widgetId;
-            widgetService.findWidgetsByPageId(model.pageId)
-                .then(function (widgets) {
-                    model.widgets = widgets;
+            widgetService.findWidgetsByPageId(pageId)
+                .then(function (response) {
+                    model.widgets = response;
                 });
         }
         init();
