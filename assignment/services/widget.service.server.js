@@ -76,7 +76,7 @@ function getWidgetById(widgetId) {
             .then(function (widget) {
                     return widget;
                 }, function (err) {
-                    return null;
+                    return err;
                 });
 }
 

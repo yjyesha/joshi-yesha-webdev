@@ -22,7 +22,7 @@
             model.pageId = pageId;
             model.widgetId = widgetId;
             widgetService
-                .findWidgetsByPageId(model.pageId)
+                .findWidgetsByPageId(pageId)
                 .then(function (widgets) {
                     model.widgets = widgets;
                 });
@@ -36,7 +36,7 @@
                     if (_widget) {
                         model.successMessage = "Widget created!";
                     }
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + '/widget/' + _widget._id);
+                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + _widget._id);
                 },
                 function (error) {
                     console.log("error encountered");

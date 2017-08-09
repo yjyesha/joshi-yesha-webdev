@@ -28,7 +28,9 @@
     </nav>
     <div class="container-fluid yj-widget-gly yj-widget-list">
         <div class="col-md-8 col-md-offset-2 col-sm-12" wbdv-sortable id="widget-list" >
+
             <div ng-repeat="widget in model.widgets">
+                                    <div>
                 <div class="wd-widget">
                     <div class="wd-widget-toolbar">
                         <a href="#" role="button">
@@ -38,6 +40,7 @@
                         </a>
                     </div>
                 </div>
+
                 <div ng-switch="widget.type">
                     <div ng-switch-when="HEADING">
                         <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
@@ -51,7 +54,9 @@
                     <div ng-switch-when="HTML" ng-bind-html="model.trustHtmlContent(widget.text)">
                     </div>
                 </div>
-            </div>
+                    </div>
+
+
         </div>
     </div>
 </div>
