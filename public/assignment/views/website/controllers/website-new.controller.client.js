@@ -9,15 +9,17 @@
 
     function websiteNewController($routeParams,$location,websiteService) {
         var model = this;
-        model.userId = $routeParams.uid;
+        var userId = $routeParams.uid;
        var websiteId = $routeParams.wid;
 
         model.createWebsite=createWebsite;
 
         function init()
         {
+            model.userId = userId;
+            model.websiteId = websiteId;
             websiteService
-                .findWebsitesForUser(model.userId)
+                .findWebsitesForUser(userId)
                 .then(function (websites) {
                     model.websites = websites;
                 });
@@ -26,7 +28,7 @@
 
         function createWebsite(website)
         {
-            websiteService.createWebsite(model.userId,website)
+            websiteService.createWebsite(userId,website)
                 .then(function(response)
                 {
                     var _website = response;
@@ -34,7 +36,7 @@
                     {
                         model.errorMessage = "some error encountered";
                     }
-                    $location.url("/user/" + model.userId + "/website");
+                    $location.url("/user/" + userId + "/website");
                 });
         }
     }

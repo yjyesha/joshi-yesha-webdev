@@ -30,9 +30,9 @@
         init();
 
         function createWidget(widgetType) {
-            var widget = {widgetType: widgetType};
+            var widget = {type: widgetType};
             widgetService.createWidget(pageId, widget).then(function (response) {
-                    var _widget = response.data;
+                    var _widget = response;
                     if (_widget) {
                         model.successMessage = "Widget created!";
                     }

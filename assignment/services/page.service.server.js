@@ -3,9 +3,6 @@
  * Created by yeshajoshi on 7/23/2017.
  */
 
-/**
- * Created by yeshajoshi on 7/23/2017.
- */
 var app = require("../../express");
 var pageModel = require("../models/page.model.server");
 

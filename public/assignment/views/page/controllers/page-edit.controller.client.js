@@ -20,14 +20,13 @@
             model.websiteId = websiteId;
             model.pageId = pageId;
             pageService
-                .findPagesForWebsite(model.websiteId)
+                .findPagesForWebsite(websiteId)
                 .then(function (pages) {
                     model.pages = pages;
                 });
             pageService
-                .findPageById(model.pageId)
-                .then(function (response) {
-                    var page = Object.assign({}, response.data);
+                .findPageById(pageId)
+                .then(function (page) {
                     model.page = page;
                 });
         }
@@ -35,17 +34,17 @@
         init();
 
         function deletePage() {
-            pageService.deletePage(model.pageId)
+            pageService.deletePage(pageId)
                 .then(function (response) {
-                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
                 });
         }
 
         function updatePage(page) {
-            pageService.updatePage(model.pageId, page)
+            pageService.updatePage(pageId, page)
                 .then(function (response) {
                     page = response.data;
-                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
                 });
         }
     }

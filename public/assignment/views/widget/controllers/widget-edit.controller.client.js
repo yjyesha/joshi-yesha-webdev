@@ -23,33 +23,33 @@
             model.userId = userId;
             model.pageId = pageId;
             model.widgetId  = widgetId;
-            widgetService.findWidgetsByPageId(model.pageId)
+            widgetService.findWidgetsByPageId(pageId)
                 .then(function (widgets) {
                     model.widgets = widgets;
                 });
 
             widgetService
-                .findWidgetById(model.widgetId)
+                .findWidgetById(widgetId)
                 .then(function (response) {
-                    var _widget = Object.assign({}, response.data);
+                    var _widget = response;
                     model.widget = _widget;
                 });
         }
         init();
 
         function updateWidget(widget) {
-            widgetService.updateWidget(model.widgetId, model.widget)
+            widgetService.updateWidget(widgetId, widget)
                 .then(function (response) {
                     widget = response.data;
-                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
                 });
         }
 
         function deleteWidget()
         {
-            widgetService.deleteWidget(model.widgetId)
+            widgetService.deleteWidget(widgetId)
                 .then(function (response) {
-                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/"+model.pageId+"/widget");
+                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/"+pageId+"/widget");
                 });
         }
     }

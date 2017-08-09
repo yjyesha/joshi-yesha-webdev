@@ -16,7 +16,7 @@
      //       model.websiteId = websiteId;
             model.userId = userId;
             websiteService
-                .findWebsitesForUser(model.userId)
+                .findWebsitesForUser(userId)
                 .then(function (response) {
                     model.websites = response;
                 });

@@ -17,7 +17,9 @@
         function createPage(websiteId, page)
         {
             var url = "/api/website/" + websiteId + "/page";
-            return $http.post(url,page);
+            return $http.post(url,page) .then(function (response) {
+                return response.data;
+            });
         }
 
         function findPagesForWebsite(websiteId)
@@ -33,19 +35,28 @@
         function findPageById(pageId)
         {
             var url = "/api/page/"+pageId;
-            return $http.get(url);
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function updatePage(pageId, page)
         {
             var url = "/api/page/"+pageId;
-            return $http.put(url,page);
+            return $http.put(url,page)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function deletePage(pageId)
         {
             var url = "/api/page/"+pageId;
-            return $http.delete(url,pageId);
+            return $http.delete(url,pageId)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 

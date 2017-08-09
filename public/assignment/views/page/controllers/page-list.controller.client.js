@@ -17,9 +17,9 @@
             model.userId = userId;
             model.websiteId = websiteId;
             model.pageId = pageId;
-           pageService.findPagesForWebsite(model.websiteId)
-                .then(function (pages) {
-                    model.pages = pages;
+           pageService.findPagesForWebsite(websiteId)
+                .then(function (response) {
+                    model.pages = response;
                 });
 
         }init();

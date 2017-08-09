@@ -2,23 +2,11 @@
 /**
  * Created by yeshajoshi on 7/23/2017.
  */
-
+var widgetModel = require("../models/widget.model.server");
 var app = require("../../express");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
-var widgets =
-    [
-        { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-        { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "http://lorempixel.com/400/200/"},
-        { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-        { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://youtu.be/AM2Ivdi9c4E" },
-        { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-    ];
 
 app.get("/api/page/:pageId/widget", findWidgetsByPageId);
 app.get ("/api/widget/:widgetId", findWidgetById);
@@ -32,70 +20,64 @@ function findWidgetsByPageId(req,res) {
 
     var pageId = req.params.pageId;
 
-    var widgetsN = [];
-    for(var wd in widgets){
-        if(widgets[wd].pageId === pageId)
-        {
-            widgetsN.push(widgets[wd]);
-        }
-    }
-    return res.json(widgetsN);
+    widgetModel.findAllWidgetsForPage(pageId)
+            .then(function (widgets) {
+                    res.json(widgets);
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                });
 }
 
 function createWidget(req, res) {
     var widget = req.body;
     var pageId = req.params.pageId;
-    widget.pageId = pageId;
-    widget._id = (new Date()).getTime() + "";
-    widgets.push(widget);
-    res.json(widget);
+    widgetModel.createWidget(pageId, widget)
+            .then(function (widget) {
+                    res.json(widget);
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                });
 }
 
 function findWidgetById(req, res) {
-    for(var wd in widgets) {
-        if(widgets[wd]._id === req.params.widgetId) {
-            res.json(widgets[wd]);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    var widgetId = req.params.widgetId;
+    widgetModel.findWidgetById(widgetId)
+        .then(function (widget) {
+            res.json(widget);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
 }
-
-function updateWidget(req, res)
-{
+function updateWidget(req, res) {
     widgetId = req.params.widgetId;
     widget = req.body;
-    for(var wd in widgets)
-    {
-        if(widgets[wd]._id === widgetId)
-        {
-            widgets[wd] = widget;
-            res.send(widget);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    widgetModel.updateWidget(widgetId, widget)
+        .then(function (widget) {
+        res.json(widget);
+
+    }, function (err) {
+        res.sendStatus(404).send(err);
+
+    });
 }
 
 function deleteWidget(req,res)
 {
     widgetId = req.params.widgetId;
-    for(var wd in widgets)
-    {
-        if(widgets[wd]._id === widgetId)
-        {
-            widgets.splice(wd,1);
-        }
-    }
-    res.send("0");
+    widgetModel.deleteWidget(widgetId)
+            .then(function (status) {
+                res.json(status);
+            }, function (err) {
+                res.sendStatus(404).send(err);
+            });
 }
 function getWidgetById(widgetId) {
-    for(var w in widgets){
-        if(widgets[w]._id === widgetId){
-            return widgets[w];
-        }
-    }
-    return null;
+    widgetModel.findWidgetById(widgetId)
+            .then(function (widget) {
+                    return widget;
+                }, function (err) {
+                    return null;
+                });
 }
 
 function orderWidgets(req,res) {
@@ -103,19 +85,12 @@ function orderWidgets(req,res) {
     var initial = req.query.start;
     var final = req.query.end;
 
-    var widgetsForPage = [];
-    var widgetsRest = [];
-    for ( var w in widgets) {
-        if (widgets[w].pageId === pageId) {
-            widgetsForPage.push(widgets[w]);
-        }
-        else
-            widgetsRest.push(widgets[w]);
-    }
-    widgetsForPage.splice(final, 0, widgetsForPage.splice(initial, 1)[0]);
-    widgets = widgetsRest.concat(widgetsForPage);
-    res.sendStatus(200);
-    //res.send([pageId, initial, final]);
+    widgetModel.reorderWidget(pageId, initial, final)
+        .then(function (status) {
+            res.json(status);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
 }
 
 function uploadImage(req, res) {

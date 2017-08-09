@@ -20,12 +20,12 @@
             model.userId = userId;
             model.websiteId = websiteId;
             websiteService
-                .findWebsitesForUser(model.userId)
+                .findWebsitesForUser(userId)
                 .then(function (response) {
                     model.websites = response;
                 });
             websiteService
-                .findWebsiteById(model.websiteId)
+                .findWebsiteById(websiteId)
                 .then(function (response) {
                     var website = Object.assign({}, response);
                     model.website = website;
@@ -35,18 +35,18 @@
 
         function updateWebsite(website)
         {
-            websiteService.updateWebsite(model.websiteId,website)
+            websiteService.updateWebsite(websiteId,website)
                 .then (function (response)
             {
-                $location.url("/user/"+model.userId+"/website");
+                $location.url("/user/"+userId+"/website");
             });
 
         }
 
         function deleteWebsite() {
-            websiteService.deleteWebsite(model.websiteId)
+            websiteService.deleteWebsite(userId,websiteId)
                 .then(function (response) {
-                    $location.url("/user/" + model.userId + "/website");
+                    $location.url("/user/" +userId + "/website");
                 });
         }
     }

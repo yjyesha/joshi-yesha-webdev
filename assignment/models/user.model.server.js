@@ -14,6 +14,8 @@ userModel.deleteUser = deleteUser;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.getAllUsers = getAllUsers;
+userModel.addWebsite = addWebsite;
+userModel.removeWebsite = removeWebsite;
 
 module.exports = userModel;
 
@@ -22,7 +24,9 @@ function createUser(user) {
 }
 
 function findUserById(userId) {
-    return userModel.findById(userId);
+    return userModel.findById(userId)
+        .populate("websites")
+        .exec();
 }
 
 function updateUser(userId,user) {
@@ -37,9 +41,32 @@ function findUserByUsername(username) {
 }
 
 function deleteUser(userId,user) {
-    return userModel.deleteOne({_id:userId});
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            return userModel.remove({_id: userId});
+        });
 }
 
 function getAllUsers() {
     return userModel.find();
+}
+
+function addWebsite(userId, websiteId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            user.websites.push(websiteId);
+            return user.save();
+        });
+}
+
+function removeWebsite(userId, websiteId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            var index = user.websites.indexOf(websiteId);
+            user.websites.splice(index, 1);
+            return user.save();
+        });
 }

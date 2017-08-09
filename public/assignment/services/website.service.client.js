@@ -55,9 +55,9 @@
                 });
         }
 
-        function deleteWebsite(websiteId)
+        function deleteWebsite(userId,websiteId)
         {
-            var url = "/api/website/"+websiteId;
+            var url = "/api/user/"+userId+"/website/"+websiteId;
             return $http.delete(url,websiteId)
                 .then(function (response)
                 {

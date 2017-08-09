@@ -70,6 +70,7 @@ function createUser(req, res) {
     userModel.createUser(user)
         .then(function(user)
         {
+
             res.json(user);
         },function (err)
         {

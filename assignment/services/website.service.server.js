@@ -11,7 +11,7 @@ app.get("/api/user/:userId/website", findWebsitesForUser);
 app.get ("/api/website/:websiteId", findWebsiteById);
 app.post("/api/user/:userId/website", createWebsite);
 app.put("/api/website/:websiteId", updateWebsite);
-app.delete("/api/website/:websiteId", deleteWebsite);
+app.delete("/api/user/:userId/website/:websiteId", deleteWebsite);
 
 function findWebsitesForUser(req,res) {
     var userId = req.params.userId;
@@ -66,8 +66,9 @@ function updateWebsite(req, res)
 
 function deleteWebsite(req,res)
 {
+    var userId = req.params.userId;
     var websiteId = req.params.websiteId;
-    websiteModel.deleteWebsite(websiteId)
+    websiteModel.deleteWebsite(userId,websiteId)
         .then(function(status)
         {
             res.json(status);
