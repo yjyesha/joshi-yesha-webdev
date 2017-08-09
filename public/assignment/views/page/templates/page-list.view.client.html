@@ -36,6 +36,7 @@
                        href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="pull-right glyphicon glyphicon-cog"></span></a>
                 </li>
+                <li class="list-group-item" ng-show="!model.pages.length">There are no pages currently</li>
             </ul>
         </div>
     </div> <!-- /container -->
