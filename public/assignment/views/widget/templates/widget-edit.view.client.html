@@ -11,4 +11,12 @@
         <ng-include
                 src="'views/widget/templates/widget-edit-heading.view.client.html'">
     </div>
+    <div ng-switch-when="TEXT">
+        <ng-include
+                src="'views/widget/templates/widget-edit-text.view.client.html'">
+    </div>
+    <div ng-switch-when="HTML">
+        <ng-include
+                src="'views/widget/templates/widget-edit-html.view.client.html'">
+    </div>
 </div>

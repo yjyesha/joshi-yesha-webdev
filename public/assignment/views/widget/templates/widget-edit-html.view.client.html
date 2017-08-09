@@ -1,0 +1,38 @@
+<div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <p class="navbar-text pull-left">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                            <span class="glyphicon glyphicon-chevron-left pull-left"></span></a>
+                    </p>
+                    <div class="navbar-brand">Widget Html</div>
+                    <p class="navbar-text pull-right">
+                        <a ng-click="model.updateWidget(model.widget)" role="button">
+                            <span class="glyphicon glyphicon-ok pull-right"></span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/user/{{model.userId}}">
+                    <span class="pull-right glyphicon glyphicon-user"></span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid wbd-page-content col-xs-12">
+
+        <div ng-model="model.widget.text"
+             text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+        </div>
+</div>
+</div>
