@@ -10,15 +10,15 @@
     function websiteListController($routeParams,websiteService) {
         var model = this;
         var userId = $routeParams["uid"];
-        var websiteId = $routeParams["wid"];
+      //  var websiteId = $routeParams["wid"];
 
         function init() {
-            model.websiteId = websiteId;
+     //       model.websiteId = websiteId;
             model.userId = userId;
             websiteService
                 .findWebsitesForUser(model.userId)
-                .then(function (websites) {
-                    model.websites = websites;
+                .then(function (response) {
+                    model.websites = response;
                 });
         }init();
     }

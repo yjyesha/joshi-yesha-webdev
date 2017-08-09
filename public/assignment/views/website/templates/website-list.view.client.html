@@ -30,6 +30,7 @@
                 <li ng-repeat="website in model.websites" class="list-group-item"><a role="button" type="submit" href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
                     <a role="button" type="submit" href="#!/user/{{model.userId}}/website/{{website._id}}"><span class="pull-right glyphicon glyphicon-cog"></span></a>
                 </li>
+                <li class="list-group-item" ng-show="!model.websites.length">No websites have been created yet</li>
             </ul>
         </div>
     </div> <!-- /container -->
