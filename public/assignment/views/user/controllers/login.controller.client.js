@@ -18,18 +18,15 @@
         init();
 
         function login(user) {
-            if(!user) {
-                model.errorMessage = "User not found";
-                return;
-            }
+
             userService.findUserByCredentials(user.username, user.password)
                 .then(function (response) {
-                    user = response.data;
-                    if(user === "0") {
+                    var _user = response;
+                    if(!_user) {
                         model.errorMessage = "User not found";
                     } else {
-                        $rootScope.currentUser = user;
-                        $location.url("/user/"+user._id);
+                        $rootScope.currentUser = _user;
+                        $location.url("/user/"+_user._id);
                     }
                 });
         }

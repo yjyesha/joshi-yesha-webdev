@@ -17,26 +17,25 @@
 
         function init() {
             userService.findUserById(userId)
-            .then(function (response) {
-                model.user = response.data;
-            });
+                .then(function (response) {
+                    model.user = response;
+                });
         }
 
         init();
 
 
         function updateUser(user) {
-            userService.updateUser(userId, user)
-            .then(function (response) {
-                var _user = response.data;
-                if (!_user) {
-                    model.error = "Error updating profile";
-                }
-                else {
-                    model.successMessage = "Profile updated!";
-                    $location.url("/user/" + _user._id);
-                }
-            });
+            userService.updateUser(user._id, user)
+                .then(function (response) {
+                    if (!response) {
+                        model.error = "Error updating profile";
+                    }
+                    else {
+                        model.successMessage = "Profile updated!";
+                        $location.url("/user/" + user._id);
+                    }
+                });
         }
 
         function deleteUser(userId) {
@@ -48,6 +47,7 @@
 
         function logout() {
             if ($rootScope.currentUser) {
+                console.log("logout")
                 delete $rootScope.currentUser;
                 $location.url("/login");
             }

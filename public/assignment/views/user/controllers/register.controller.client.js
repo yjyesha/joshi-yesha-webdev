@@ -21,15 +21,16 @@
         function createUser(user) {
             userService.findUserByUsername(user.username)
                 .then(function (response) {
-                    var _user = response.data;
-                    if(_user === "0") {
-                        return userService.createUser(user)
+                    var _user = response;
+                    if(!_user) {
+                        var userTemp = {username:user.username,password:user.password};
+                        return userService.createUser(userTemp)
                     } else {
                         model.error = "User already exists";
                     }
                 })
                 .then(function (response) {
-                    _user = response.data;
+                    _user = response;
                     $rootScope.currentUser = _user;
                     $location.url("/user/" + _user._id);
                 });

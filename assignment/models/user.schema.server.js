@@ -4,11 +4,15 @@
 var mongoose = require("mongoose");
 var userSchema = mongoose.Schema(
     {
-username: String,
-    password: String,
+        username: String,
+        password: String,
         firstName: String,
         lastName: String,
-    isAdmin: Boolean}
+        email: String,
+        phone:String,
+        websites:[{type:mongoose.Schema.Types.ObjectId,ref:"WebsiteModel"}],
+        isAdmin: Boolean,
+        dateCreated: {type: Date,default: Date.now}}
     ,{collection:"user"}
 );
- module.exports = userSchema;
+module.exports = userSchema;
