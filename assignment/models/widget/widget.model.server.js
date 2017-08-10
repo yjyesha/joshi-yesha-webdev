@@ -45,7 +45,13 @@ function updateWidget(widgetId, widget)  {
 }
 
 function deleteWidget(widgetId) {
-    return widgetModel.deleteOne({_id: widgetId});
+    return widgetModel.findWidgetById(widgetId)
+        .then(function (widget) {
+            return widget.remove({_id: widgetId})
+                .then(function () {
+                    return pageModel.removeWidget(widget._page, widgetId);
+                });
+        });
 }
 
 function reorderWidget(pageId, start, end) {

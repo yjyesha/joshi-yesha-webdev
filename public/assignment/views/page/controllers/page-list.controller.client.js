@@ -17,7 +17,7 @@
             model.userId = userId;
             model.websiteId = websiteId;
             model.pageId = pageId;
-           pageService.findPagesForWebsite(websiteId)
+            pageService.findPagesForWebsite(websiteId)
                 .then(function (response) {
                     model.pages = response;
                 });

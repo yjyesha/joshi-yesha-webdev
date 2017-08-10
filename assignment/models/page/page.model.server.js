@@ -23,7 +23,6 @@ function createPageForWebsite(websiteId, page) {
     return pageModel
         .create(page)
         .then(function (pageDoc) {
-            console.log(websiteId + pageDoc);
             pageTemp = pageDoc;
             return websiteModel.addPage(websiteId, pageDoc._id);
         })
@@ -47,7 +46,13 @@ function updatePage(pageId, page) {
 }
 
 function deletePage(pageId) {
-    return pageModel.deleteOne({_id: pageId});
+    return pageModel.findById(pageId)
+        .then(function (page) {
+            return pageModel.remove({_id: pageId})
+                .then(function () {
+                    return websiteModel.removePage(page._website, pageId);
+                });
+        });
 }
 
 function addWidget(pageId, widgetId) {

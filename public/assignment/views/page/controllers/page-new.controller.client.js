@@ -37,5 +37,5 @@
                     $location.url("/user/" + userId + "/website/" + websiteId + "/page");
                 });
         }
-}
+    }
 })();
