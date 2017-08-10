@@ -3,6 +3,11 @@
     border-color: #428bca;
 }
 
+.photo-viewer
+{
+    height:100px;
+    width:100px;
+}
 ul {
     list-style-type: none;
 }

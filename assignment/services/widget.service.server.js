@@ -1,7 +1,7 @@
 /**
  * Created by yeshajoshi on 7/23/2017.
  */
-var widgetModel = require("../models/widget.model.server");
+var widgetModel = require("../models/widget/widget.model.server");
 var app = require("../../express");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({dest: __dirname + '/../../public/uploads'});
@@ -93,28 +93,32 @@ function orderWidgets(req, res) {
 
 function uploadImage(req, res) {
 
-    var widgetId = req.body.widgetId;
-    var width = req.body.width;
-    var myFile = req.file;
+    var widgetId      = req.body.widgetId;
+    var width         = req.body.width;
+    var myFile        = req.file;
 
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    console.log("original name: " + myFile.originalname);
-    console.log("original name: " + myFile.filename);
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
 
-    var originalname = myFile.originalname; // file name on user's computer
-    var filename = myFile.filename;     // new file name in upload folder
-    var path = myFile.path;         // full path of uploaded file
-    var destination = myFile.destination;  // folder where file is saved to
-    var size = myFile.size;
-    var mimetype = myFile.mimetype;
+    var widgetTemp = null;
+    widgetModel.findWidgetById(widgetId)
+        .then(function (response) {
+            widget = response;
+            widget.url = '/uploads/'+filename;
+            widgetModel.updateWidget(widgetId, widget)
+                .then(function (widget) {
+                });
+        });
 
-    var widget = getWidgetById(widgetId);
-    widget.url = '/uploads/' + filename;
-
-    var callbackUrl = "/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+    var callbackUrl = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
 
     res.redirect(callbackUrl);
 }

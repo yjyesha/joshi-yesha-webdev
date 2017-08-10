@@ -23,10 +23,6 @@
             model.userId = userId;
             model.pageId = pageId;
             model.widgetId  = widgetId;
-            widgetService.findWidgetsByPageId(pageId)
-                .then(function (widgets) {
-                    model.widgets = widgets;
-                });
 
             widgetService
                 .findWidgetById(widgetId)
@@ -40,7 +36,7 @@
         function updateWidget(widget) {
             widgetService.updateWidget(widgetId, widget)
                 .then(function (response) {
-                    widget = response.data;
+                    widget = response;
                     $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
                 });
         }

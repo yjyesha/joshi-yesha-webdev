@@ -3,8 +3,8 @@
  */
 var mongoose = require("mongoose");
 var pageSchema = require("./page.schema.server");
-var db = require("./database");
-var websiteModel = require("./website.model.server");
+var db = require("../database");
+var websiteModel = require("../website/website.model.server");
 var pageModel = mongoose.model("PageModel", pageSchema);
 
 pageModel.createPageForWebsite = createPageForWebsite;

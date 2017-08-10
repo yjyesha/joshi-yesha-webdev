@@ -3,7 +3,7 @@
  * Created by yeshajoshi on 7/23/2017.
  */
 var app = require("../../express");
-var websiteModel = require("../models/website.model.server");
+var websiteModel = require("../models/website/website.model.server");
 
 // http handlers
 

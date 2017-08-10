@@ -27,6 +27,7 @@
                 .then(function (response) {
                     model.widgets = response;
                 });
+
         }
         init();
 

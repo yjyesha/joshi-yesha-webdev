@@ -4,7 +4,7 @@
  */
 
 var app = require("../../express");
-var pageModel = require("../models/page.model.server");
+var pageModel = require("../models/page/page.model.server");
 
 // http handlers
 

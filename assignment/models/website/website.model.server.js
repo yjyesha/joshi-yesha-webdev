@@ -4,9 +4,9 @@
 
 var mongoose = require("mongoose");
 var websiteSchema = require("./website.schema.server");
-var db = require("./database");
+var db = require("../database");
 var websiteModel = mongoose.model("WebsiteModel",websiteSchema);
-var userModel = require("./user.model.server");
+var userModel = require("../user/user.model.server");
 
 websiteModel.createWebsite = createWebsite;
 websiteModel.findWebsiteById = findWebsiteById;
@@ -50,7 +50,6 @@ function findAllWebsitesForUser(userId) {
 function deleteWebsite(userId,websiteId) {
     return websiteModel.remove({_id: websiteId})
         .then(function (status) {
-            console.log("hely"+userId+websiteId);
             return userModel.removeWebsite(userId, websiteId)
         });
 }
