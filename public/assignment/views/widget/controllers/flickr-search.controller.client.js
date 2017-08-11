@@ -9,8 +9,8 @@
     function flickrSearchController($routeParams, widgetService, FlickrService, $location) {
         var model = this;
 
-        model.searchPhotos = searchPhotos;
-        model.selectPhoto = selectPhoto;
+        model.search = search;
+        model.select = select;
 
         var userId =  $routeParams["uid"];
         var websiteId =  $routeParams["wid"];
@@ -25,9 +25,9 @@
         }
         init();
 
-        function searchPhotos (searchTerm) {
+        function search (term) {
             FlickrService
-                .searchPhotos(searchTerm)
+                .search(term)
                 .then(function(response) {
                     data = response.data.replace("jsonFlickrApi(","");
                     data = data.substring(0,data.length - 1);
@@ -36,7 +36,7 @@
                 });
         }
 
-        function selectPhoto(photo) {
+        function select(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + ".jpg";
 
