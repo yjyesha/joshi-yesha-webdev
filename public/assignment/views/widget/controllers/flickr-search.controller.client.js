@@ -25,7 +25,7 @@
         }
         init();
 
-        function search (term) {
+        function search(term) {
             FlickrService
                 .search(term)
                 .then(function(response) {
@@ -40,12 +40,12 @@
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + ".jpg";
 
-            widgetService.findWidgetById(widgetId).then(function (response) {
+            widgetService.findWidgetById(widgetId).then(function(response) {
                 var _widget = response;
                 _widget.url = url;
                 return widgetService.updateWidget(widgetId, _widget);
             })
-                .then(function (response) {
+                .then(function(response) {
                     $location.url("/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
                 });
         }

@@ -33,7 +33,7 @@
 
         function trustUrl(url)
         {
-            console.log($sce.trustAsResourceUrl(url));
+            //console.log($sce.trustAsResourceUrl(url));
             var youtubeUrl = "https://youtube.com/embed/";
             var urlParts = url.split("/");
             youtubeUrl += urlParts[urlParts.length - 1];
