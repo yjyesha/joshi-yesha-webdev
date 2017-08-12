@@ -5,7 +5,7 @@ var app = require("../../../../../express");
 
 const https = require('https');
 
-app.get("/api/project/search/:city", searchFoodSpotByCity);
+app.post("/api/project/search", searchFoodSpotByCity);
 
 
 // $http.get('https://api.yelp.com/v3/businesses/search?term=food&location='+city, {
@@ -14,15 +14,16 @@ app.get("/api/project/search/:city", searchFoodSpotByCity);
 
 function searchFoodSpotByCity(request, response) {
     console.log("someeeee");
-    var city=request.params.city;
+    var city = request.params.city;
     var body = request.body;
     console.log(body);
     if (body.requestType === "GET") {
         var url = body.requestURL;
         https.get({
             host: 'api.yelp.com',
-        path: '/v3/businesses/search?term=food&location='+city,
-            headers: {'Content-Type':'application/x-www-form-urlencoded',
+            path: '/v3/businesses/search?term=food&location=' + city,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer ZTE-0HHqsbQLo0zbqEAOvDuFKplK6l1N1zTw7T3_w-Hzja7x1VdenPu1-lA1P82VDjogZeywIoLN_WdOxFxJdt3Isl14v1Re73YOWiNOrB2H_4b5Ozg-LBwi3--DWXYx'
             }
 

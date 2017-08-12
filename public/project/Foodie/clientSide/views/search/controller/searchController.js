@@ -20,7 +20,10 @@
             console.log("ehaaaaaaaaaa");
             foodService
                 .searchFoodSpotByCity(city)
-                .then(renderFoodSpots);
+                .then(function (response) {
+                    model.eatSpots = response.data;
+                    console.log(model.eatSpots);
+                })
         }
 
         function searchFoodSpotByLocation(lat,lon) {

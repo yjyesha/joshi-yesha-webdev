@@ -8,16 +8,27 @@
 </button>
 <button ng-click="model.geoFindMe()">Find me food nearby</button>
 
-<div id="out"></div>
+<div id="out">
+    <ul ng-repeat="eatery in model.eatSpots.businesses" class="list-group">
+        <li class="list-group-item">
+            <a href="#!/details/{{eatery.id}}"></a>
+            <h3>{{eatery.name}}</h3>
+            <img ng-src="{{eatery.image_url}}" width="120" height="160"/>
+            <h5>Ratings: {{eatery.rating}}</h5>
+        </li>
+    </ul>
+</div>
+<!--
 <table class="table">
-    <tr ng-repeat="eatery in model.eatSpots">
+    <tr ng-repeat="eatery in model.eatSpots.businesses">
         <td>
             <a href="#!/details/{{eatery.id}}">
                 {{eatery.name}}
+                {{eatery}}
             </a>
         </td>
         <td>
             <img ng-src="{{eatery.img_url}}"/>
         </td>
     </tr>
-</table>
+</table>-->
