@@ -29,12 +29,12 @@
         function searchFoodSpotByLocation(lat,lon) {
             foodService
                 .searchFoodSpotByLocation(lat,lon)
-                .then(renderFoodSpots);
+                .then(function(response) {
+                model.eatSpot = response.data;
+                console.log(model.eatSpot);
+        })
         }
 
-        function renderFoodSpots(response) {
-            model.eatSpots = response.data;
-        }
 
         function geoFindMe() {
             var output = document.getElementById("out");

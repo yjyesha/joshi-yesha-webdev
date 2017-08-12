@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .config(configuration);
 
-    function configuration($routeProvider,$httpProvider) {
+    function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Accept'] = 'application/json;charset=utf-8';
         $routeProvider
 
@@ -49,14 +49,14 @@
                     controllerAs: "model"
                 })
             .when("/search", {
-                    templateUrl: "views/search/search.html",
-                    controller: "searchController",
-                    controllerAs: "model"
-                })
-                .when("/details/:eId", {
-                    templateUrl: "details.html",
-                    controller: "detailsController",
-                    controllerAs: "model"
-                })
+                templateUrl: "views/search/search.html",
+                controller: "searchController",
+                controllerAs: "model"
+            })
+            .when("/details/:eId", {
+                templateUrl: "views/search/details.html",
+                controller: "detailsController",
+                controllerAs: "model"
+            })
     }
 })();

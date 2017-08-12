@@ -10,21 +10,19 @@
         .controller("detailsController", detailsController);
 
 
-
     function detailsController($routeParams, foodService) {
         var model = this;
-
-        var imdbID = $routeParams.imdbID;
-
+        var eId = $routeParams["eId"];
         function init() {
+
             foodService
                 .searchEatSpotById(eId)
-                .then(renderEatery);
+                .then(function (response) {
+                    model.eatSpot = response.data;
+                    console.log(model.eatSpot);
+                })
         }
         init();
 
-        function renderEatery(response) {
-            model.eatSpot = response.data;
-        }
     }
 })();

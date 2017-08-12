@@ -11,8 +11,8 @@
 <div id="out">
     <ul ng-repeat="eatery in model.eatSpots.businesses" class="list-group">
         <li class="list-group-item">
-            <a href="#!/details/{{eatery.id}}"></a>
-            <h3>{{eatery.name}}</h3>
+            <a href="#!/details/{{eatery.id}}">
+            <h3>{{eatery.name}}</h3></a>
             <img ng-src="{{eatery.image_url}}" width="120" height="160"/>
             <h5>Ratings: {{eatery.rating}}</h5>
         </li>
