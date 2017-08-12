@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema(
         email: String,
         phone:String,
         followers:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
-        follower:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
+        follows:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
         isAdmin: Boolean,
         dateCreated: {type: Date,default: Date.now}}
     ,{collection:"userP"}

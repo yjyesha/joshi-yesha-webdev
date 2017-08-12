@@ -19,6 +19,7 @@ app.delete("/api/user/:userId", deleteUser);
 
 
 function getAllUsers(req, res) {
+    console.log("hey here");
     userModel.getAllUsers()
         .then(function (users)
         {
@@ -79,6 +80,7 @@ function createUser(req, res) {
 }
 
 function findUser(req, res) {
+    console.log("hiiiii");
     var username = req.query.username;
     var password = req.query.password;
 

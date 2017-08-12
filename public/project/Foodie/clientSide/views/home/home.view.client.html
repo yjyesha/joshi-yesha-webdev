@@ -7,6 +7,7 @@
                 <li><a ng-show="!currentUser" href="#!/register">Register</a></li>
                 <li><a ng-show="currentUser"  href="#!/profile/{{currentUser._id}}">Profile</a></li>
                 <li><a ng-show="currentUser"  href="#!/logout">Logout</a></li>
+                <li><a ng-show="!currentUser"  href="#!/search">Search</a></li>
                 <li><a ng-show="currentUser.isAdmin" href="#!/admin">Admin</a></li>
             </ul>
         </div><!--/.nav-collapse -->

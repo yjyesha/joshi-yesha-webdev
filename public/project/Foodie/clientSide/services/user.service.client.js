@@ -15,20 +15,32 @@
             "deleteUser": deleteUser,
             "updateUser": updateUser,
             "createUser": createUser,
-            "getAllUsers":getAllUsers
+            "getAllUsers":getAllUsers,
+            "addFollower":addFollower
         };
         return api;
 
         function updateUser(userId, user) {
-            var url = "/api/user/"+userId;
+            var url = "/api/project/user/"+userId;
             return $http.put(url,user)
                 .then(function (res)
                 {
                     return res.data;
                 });
         }
+
+        function addFollower(userId, fId) {
+            var url = "/api/project/follower/"+userId;
+            console.log("yeshajjjjjjjjj");
+            return $http.put(url,fId)
+                .then(function (res)
+                {
+                    return res.data;
+                });
+        }
+
         function getAllUsers() {
-            var url = "/api/users";
+            var url = "/api/project/users";
             return $http.get(url)
                 .then(function (res)
                 {
@@ -37,7 +49,7 @@
         }
 
         function deleteUser(userId) {
-            return $http.delete("/api/user/"+userId)
+            return $http.delete("/api/project/user/"+userId)
                 .then(function (res)
                 {
                     return res.data;
@@ -45,7 +57,7 @@
         }
 
         function createUser(user) {
-            var url = "/api/user";
+            var url = "/api/project/user";
             return $http.post(url,user)
                 .then(function (res)
                 {
@@ -54,7 +66,7 @@
         }
 
         function findUserByCredentials(username, password) {
-            var url = "/api/user?username=" + username + "&" + "password=" + password;
+            var url = "/api/project/user?username=" + username + "&" + "password=" + password;
             return $http.get(url)
                 .then(function (res)
                 {
@@ -63,7 +75,7 @@
         }
 
         function findUserByUsername(username) {
-            var url = "/api/user?username=" + username;
+            var url = "/api/project/user?username=" + username;
             return $http.get(url)
                 .then(function (res)
                 {
@@ -72,7 +84,7 @@
         }
 
         function findUserById(userId) {
-            return $http.get("/api/user/" + userId)
+            return $http.get("/api/project/user/" + userId)
                 .then(function (res)
                 {
                     return res.data;

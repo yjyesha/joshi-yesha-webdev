@@ -1,9 +1,12 @@
 /**
+ * Created by yeshajoshi on 8/12/2017.
+ */
+/**
  * Created by yeshajoshi on 8/4/2017.
  */
 (function () {
     angular
-        .module("yelpFusionApp")
+        .module("WebAppMaker")
         .service("foodService", foodService);
 
     function foodService($http) {
@@ -25,12 +28,18 @@
         }
 
         function searchFoodSpotByCity(city) {
-                           var url = "/api/project/search/"+city;
-                return $http.get(url)
-                    .then(function (res)
-                    {
-                        return res.data;
-                    });
+            console.log("eha");
+            var url = "/api/project/search";
+            var body = {
+                "requestType": "GET",
+                "requestURL": "city"
+            };
+            $http.post(url, body)
+                .then(function (response) {
+                    model.eatSpots = response.data;
+                });
+
+
         }
     }
 })();

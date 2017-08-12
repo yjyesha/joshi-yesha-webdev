@@ -7,9 +7,10 @@
         .module("WebAppMaker")
         .controller("userListController",userListController);
 
-    function userListController($routeParams,userService) {
+    function userListController($routeParams,userService,$location) {
         var model = this;
         var userId = $routeParams["uid"];
+        model.addFollower = addFollower;
         //  var websiteId = $routeParams["wid"];
 
         function init() {
@@ -21,6 +22,21 @@
                     model.users = response;
                 });
         }init();
+    function addFollower(follower)
+    {
+        console.log(follower);
+        userService.addFollower(model.userId,follower)
+                .then(function (response) {
+                    if (!response) {
+                        model.error = "Error updating profile";
+                    }
+                    else {
+                        model.successMessage = "followed updated!";
+                        $location.url("/user/" + userId);
+                    }
+                });
+        }
+
     }
 
 })();

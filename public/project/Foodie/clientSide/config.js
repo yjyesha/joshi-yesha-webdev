@@ -48,5 +48,15 @@
                     controller: "userListController",
                     controllerAs: "model"
                 })
+            .when("/search", {
+                    templateUrl: "views/search/search.html",
+                    controller: "searchController",
+                    controllerAs: "model"
+                })
+                .when("/details/:eId", {
+                    templateUrl: "details.html",
+                    controller: "detailsController",
+                    controllerAs: "model"
+                })
     }
 })();

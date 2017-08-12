@@ -62,6 +62,20 @@
                 Date of Birth
             </label>
             <input type="date" id="dob" class="form-control" required>
+            Follows
+            <ul class="list-group">
+                <li ng-repeat="f in model.user.follows" class="list-group-item">
+                    {{f}}<br>
+                </li>
+                <li class="list-group-item" ng-show="!model.user.follows.length">No users followed</li>
+            </ul>
+            FollowedBy
+            <ul class="list-group">
+                <li ng-repeat="f in model.user.followers" class="list-group-item">
+                    {{f}}<br>
+                </li>
+                <li class="list-group-item" ng-show="!model.user.followers.length">No users following</li>
+            </ul>
             <a class="btn btn-lg btn-primary btn-block"
                href="#!/{{model.userId}}/users"
                role="button"

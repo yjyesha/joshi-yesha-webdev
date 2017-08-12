@@ -19,12 +19,15 @@
         init();
 
         function createUser(user) {
+            console.log("kjbljhb");
             userService.findUserByUsername(user.username)
                 .then(function (response) {
+                    console.log(response);
                     var _user = response;
                     if(!_user) {
+                        console.log("kaji");
                         var userTemp = {username:user.username,password:user.password};
-                        return userService.createUser(userTemp)
+                        return userService.createUser(userTemp);
                     } else {
                         model.error = "User already exists";
                     }

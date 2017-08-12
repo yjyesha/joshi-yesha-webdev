@@ -14,8 +14,7 @@ userModelP.deleteUser = deleteUser;
 userModelP.findUserByUsername = findUserByUsername;
 userModelP.findUserByCredentials = findUserByCredentials;
 userModelP.getAllUsers = getAllUsers;
-userModelP.addWebsite = addWebsite;
-userModelP.removeWebsite = removeWebsite;
+userModelP.addFollower = addFollower;
 
 module.exports = userModelP;
 
@@ -37,6 +36,7 @@ function findUserByCredentials(username,password) {
 }
 
 function findUserByUsername(username) {
+    console.log("username");
     return userModelP.findOne({username:username});
 }
 
@@ -54,21 +54,17 @@ function getAllUsers() {
 }
 
 function addFollower(userId, fId) {
-    return userModelP
-        .findById(userId)
-        .then(function (user) {                    //Alice me Bob
-            user.followedBy.push(fId);
-            addFollower(fId,userId);
-            return user.save();
-        });
-}
-    function addFollows(userId, fId) {
-        return userModelP
+    console.log(userId+"  use  "+fId);
+            return userModelP
             .findById(userId)
-            .then(function (user) {                //Bob me ALice
-                user.follows.push(fId);
-                user.save();
-                return;
+            .then(function (user) {                    //Alice me Bob
+                user.followers.push(fId);
+                userModelP.findById(fId)
+                    .then(function (user) {                //Bob me ALice
+                        user.follows.push(userId);
+                        user.save();
+                    });
+                return user.save();
             });
 }
 

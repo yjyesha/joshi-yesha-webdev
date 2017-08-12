@@ -5,7 +5,7 @@
     //iife
     angular
         .module("WebAppMaker")
-        .controller("profileController", profileController)
+        .controller("profileController", profileController);
 
     function profileController($routeParams,userService,$location,$rootScope) {
         var model = this;
@@ -19,6 +19,10 @@
             userService.findUserById(model.userId)
                 .then(function (response) {
                     model.user = response;
+                });
+            userService.getAllUsers()
+                .then(function (response) {
+                    model.users = response;
                 });
         }
 
@@ -47,7 +51,7 @@
 
         function logout() {
             if ($rootScope.currentUser) {
-                console.log("logout")
+                console.log("logout");
                 delete $rootScope.currentUser;
                 $location.url("/login");
             }

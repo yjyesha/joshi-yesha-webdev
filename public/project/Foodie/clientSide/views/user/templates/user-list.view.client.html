@@ -1,9 +1,62 @@
 <div class="col-md-8 col-md-offset-2 col-sm-12 yj-widgetlist">
+    <div class="container-fluid">
+        <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
+
+            <div class="navbar-brand">Profile</div>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updateUser(model.user)" role="button"
+                   type="submit">
+                    <span class="glyphicon glyphicon-ok pull-right"></span></a>
+            </p>
+        </div>
+
+
+        <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
+
+            <p class="navbar-text pull-right">
+                <a  href="#!/user/{{model.user._id}}/">
+                    <span class="glyphicon glyphicon-user pull-right"></span></a>
+            </p>
+
+        </div><!-- /.container-fluid -->
         <div class="website-list">
             <ul class="list-group">
-                <li ng-repeat="user in model.users" class="list-group-item">{{user.username}}<br><a role="button" type="submit" ng-click="model.addFollower(user._id)">Follow</a>
-                     </li>
-                <li class="list-group-item" ng-show="!model.users.length">No users to follow</li>
+                <li ng-repeat="user in model.users" class="list-group-item">
+                    {{user.username}}<br>
+                    <a role="button" type="submit" ng-click="model.addFollower(user)">Follow</a>
+
+                <form class="form-signin" >
+                    <label for="inputUsername">Username</label>
+                    <input readonly type="text"
+                           value="{{user.username}}"
+                           id="inputUsername" class="form-control"
+                           placeholder="yeshajoshi"
+                           required
+                    >
+
+                    <label for="firstName">
+                        First Name
+                    </label>
+                    <input readonly
+                            type="text"
+                           value="{{user.firstName}}"
+                           id="firstName"
+                           class="form-control"
+                           placeholder="Yesha"
+                           required>
+                    <label for="lastName">
+                        Last Name
+                    </label>
+                    <input readonly
+                            type="text"
+                           value="{{user.lastName}}"
+                           id="lastName"
+                           class="form-control"
+                           placeholder="Joshi"
+                           required>
+                </form>
+
+                      <li class="list-group-item" ng-show="!model.users.length">No users to follow</li>
             </ul>
         </div>
     </div> <!-- /container -->
