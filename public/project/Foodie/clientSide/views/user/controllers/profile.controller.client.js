@@ -9,15 +9,19 @@
 
     function profileController($routeParams,userService,$location,$rootScope) {
         var model = this;
-        model.userId = $routeParams["uid"];
+        var userId = $routeParams["uid"];
+
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.logout = logout;
 
         function init() {
-            userService.findUserById(model.userId)
+            model.userId = userId;
+            console.log("idhar tak"+userId);
+            userService.findUserById(userId)
                 .then(function (response) {
+                    console.log("aaaaaaan ajoiapsub");
                     model.user = response;
                 });
             userService.getAllUsers()

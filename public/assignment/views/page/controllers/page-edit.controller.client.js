@@ -36,7 +36,7 @@
         function deletePage() {
             pageService.deletePage(pageId)
                 .then(function (response) {
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+                    $location.url("/user/" + userId + "/eatSpot/" + websiteId + "/page");
                 });
         }
 
@@ -44,7 +44,7 @@
             pageService.updatePage(pageId, page)
                 .then(function (response) {
                     page = response.data;
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+                    $location.url("/user/" + userId + "/eatSpot/" + websiteId + "/page");
                 });
         }
     }

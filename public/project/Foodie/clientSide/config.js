@@ -41,22 +41,43 @@
                     controller: "profileController",
                     controllerAs: "model"
                 })
-            //website routes
+            //eatSpot routes
             .when("/:uid/users",
                 {
                     templateUrl: "views/user/templates/user-list.view.client.html",
                     controller: "userListController",
                     controllerAs: "model"
                 })
-            .when("/search", {
+            .when("/:uid/search", {
                 templateUrl: "views/search/search.html",
                 controller: "searchController",
                 controllerAs: "model"
             })
-            .when("/details/:eId", {
+            .when("/:uid/details/:eId", {
                 templateUrl: "views/search/details.html",
                 controller: "detailsController",
                 controllerAs: "model"
             })
+            /*
+            .when("/user/:uid/eatSpot",
+                {
+                    templateUrl: "views/website/templates/website-list.view.client.html",
+                    controller: "websiteListController",
+                    controllerAs: "model"
+                })
+
+            .when("/user/:uid/eatSpot/new",
+                {
+                    templateUrl: "views/website/templates/website-new.view.client.html",
+                    controller: "websiteNewController",
+                    controllerAs: "model"
+                })
+            .when("/user/:uid/eatSpot/:wid",
+                {
+                    templateUrl: "views/website/templates/website-edit.view.client.html",
+                    controller: "websiteEditController",
+                    controllerAs: "model"
+                })
+                */
     }
 })();

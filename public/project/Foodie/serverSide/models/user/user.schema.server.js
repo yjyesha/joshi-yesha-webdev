@@ -10,9 +10,11 @@ var userSchema = mongoose.Schema(
         lastName: String,
         email: String,
         phone:String,
+        role: {type: String, enum: ['Admin', 'HungryUser', 'EateryOwner']},
         followers:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
         follows:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
-        isAdmin: Boolean,
+        eatSpotsLiked:[{type:mongoose.Schema.Types.ObjectId,ref:"EatSpotModel"}],
+        eatSpots:[{type:mongoose.Schema.Types.ObjectId,ref:"EatSpotModel"}],
         dateCreated: {type: Date,default: Date.now}}
     ,{collection:"userP"}
 );

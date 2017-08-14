@@ -16,7 +16,7 @@
 
         function createWebsite(userId, website)
         {
-            var url = "/api/user/" + userId + "/website";
+            var url = "/api/user/" + userId + "/eatSpot";
             return $http.post(url,website)
                 .then(function (response)
                 {
@@ -27,7 +27,7 @@
 
 
         function findWebsitesForUser(userId) {
-            var url = "/api/user/" + userId + "/website";
+            var url = "/api/user/" + userId + "/eatSpot";
             return $http.get(url)
                 .then(function(response)
                 {
@@ -37,7 +37,7 @@
 
         function findWebsiteById(websiteId)
         {
-            var url = "/api/website/"+websiteId;
+            var url = "/api/eatSpot/"+websiteId;
             return $http.get(url)
                 .then(function (response)
                 {
@@ -47,7 +47,7 @@
 
         function updateWebsite(websiteId, website)
         {
-            var url = "/api/website/"+websiteId;
+            var url = "/api/eatSpot/"+websiteId;
             return $http.put(url,website)
                 .then(function (response)
                 {
@@ -57,7 +57,7 @@
 
         function deleteWebsite(userId,websiteId)
         {
-            var url = "/api/user/"+userId+"/website/"+websiteId;
+            var url = "/api/user/"+userId+"/eatSpot/"+websiteId;
             return $http.delete(url,websiteId)
                 .then(function (response)
                 {

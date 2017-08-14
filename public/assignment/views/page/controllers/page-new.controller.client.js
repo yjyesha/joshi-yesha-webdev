@@ -34,7 +34,7 @@
                     if (_page) {
                         model.successMessage = "Page created!";
                     }
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+                    $location.url("/user/" + userId + "/eatSpot/" + websiteId + "/page");
                 });
         }
     }

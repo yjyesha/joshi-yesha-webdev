@@ -10,6 +10,7 @@ var userModelP = require("../models/user/user.model.server");
 // http handlers
 //api is a convention to return data
 app.put("/api/project/follower/:userId",addFollower);
+app.put("/api/project/favourite/:userId",favourtieeatSpot);
 app.get("/api/project/users", getAllUsers);
 app.get("/api/project/user/:userId", getUserById);
 app.get("/api/project/user", findUser);
@@ -46,6 +47,24 @@ function addFollower(req, res) {
         });
 }
 
+function favourtieeatSpot(req, res) {
+    console.log("fav kiya");
+    var userId = req.params.userId;
+    var fId = req.body;
+    console.log(fId);
+    //console.log(follower);
+    userModelP.favourtieeatSpot(userId,fId)
+        .then(function (user)
+        {
+            console.log("jiahou");
+            res.send(user);
+        },function (err)
+        {
+            console.log("nabh");
+            res.sendStatus(404).send(err);
+        });
+}
+
 function deleteUser(req,res) {
     var userId = req.params.userId;
     userModelP.deleteUser(userId)
@@ -60,9 +79,11 @@ function getUserById(req, res) {
     userModelP.findUserById(req.params.userId)
         .then(function (user)
         {
+            console.log("responss");
             res.json(user);
         },function (err)
         {
+            console.log("erooooooorr");
             res.sendStatus(404).send(err);
         });
 

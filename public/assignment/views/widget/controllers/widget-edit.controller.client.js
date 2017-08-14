@@ -37,7 +37,7 @@
             widgetService.updateWidget(widgetId, widget)
                 .then(function (response) {
                     widget = response;
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+                    $location.url("/user/" + userId + "/eatSpot/" + websiteId + "/page/" + pageId + "/widget");
                 });
         }
 
@@ -45,7 +45,7 @@
         {
             widgetService.deleteWidget(widgetId)
                 .then(function (response) {
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page/"+pageId+"/widget");
+                    $location.url("/user/" + userId + "/eatSpot/" + websiteId + "/page/"+pageId+"/widget");
                 });
         }
     }

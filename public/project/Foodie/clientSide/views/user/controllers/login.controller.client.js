@@ -21,10 +21,12 @@
 
             userService.findUserByCredentials(user.username, user.password)
                 .then(function (response) {
+                    console.log("sdlkjhblasb");
                     var _user = response;
                     if(!_user) {
                         model.errorMessage = "User not found";
                     } else {
+                        console.log("hiusdbvoaydb");
                         $rootScope.currentUser = _user;
                         $location.url("/user/"+_user._id);
                     }

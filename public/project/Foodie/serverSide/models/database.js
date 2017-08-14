@@ -17,6 +17,7 @@ var connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/jos
 // above with your own URL given to you by mLab
 
 var mongoose = require("mongoose");
-var db = mongoose.connect(connectionString);
+var db = mongoose.connect(connectionString, {'useMongoClient': true});
 mongoose.Promise = q.Promise;
 module.exports = db;
+console.log("Connected to MongoDB");

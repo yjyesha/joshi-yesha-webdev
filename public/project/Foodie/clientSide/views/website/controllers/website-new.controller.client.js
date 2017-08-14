@@ -36,7 +36,7 @@
                     {
                         model.errorMessage = "some error encountered";
                     }
-                    $location.url("/user/" + userId + "/website");
+                    $location.url("/user/" + userId + "/eatSpot");
                 });
         }
     }

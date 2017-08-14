@@ -16,7 +16,7 @@
 
         function createPage(websiteId, page)
         {
-            var url = "/api/website/" + websiteId + "/page";
+            var url = "/api/eatSpot/" + websiteId + "/page";
             return $http.post(url,page) .then(function (response) {
                 return response.data;
             });
@@ -24,7 +24,7 @@
 
         function findPagesForWebsite(websiteId)
         {
-            var url = "/api/website/" + websiteId + "/page";
+            var url = "/api/eatSpot/" + websiteId + "/page";
             return $http.get(url)
                 .then(function(response)
                 {

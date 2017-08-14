@@ -1,34 +1,45 @@
 <h1>YelpFusion API</h1>
 <h2>Search Eat Spot By City</h2>
-<input placeholder="boston"
-       ng-model="city"
-       class="form-control"/>
-<button ng-click="model.searchFoodSpotByCity(city)" class="btn btn-primary btn-block">
-    Find me food in this city
-</button>
-<button ng-click="model.geoFindMe()">Find me food nearby</button>
+<div class="search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="form-section">
+                    <div class="row">
+                        <form role="form">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="sr-only" for="term">What</label>
+                                    <input ng-model="term" type="text" class="form-control" id="term" placeholder="What ?">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="city">Where</label>
+                                    <input type="text" ng-model="city" class="form-control" id="city" placeholder="Where ?">
+                                </div>
+                            </div>
 
-<div id="out">
-    <ul ng-repeat="eatery in model.eatSpots.businesses" class="list-group">
-        <li class="list-group-item">
-            <a href="#!/details/{{eatery.id}}">
-            <h3>{{eatery.name}}</h3></a>
-            <img ng-src="{{eatery.image_url}}" width="120" height="160"/>
-            <h5>Ratings: {{eatery.rating}}</h5>
-        </li>
-    </ul>
+                            <div class="col-md-2">
+                                <button type="submit" ng-click="model.searchFoodSpotByCity(city)" class="btn btn-default btn-primary">Search</button>
+                            </div>
+
+                            <button ng-click="model.geoFindMe()" class="btn btn-default btn-primary">Too hungry?Find food nearby</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="out">
+            <ul ng-repeat="eatery in model.eatSpots.businesses" class="list-group col-md-offset-2 col-lg-4">
+                <li class="list-group-item">
+                    <a href="#!{{model.userId}}/details/{{eatery.id}}">
+                        <h3>{{eatery.name}}</h3></a>
+                    <img ng-src="{{eatery.image_url}}" width="200" height="200"/>
+                    <h5>Ratings: {{eatery.rating}}</h5>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<!--
-<table class="table">
-    <tr ng-repeat="eatery in model.eatSpots.businesses">
-        <td>
-            <a href="#!/details/{{eatery.id}}">
-                {{eatery.name}}
-                {{eatery}}
-            </a>
-        </td>
-        <td>
-            <img ng-src="{{eatery.img_url}}"/>
-        </td>
-    </tr>
-</table>-->

@@ -1,4 +1,32 @@
-<h1>YelpFusion API</h1>
-<h2>Eat Spot</h2>
+<div class="container">
+    <div class="container-fliud">
+        <h2>
+            {{model.eatSpot.name}}
+        </h2>
+        <img ng-src="{{model.eatSpot.image_url}}" width="400" height="400"/>
+        <div class="details col-md-6">
+            <div class="rating"><h4>Rating</h4>
+                <div class="stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no"><h4>Reviews</h4></span>
+            </div>
+            <h4 class="price">How hot on your wallet? : <span>{{model.eatSpot.price}}</span></h4>
+            <h4><span class="fa fa-cutlery"></span></h4>
+            <h5>{{model.eatSpot.location.address1}}<br></h5>
+            <h5>{{model.eatSpot.location.city}}<br></h5>
+            <h5>{{model.eatSpot.location.state}}<br></h5>
+            <h5>{{model.eatSpot.location.country}}<br></h5>
+            <h5>{{model.eatSpot.location.zip_code}}<br></h5>
+            <h4><span class="fa fa-phone">{{model.eatSpot.phone}}<br></span></h4>
+            <a role="button" class="btn btn-primary fa fa-heart" ng-click="model.favouriteeatSpot(model.eatSpot)">Favourite</a>
+            <a class="btn btn-default fa fa-pencil" role="button" href="#">Review</a>
 
-{{model.eatSpot.name}}
+        </div>
+    </div>
+</div>
+

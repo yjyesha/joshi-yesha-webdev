@@ -1,29 +1,23 @@
 <!-- Fixed navbar -->
     <div class="container ">
-        <div id="navbar">
-            <ul class="nav navbar-nav yj-home-header">
+        <div id="navbar yj-home-header-color">
+            <ul class="nav navbar-nav yj-home-header-color">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a ng-show="!currentUser" href="#!/login">Login</a></li>
                 <li><a ng-show="!currentUser" href="#!/register">Register</a></li>
                 <li><a ng-show="currentUser"  href="#!/profile/{{currentUser._id}}">Profile</a></li>
                 <li><a ng-show="currentUser"  href="#!/logout">Logout</a></li>
-                <li><a ng-show="!currentUser"  href="#!/search">Search</a></li>
                 <li><a ng-show="currentUser.isAdmin" href="#!/admin">Admin</a></li>
             </ul>
         </div><!--/.nav-collapse -->
-
-    <div class="jumbotron">
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <h1>This is where I start</h1>
     <div ng-show="!currentUser" class="jumbotron">
-        <h2>Are you new? </h2>
-
+        <h3>Are you new? </h3>
         <h5>Let's get to know you,go ahead register and join us</h5>
         <h2>Are you an old friend?</h2> <h5>Login and we can continue where we left</h5>
         </div>
-    <div ng-show="currentUser" class="jumbotron">
-        <h2>Hey {{currentUser.name}} , it's great to see you again</h2>
+    <div ng-show="currentUser">
+        <h3>Hey {{currentUser.name}} , it's great to see you again</h3>
     </div>
+        <ng-include src="'views/search/search.html'"></ng-include>
 </div>
-</div>
- <!-- /container -->

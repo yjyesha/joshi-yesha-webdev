@@ -19,13 +19,17 @@
             userService
                 .getAllUsers()
                 .then(function (response) {
-                    model.users = response;
+                    var users = response;
+                    console.log(users);
+                    var index = users.indexOf(userId);
+                    console.log(index+1);
+                    users.splice(index+1, 1);
+                    model.users = users;
                 });
         }init();
-    function addFollower(follower)
-    {
-        console.log(follower);
-        userService.addFollower(model.userId,follower)
+    function addFollower(follower) {
+            console.log(follower);
+            userService.addFollower(model.userId, follower)
                 .then(function (response) {
                     if (!response) {
                         model.error = "Error updating profile";
@@ -36,7 +40,6 @@
                     }
                 });
         }
-
     }
 
 })();

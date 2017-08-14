@@ -7,8 +7,10 @@
         .controller("searchController", searchController);
 
 
-    function searchController(foodService) {
+    function searchController(foodService,$routeParams) {
         var model = this;
+        var userId = $routeParams["uid"];
+        model.userId = userId;
         model.searchFoodSpotByCity = searchFoodSpotByCity;
         model.searchFoodSpotByLocation = searchFoodSpotByLocation;
         model.geoFindMe = geoFindMe;

@@ -46,7 +46,7 @@
                 return widgetService.updateWidget(widgetId, _widget);
             })
                 .then(function(response) {
-                    $location.url("/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+                    $location.url("/user/"+userId+"/eatSpot/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
                 });
         }
     }

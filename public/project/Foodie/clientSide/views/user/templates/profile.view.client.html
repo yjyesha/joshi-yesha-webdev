@@ -1,8 +1,10 @@
 <div class="yj yj-profile col-md-8 col-md-offset-2 col-sm-12">
     <div class="container-fluid">
         <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
-
             <div class="navbar-brand">Profile</div>
+            <p class="navbar-text pull-right">
+                <a href="#!/{{model.userId}}/search">
+                    <span class="glyphicon glyphicon-search pull-right"></span></a>  </p>&nbsp;&nbsp;
             <p class="navbar-text pull-right">
                 <a ng-click="model.updateUser(model.user)" role="button"
                    type="submit">
@@ -10,11 +12,9 @@
             </p>
         </div>
 
-
         <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
-
             <p class="navbar-text pull-right">
-                <a  href="#!/user/{{model.user._id}}/">
+                <a href="#!/user/{{model.user._id}}/">
                     <span class="glyphicon glyphicon-user pull-right"></span></a>
             </p>
 
@@ -22,7 +22,8 @@
         <div ng-show="model.errorMessage" class="alert alert-danger ">
             {{model.errorMessage}}
         </div>
-        <form class="form-signin" >
+
+        <form class="form-signin">
             <label for="inputUsername">Username</label>
             <input readonly type="text"
                    ng-model="model.user.username"
@@ -65,14 +66,14 @@
             Follows
             <ul class="list-group">
                 <li ng-repeat="f in model.user.follows" class="list-group-item">
-                    {{f}}<br>
+                    {{f.username}}<br>
                 </li>
                 <li class="list-group-item" ng-show="!model.user.follows.length">No users followed</li>
             </ul>
             FollowedBy
             <ul class="list-group">
                 <li ng-repeat="f in model.user.followers" class="list-group-item">
-                    {{f}}<br>
+                    {{f.username}}<br>
                 </li>
                 <li class="list-group-item" ng-show="!model.user.followers.length">No users following</li>
             </ul>
@@ -80,6 +81,10 @@
                href="#!/{{model.userId}}/users"
                role="button"
                type="submit">Users</a>
+            <a class="btn btn-lg btn-primary btn-block"
+               href="#!/user/{{model.user._id}}/website"
+               role="button"
+               type="submit">Eateries</a>
             <a class="btn btn-lg btn-danger btn-block"
                ng-click="model.logout()"
                role="button"

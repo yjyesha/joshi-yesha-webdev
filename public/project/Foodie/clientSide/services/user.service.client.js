@@ -16,7 +16,8 @@
             "updateUser": updateUser,
             "createUser": createUser,
             "getAllUsers":getAllUsers,
-            "addFollower":addFollower
+            "addFollower":addFollower,
+            "favourtieeatSpot":favourtieeatSpot
         };
         return api;
 
@@ -38,6 +39,20 @@
                     return res.data;
                 });
         }
+
+        function favourtieeatSpot(userId, fId) {
+            console.log("service ke anda");
+            var url = "/api/project/favourite/"+userId;
+            console.log("fav in server");
+            console.log(fId);
+            return $http.put(url,fId)
+                .then(function (res)
+                {
+                    console.log("response toh aaya");
+                    return res.data;
+                });
+        }
+
 
         function getAllUsers() {
             var url = "/api/project/users";
@@ -87,6 +102,7 @@
             return $http.get("/api/project/user/" + userId)
                 .then(function (res)
                 {
+                    console.log(res.data);
                     return res.data;
                 });
         }

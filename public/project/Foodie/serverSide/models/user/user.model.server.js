@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
 var db = require("../database");
 var userModelP = mongoose.model("UserModelP",userSchema);
-
+var eatSpotModel = require("../eatSpot/eatSpot.model.server");
 userModelP.createUser = createUser;
 userModelP.findUserById = findUserById;
 userModelP.updateUser = updateUser;
@@ -15,6 +15,7 @@ userModelP.findUserByUsername = findUserByUsername;
 userModelP.findUserByCredentials = findUserByCredentials;
 userModelP.getAllUsers = getAllUsers;
 userModelP.addFollower = addFollower;
+userModelP.favourtieeatSpot = favourtieeatSpot;
 
 module.exports = userModelP;
 
@@ -23,9 +24,11 @@ function createUser(user) {
 }
 
 function findUserById(userId) {
+    console.log("weraaa"+userId);
     return userModelP.findById(userId)
-        .populate("websites")
-        .exec();
+         .populate("followers")
+         .populate("follows")
+         .exec();
 }
 
 function updateUser(userId,user) {
@@ -58,13 +61,57 @@ function addFollower(userId, fId) {
             return userModelP
             .findById(userId)
             .then(function (user) {                    //Alice me Bob
-                user.followers.push(fId);
+                user.follows.push(fId);
                 userModelP.findById(fId)
                     .then(function (user) {                //Bob me ALice
-                        user.follows.push(userId);
+                        user.followers.push(userId);
                         user.save();
                     });
                 return user.save();
             });
 }
 
+function addeatSpot(userId, eatSpotId) {
+    return userModelP
+        .findById(userId)
+        .then(function (user) {
+            user.eatSpots.push(eatSpotId);
+            return user.save();
+        });
+}
+
+function removeeatSpot(userId, eatSpoteId) {
+    return userModelP
+        .findById(userId)
+        .then(function (user) {
+            var index = user.eatSpots.indexOf(eatSpotId);
+            user.eatSpots.splice(index, 1);
+            return user.save();
+        });
+}
+
+function favourtieeatSpot(userId, eatSpotId) {
+    return eatSpotModel.
+        findById(eatSpotId)
+        .then(function (eatSpot) {                    //Alice me Bob
+            eatSpot.favouritedBy.push(userId);
+            eatSpot.save();
+            userModelP.findById(userId)
+                .then(function (user) {                //Bob me ALice
+                    user.eatSpotsLiked.push(eatSpotId);
+                    user.save();
+                    return user;
+                });
+        });
+}
+
+
+function unfavouriteeatSpot(userId, eatSpotId) {
+    return userModelP
+        .findById(userId)
+        .then(function (user) {
+            var index = user.eatSpotsLiked.indexOf(eatSpotId);
+            user.eatSpots.splice(index, 1);
+            return user.save();
+        });
+}

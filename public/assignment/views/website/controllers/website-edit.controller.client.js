@@ -38,7 +38,7 @@
             websiteService.updateWebsite(websiteId,website)
                 .then (function (response)
                 {
-                    $location.url("/user/"+userId+"/website");
+                    $location.url("/user/"+userId+"/eatSpot");
                 });
 
         }
@@ -46,7 +46,7 @@
         function deleteWebsite() {
             websiteService.deleteWebsite(userId,websiteId)
                 .then(function (response) {
-                    $location.url("/user/" +userId + "/website");
+                    $location.url("/user/" +userId + "/eatSpot");
                 });
         }
     }

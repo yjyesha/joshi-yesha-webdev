@@ -8,9 +8,9 @@ var pageModel = require("../models/page/page.model.server");
 
 // http handlers
 
-app.get("/api/website/:websiteId/page", findPagesForWebsite);
+app.get("/api/eatSpot/:websiteId/page", findPagesForWebsite);
 app.get ("/api/page/:pageId", findPageById);
-app.post("/api/website/:websiteId/page", createPage);
+app.post("/api/eatSpot/:websiteId/page", createPage);
 app.put("/api/page/:pageId", updatePage);
 app.delete("/api/page/:pageId", deletePage);
 
