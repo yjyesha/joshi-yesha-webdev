@@ -7,22 +7,21 @@
         .module("WebAppMaker")
         .controller("profileController", profileController);
 
-    function profileController($routeParams,userService,$location,$rootScope) {
+    function profileController($routeParams,userService,$location,$rootScope,sessionUser) {
         var model = this;
-        var userId = $routeParams["uid"];
+        var userId = sessionUser._id;
 
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
-        model.logout = logout;
 
         function init() {
             model.userId = userId;
             console.log("idhar tak"+userId);
             userService.findUserById(userId)
                 .then(function (response) {
-                    console.log("aaaaaaan ajoiapsub");
-                    model.user = response;
+                    console.log(response.username+"username");
+                    model.user = response.data;
                 });
             userService.getAllUsers()
                 .then(function (response) {
@@ -41,7 +40,7 @@
                     }
                     else {
                         model.successMessage = "Profile updated!";
-                        $location.url("/user/" + user._id);
+                        $location.url("/profile");
                     }
                 });
         }
@@ -53,13 +52,5 @@
                 });
         }
 
-        function logout() {
-            if ($rootScope.currentUser) {
-                console.log("logout");
-                delete $rootScope.currentUser;
-                $location.url("/login");
-            }
-
-        }
     }
 })();

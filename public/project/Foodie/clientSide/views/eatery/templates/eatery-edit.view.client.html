@@ -4,12 +4,12 @@
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
                     <p class="navbar-text pull-left">
-                        <a href="#!/user/{{model.userId}}/website">
+                        <a href="#!/profile">
                             <span class="glyphicon glyphicon-chevron-left pull-left"></span></a>
                     </p>
-                    <div class="navbar-brand">Edit Website</div>
+                    <div class="navbar-brand">Edit Eatery</div>
                     <p class="navbar-text pull-right">
-                        <a ng-click="model.updateWebsite(model.website)" type="submit" role="button">
+                        <a ng-click="model.updateeatSpot(model.eatSpot)" type="submit" role="button">
                             <span class="glyphicon glyphicon-ok pull-right"></span></a>
                     </p>
                 </div>
@@ -29,38 +29,38 @@
     <div class="container-fluid yj-website-list">
         <div class="row">
             <div class="col-md-3 visible-lg visible-md">
-                <ul class="list-group">
-                    <li ng-repeat="website in model.websites" class="list-group-item">
-                        <a role="button"
-                           type="submit"
-                           href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
-                        <a role="button"
-                           type="submit"
-                           href="#!/user/{{model.userId}}/website/{{website._id}}">
-                            <span class="pull-right glyphicon glyphicon-cog"></span></a>
-                    </li>
-                </ul>
+                <!--<ul class="list-group">-->
+                    <!--<li ng-repeat="website in model.websites" class="list-group-item">-->
+                        <!--<a role="button"-->
+                           <!--type="submit"-->
+                           <!--href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>-->
+                        <!--<a role="button"-->
+                           <!--type="submit"-->
+                           <!--href="#!/user/{{model.userId}}/website/{{website._id}}">-->
+                            <!--<span class="pull-right glyphicon glyphicon-cog"></span></a>-->
+                    <!--</li>-->
+                <!--</ul>-->
             </div>
             <div class="col-md-9 col-xs-12">
                 <form action=""
                       method="post"
                       class="">
                     <div class="col-xs-12">
-                        <label for="name">Website Name</label>
+                        <label for="name">Eatery Name</label>
                         <input class="form-control"
                                ng-model="model.website.name"
-                               placeholder="Name"
+                               placeholder="Subway"
                                value="Blogger"
                                id="name"/>
 
                         <label for="description">Website Description</label>
                         <textarea id="description"
-                                  ng-model="model.website.description"
+                                  ng-model="model.eatSpot.description"
                                   rows="5"
                                   placeholder="Description"
                                   class="form-control"></textarea>
                         <a class="btn btn-lg btn-danger btn-block"
-                           ng-click="model.deleteWebsite()"
+                           ng-click="model.deleteeatSpot()"
                            role="button"
                            type="submit">Delete</a>
                     </div>

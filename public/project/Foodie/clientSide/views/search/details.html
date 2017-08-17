@@ -1,9 +1,21 @@
+<div ng-show="model.userId" class="container-fluid">
+    <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
+        <div class="navbar-brand">Details</div>&nbsp;&nbsp;
+    </div>
+
+    <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
+        <p class="navbar-text pull-right">
+            <a href="#!/">
+                <span class="glyphicon glyphicon-home pull-right"></span></a>
+        </p>
+
+    </div><!-- /.container-fluid -->
 <div class="container">
     <div class="container-fliud">
         <h2>
             {{model.eatSpot.name}}
         </h2>
-        <img ng-src="{{model.eatSpot.image_url}}" width="400" height="400"/>
+        <img ng-src="{{model.eatSpot.image_url}}" width="300" height="300"/>
         <div class="details col-md-6">
             <div class="rating"><h4>Rating</h4>
                 <div class="stars">
@@ -17,16 +29,11 @@
             </div>
             <h4 class="price">How hot on your wallet? : <span>{{model.eatSpot.price}}</span></h4>
             <h4><span class="fa fa-cutlery"></span></h4>
-            <h5>{{model.eatSpot.location.address1}}<br></h5>
-            <h5>{{model.eatSpot.location.city}}<br></h5>
-            <h5>{{model.eatSpot.location.state}}<br></h5>
-            <h5>{{model.eatSpot.location.country}}<br></h5>
-            <h5>{{model.eatSpot.location.zip_code}}<br></h5>
+            <h5>{{model.eatSpot.location.display_address.toString().substring(1,model.eatSpot.location.display_address.toString().length)}}<br></h5>
             <h4><span class="fa fa-phone">{{model.eatSpot.phone}}<br></span></h4>
             <a role="button" class="btn btn-primary fa fa-heart" ng-click="model.favouriteeatSpot(model.eatSpot)">Favourite</a>
             <a class="btn btn-default fa fa-pencil" role="button" href="#">Review</a>
-
         </div>
     </div>
 </div>
-
+</div>

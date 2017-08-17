@@ -16,12 +16,13 @@
 
         function createeatSpot(userId, eatSpot)
         {
-            var url = "/api/project/user/" + userId + "/eatSpot";
-            console.log(eatSpot.name+"ikdeeeeee");
+            var url = "/api/project/eat/" + userId + "/createEatSpot";
+            console.log(userId+"here"+eatSpot.name+"ikdeeeeee");
             return $http.post(url,eatSpot)
                 .then(function (response)
                 {
-                    return response.data;
+
+                    return response;
                 });
         }
 

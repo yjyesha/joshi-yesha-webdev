@@ -1,10 +1,20 @@
 var app = require('./express');
+var passport = require('passport');
 var express = app.express;
+var cookieParser  = require('cookie-parser');
+var session       = require('express-session');
+app.use(express.static(__dirname + '/public'));
+app.use(session({
+    secret: "Yesha",
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.static(__dirname + '/public'));
 
 //require("./test/app");
 require("./public/project/Foodie/serverSide/app");

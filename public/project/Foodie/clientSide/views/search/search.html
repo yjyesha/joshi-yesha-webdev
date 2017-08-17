@@ -1,43 +1,49 @@
-<h1>YelpFusion API</h1>
-<h2>Search Eat Spot By City</h2>
+<div ng-show="model.userId" class="container-fluid">
+    <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
+        <div class="navbar-brand">Search</div>
+        <p class="navbar-text pull-right">
+            <a href="#!/search">
+                <span class="glyphicon glyphicon-search pull-right"></span></a>  </p>&nbsp;&nbsp;
+        <p class="navbar-text pull-right">
+            <a ng-click="model.updateUser(model.user)" role="button"
+               type="submit">
+                <span class="glyphicon glyphicon-ok pull-right"></span></a>
+        </p>
+    </div>
+
+    <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
+        <p class="navbar-text pull-right">
+            <a href="#!/">
+                <span class="glyphicon glyphicon-home pull-right"></span></a>
+        </p>
+
+    </div><!-- /.container-fluid -->
+</div>
 <div class="search">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="form-section">
                     <div class="row">
                         <form role="form">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="sr-only" for="term">What</label>
-                                    <input ng-model="term" type="text" class="form-control" id="term" placeholder="What ?">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="city">Where</label>
-                                    <input type="text" ng-model="city" class="form-control" id="city" placeholder="Where ?">
-                                </div>
-                            </div>
-
+                            <input type="text" ng-model="city" class="form-control" id="city" placeholder="Hangry at?">
                             <div class="col-md-2">
                                 <button type="submit" ng-click="model.searchFoodSpotByCity(city)" class="btn btn-default btn-primary">Search</button>
                             </div>
 
-                            <button ng-click="model.geoFindMe()" class="btn btn-default btn-primary">Too hungry?Find food nearby</button>
-
+                            <!--<button ng-click="model.geoFindMe()" class="btn btn-default btn-primary">Too hungry?Find food nearby</button>-->
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div id="out">
             <ul ng-repeat="eatery in model.eatSpots.businesses" class="list-group col-md-offset-2 col-lg-4">
                 <li class="list-group-item">
-                    <a href="#!{{model.userId}}/details/{{eatery.id}}">
+                    <a href="#!/details/{{eatery.id}}">
                         <h3>{{eatery.name}}</h3></a>
                     <img ng-src="{{eatery.image_url}}" width="200" height="200"/>
-                    <h5>Ratings: {{eatery.rating}}</h5>
                 </li>
             </ul>
         </div>

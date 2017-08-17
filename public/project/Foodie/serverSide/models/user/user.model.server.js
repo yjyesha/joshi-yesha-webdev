@@ -5,7 +5,7 @@
 var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
 var db = require("../database");
-var userModelP = mongoose.model("UserModelP",userSchema);
+var userModelP = mongoose.model("UserModelP", userSchema);
 var eatSpotModel = require("../eatSpot/eatSpot.model.server");
 userModelP.createUser = createUser;
 userModelP.findUserById = findUserById;
@@ -16,7 +16,7 @@ userModelP.findUserByCredentials = findUserByCredentials;
 userModelP.getAllUsers = getAllUsers;
 userModelP.addFollower = addFollower;
 userModelP.favourtieeatSpot = favourtieeatSpot;
-
+userModelP.removeFollower = removeFollower
 module.exports = userModelP;
 
 function createUser(user) {
@@ -24,26 +24,26 @@ function createUser(user) {
 }
 
 function findUserById(userId) {
-    console.log("weraaa"+userId);
+    console.log("weraaa" + userId);
     return userModelP.findById(userId)
-         .populate("followers")
-         .populate("follows")
-         .exec();
+        .populate("followers")
+        .populate("follows")
+        .exec();
 }
 
-function updateUser(userId,user) {
-    return userModelP.update({_id:userId},{$set:user});
+function updateUser(userId, user) {
+    return userModelP.update({_id: userId}, {$set: user});
 }
-function findUserByCredentials(username,password) {
-    return userModelP.findOne({username:username},{password:password} );
+function findUserByCredentials(username, password) {
+    return userModelP.findOne({"username": username, "password": password});
 }
 
 function findUserByUsername(username) {
     console.log("username");
-    return userModelP.findOne({username:username});
+    return userModelP.findOne({username: username});
 }
 
-function deleteUser(userId,user) {
+function deleteUser(userId, user) {
     return userModelP
         .findById(userId)
         .then(function (user) {
@@ -52,23 +52,42 @@ function deleteUser(userId,user) {
 }
 
 function getAllUsers() {
-    console.log("hey "+userModelP.find());
+    console.log("hey " + userModelP.find());
     return userModelP.find();
 }
 
 function addFollower(userId, fId) {
-    console.log(userId+"  use  "+fId);
-            return userModelP
-            .findById(userId)
-            .then(function (user) {                    //Alice me Bob
-                user.follows.push(fId);
+    console.log(userId + "  use  " + fId);
+    return userModelP
+        .findById(userId)
+        .then(function (user) {
+            var index = user.follows.indexOf(fId);
+            if(index<0) {
+                user.follows.push(fId);  //duplicate left
                 userModelP.findById(fId)
-                    .then(function (user) {                //Bob me ALice
+                    .then(function (user) {
                         user.followers.push(userId);
                         user.save();
                     });
                 return user.save();
-            });
+            }
+        });
+}
+
+function removeFollower(userId, fId) {
+    console.log(userId + "  use  " + fId);
+    return userModelP
+        .findById(userId)
+        .then(function (user) {
+           var index = user.follows.indexOf(fId);
+            user.follows.splice(index, 1);  //duplicate left
+            userModelP.findById(fId)
+                .then(function (user) {
+                    user.follows.splice(index, 1);  //duplicate left
+                    userModelP.findById(fId)
+                });
+            return user.save();
+        });
 }
 
 function addeatSpot(userId, eatSpotId) {
@@ -91,8 +110,7 @@ function removeeatSpot(userId, eatSpoteId) {
 }
 
 function favourtieeatSpot(userId, eatSpotId) {
-    return eatSpotModel.
-        findById(eatSpotId)
+    return eatSpotModel.findById(eatSpotId)
         .then(function (eatSpot) {                    //Alice me Bob
             eatSpot.favouritedBy.push(userId);
             eatSpot.save();

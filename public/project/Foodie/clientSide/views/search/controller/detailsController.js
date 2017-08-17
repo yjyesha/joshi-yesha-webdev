@@ -10,10 +10,10 @@
         .controller("detailsController", detailsController);
 
 
-    function detailsController($routeParams,userService, foodService, eatSpotService) {
+    function detailsController($routeParams,userService, foodService, eatSpotService,sessionUser) {
         var model = this;
         var eId = $routeParams["eId"];
-        var userId = $routeParams["uid"];
+        var userId = sessionUser._id;
 
         model.favouriteeatSpot = favouriteeatSpot;
 
@@ -32,17 +32,18 @@
         function favouriteeatSpot(eatSpot) {
             //eatSpot = model.eatSpot;
             var eatSpotId = eatSpot.id;
+            var tempEatSpot = {};
             console.log(eatSpot.id + " is in the controllwe");
-           /* eatSpotService.findeatSpotById(eatSpot._id)
+            eatSpotService.findeatSpotById(eatSpot._id)
              .then(function (response) {
                  console.log(eatSpot.name + "is found");
              },function (response) {
                  console.log("Nahiiiiis found");
              })();
-             */
-           console.log("eatspot ka id"+eatSpotId);
+             console.log("kuch bhi");
+            console.log("eatspot ka id"+eatSpot);
              userService
-             .favourtieeatSpot(userId, eatSpotId)
+             .favourtieeatSpot(userId, eatSpot)
              .then(function (response) {
              console.log(eatSpot.name + "is favourited");
              $location.url("/user/" + userId);

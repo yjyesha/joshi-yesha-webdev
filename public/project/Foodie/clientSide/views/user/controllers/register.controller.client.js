@@ -22,8 +22,9 @@
             console.log("kjbljhb");
             userService.findUserByUsername(user.username)
                 .then(function (response) {
-                    console.log(response);
+                    console.log("username he naaaaaaaaa"+response);
                     var _user = response;
+                    console.log("response aaya"+response);
                     if(!_user) {
                         console.log("kaji");
                         var userTemp = {username:user.username,password:user.password};
@@ -34,8 +35,7 @@
                 })
                 .then(function (response) {
                     _user = response;
-                    $rootScope.currentUser = _user;
-                    $location.url("/user/" + _user._id);
+                    $location.url("/login");
                 });
         }
     }

@@ -35,49 +35,93 @@
                     controller: "registerController",
                     controllerAs: "model"
                 })
-            .when("/user/:uid",
+            .when("/profile",
                 {
                     templateUrl: "views/user/templates/profile.view.client.html",
                     controller: "profileController",
-                    controllerAs: "model"
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
                 })
             //eatSpot routes
-            .when("/:uid/users",
+            .when("/users",
                 {
                     templateUrl: "views/user/templates/user-list.view.client.html",
                     controller: "userListController",
-                    controllerAs: "model"
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
                 })
-            .when("/:uid/search", {
+            .when("/search", {
                 templateUrl: "views/search/search.html",
                 controller: "searchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:
+                    {
+                        sessionUser : checkLogin
+                    }
             })
-            .when("/:uid/details/:eId", {
+            .when("/details/:eId", {
                 templateUrl: "views/search/details.html",
                 controller: "detailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:
+                    {
+                        sessionUser : checkLogin
+                    }
             })
-            /*
-            .when("/user/:uid/eatSpot",
+
+            .when("/eatery/edit",
                 {
-                    templateUrl: "views/website/templates/website-list.view.client.html",
-                    controller: "websiteListController",
-                    controllerAs: "model"
+                    templateUrl: "views/eatery/templates/eatery-edit.view.client.html",
+                    controller: "eateryListController",
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
                 })
 
-            .when("/user/:uid/eatSpot/new",
+            .when("/eatery/new",
                 {
-                    templateUrl: "views/website/templates/website-new.view.client.html",
-                    controller: "websiteNewController",
-                    controllerAs: "model"
+                    templateUrl: "views/eatery/templates/eatery-new.view.client.html",
+                    controller: "eatSpotNewController",
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
                 })
-            .when("/user/:uid/eatSpot/:wid",
+
+            /*
+            .when("/eatery/:wid",
                 {
-                    templateUrl: "views/website/templates/website-edit.view.client.html",
-                    controller: "websiteEditController",
+                    templateUrl: "views/eatery/templates/eatery-edit.view.client.html",
+                    controller: "eateryEditController",
                     controllerAs: "model"
                 })
                 */
+    }
+    function checkLogin(userService,$q,$location)
+    {
+        var deferred = $q.defer();
+        userService
+            .checkLogin()
+            .then(function (user)
+            {
+                if(user ==='0')
+                {
+                    deferred.reject();
+                    $location.url("/login");
+                }
+                else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
     }
 })();

@@ -7,11 +7,11 @@ var websiteModel = require("../models/website/website.model.server");
 
 // http handlers
 
-app.get("/api/user/:userId/website", findWebsitesForUser);
-app.get ("/api/website/:websiteId", findWebsiteById);
-app.post("/api/user/:userId/website", createWebsite);
-app.put("/api/website/:websiteId", updateWebsite);
-app.delete("/api/user/:userId/website/:websiteId", deleteWebsite);
+app.get("/api/user/:userId/eatery", findWebsitesForUser);
+app.get ("/api/eatery/:websiteId", findWebsiteById);
+app.post("/api/user/:userId/eatery", createWebsite);
+app.put("/api/eatery/:websiteId", updateWebsite);
+app.delete("/api/user/:userId/eatery/:websiteId", deleteWebsite);
 
 function findWebsitesForUser(req,res) {
     var userId = req.params.userId;

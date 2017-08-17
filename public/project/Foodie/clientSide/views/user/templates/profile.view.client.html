@@ -2,20 +2,20 @@
     <div class="container-fluid">
         <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
             <div class="navbar-brand">Profile</div>
-            <p class="navbar-text pull-right">
-                <a href="#!/{{model.userId}}/search">
-                    <span class="glyphicon glyphicon-search pull-right"></span></a>  </p>&nbsp;&nbsp;
-            <p class="navbar-text pull-right">
+            <div class="navbar-text pull-right">
+                <a href="#!/search">
+                    <span class="glyphicon glyphicon-search"></span></a> &nbsp;
                 <a ng-click="model.updateUser(model.user)" role="button"
                    type="submit">
-                    <span class="glyphicon glyphicon-ok pull-right"></span></a>
-            </p>
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
         </div>
 
         <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.user._id}}/">
-                    <span class="glyphicon glyphicon-user pull-right"></span></a>
+                <a href="#!/">
+                    <span class="glyphicon glyphicon-home pull-right"></span></a>
             </p>
 
         </div><!-- /.container-fluid -->
@@ -63,36 +63,42 @@
                 Date of Birth
             </label>
             <input type="date" id="dob" class="form-control" required>
-            Follows
-            <ul class="list-group">
-                <li ng-repeat="f in model.user.follows" class="list-group-item">
-                    {{f.username}}<br>
-                </li>
-                <li class="list-group-item" ng-show="!model.user.follows.length">No users followed</li>
-            </ul>
-            FollowedBy
-            <ul class="list-group">
-                <li ng-repeat="f in model.user.followers" class="list-group-item">
-                    {{f.username}}<br>
-                </li>
-                <li class="list-group-item" ng-show="!model.user.followers.length">No users following</li>
-            </ul>
-            <a class="btn btn-lg btn-primary btn-block"
-               href="#!/{{model.userId}}/users"
+            <button type="button" class="btn-block btn btn-sm btn-info" data-toggle="collapse" data-target="#demo1">Following {{model.user.follows.length}}</button>
+            <div id="demo1" class="collapse">
+                <ul class="list-group">
+                    <li ng-repeat="f in model.user.follows" class="list-group-item">
+                        {{f.username}}<br>
+                    </li>
+                    <li class="list-group-item" ng-show="!model.user.follows.length">No users followed</li>
+                </ul>
+            </div>
+
+            <button type="button" class="btn btn-sm btn-block btn-info" data-toggle="collapse" data-target="#demo2">Followers {{model.user.followers.length}}</button>
+            <div id="demo2" class="collapse">
+                <ul class="list-group">
+                    <li ng-repeat="f in model.user.followers" class="list-group-item">
+                        {{f.username}}<br>
+                    </li>
+                    <li class="list-group-item" ng-show="!model.user.follows.length">No users followed</li>
+                </ul>
+            </div>
+            <h1></h1>
+            <a class="btn btn-primary btn-block"
+               href="#!/users"
                role="button"
                type="submit">Users</a>
-            <a class="btn btn-lg btn-primary btn-block"
-               href="#!/user/{{model.user._id}}/website"
-               role="button"
-               type="submit">Eateries</a>
-            <a class="btn btn-lg btn-danger btn-block"
-               ng-click="model.logout()"
+            <a class="btn btn-danger btn-block"
+              href="#!/login"
                role="button"
                type="submit">Logout</a>
-            <a class="btn btn-lg btn-danger btn-block"
+            <a class="btn btn-danger btn-block"
                ng-click="model.deleteUser(model.user._id)"
                role="button"
                type="submit">Delete</a>
+            <a class="btn btn-danger btn-block"
+               href="#!/eatery/new"
+               role="button"
+               type="submit">Create Eatery</a>
         </form>
     </div> <!-- /container -->
 </div>

@@ -26,6 +26,12 @@
 
 
         function searchFoodSpotByLocation(lat, lng) {
+            var url = "/api/project/search";
+            var body = {
+                "requestType": "GET",
+                "requestURL": city
+            };
+            return $http.post(url, body);
 
             return $http.get('https://api.yelp.com/v3/businesses/search?term=food&latitude=' + lat + '&longitude=' + lng, {
                 headers: {

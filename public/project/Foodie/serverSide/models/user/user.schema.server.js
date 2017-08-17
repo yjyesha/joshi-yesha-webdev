@@ -14,6 +14,7 @@ var userSchema = mongoose.Schema(
         followers:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
         follows:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
         eatSpotsLiked:[{type:mongoose.Schema.Types.ObjectId,ref:"EatSpotModel"}],
+        eateryOwned:[{type:mongoose.Schema.Types.ObjectId,ref:"EatSpotModel"}],
         eatSpots:[{type:mongoose.Schema.Types.ObjectId,ref:"EatSpotModel"}],
         dateCreated: {type: Date,default: Date.now}}
     ,{collection:"userP"}

@@ -9,7 +9,7 @@ var eatSpotModel = require("../models/eatSpot/eatSpot.model.server");
 
 app.get("/api/project/user/:userId/eatSpot", findeatSpotsForUser);
 app.get ("/api/project/eatSpot/:eatSpotId", findeatSpotById);
-app.post("/api/project/user/:userId/eatSpot", createeatSpot);
+app.post("/api/project/eat/:userId/createEatSpot", createeatSpot);
 app.put("/api/project/eatSpot/:eatSpotId", updateeatSpot);
 app.delete("/api/project/user/:userId/eatSpot/:eatSpotId", deleteeatSpot);
 
@@ -26,17 +26,14 @@ function findeatSpotsForUser(req,res) {
 }
 
 function createeatSpot(req, res) {
-
     var eatSpot = req.body;
     var userId = req.params.userId;
-    console.log(eatSpot.name+"aaheeee");
+    console.log(eatSpot.price+"aaheeee");
     eatSpotModel.createeatSpot(userId,eatSpot)
-        .then(function(eatSpot)
+        .then(function(response)
         {
-            res.json(eatSpot);
-        },function(err)
-        {
-            res.sendStatus(404).send(err);
+console.log("ju"+response);
+            res.send(response);
         });
 }
 

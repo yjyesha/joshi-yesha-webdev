@@ -17,18 +17,16 @@ eatSpotModel.findAlleatSpotsForUser = findAlleatSpotsForUser;
 module.exports = eatSpotModel;
 
 function createeatSpot(userId,eatSpot) {
-    eatSpot._user = userId;
-    var eatSpotTemp = null;
+    eatSpot._owner = userId;
+    eatSpot.id=eatSpot.name;
     return eatSpotModel
         .create(eatSpot)
         .then(function (eatSpotDoc) {
-            eatSpotTemp = eatSpotDoc;
-            console.log(userId + eatSpotDoc);
-            // UserModel object is not declared -_-
-            return userModel.addeatSpot(userId, eatSpotDoc._id);
+            return userModelP.addeatSpot(userId, eatSpotDoc._id);
         })
-        .then(function (userDoc) {
-            return eatSpotTemp;
+        .then(function (eatspot) {
+            console.log("here");
+            return eatspot;
         });
 }
 

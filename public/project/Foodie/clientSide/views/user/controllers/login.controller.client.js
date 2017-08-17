@@ -27,8 +27,9 @@
                         model.errorMessage = "User not found";
                     } else {
                         console.log("hiusdbvoaydb");
+                        console.log(response);
                         $rootScope.currentUser = _user;
-                        $location.url("/user/"+_user._id);
+                        $location.url("/profile");
                     }
                 });
         }
