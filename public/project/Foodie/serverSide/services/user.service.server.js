@@ -13,6 +13,12 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
+var googleConfig = {
+    clientID     : "402882654215-bvb3uteguv3vg8s7ue5nn7vfqn4ecb01.apps.googleusercontent.com",
+    clientSecret : "EU-xIeoUdPhBx7dNhW_BOt0R",
+    callbackURL  : "http://127.0.0.1/google/callback"
+};
+
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
@@ -132,11 +138,13 @@ function localStrategy(username, password, done) {
             });
 }
 
-var googleConfig = {
-    clientID     : process.env.GOOGLE_CLIENT_ID,
-    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL
-};
+
+
+// var googleConfig = {
+//     clientID     : process.env.GOOGLE_CLIENT_ID,
+//     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+//     callbackURL  : process.env.GOOGLE_CALLBACK_URL
+// };
 
 function getAllUsers(req, res) {
     // console.log("hey here new");
