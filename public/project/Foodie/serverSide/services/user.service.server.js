@@ -6,10 +6,14 @@ var app = require("../../../../../express");
 var userModelP = require("../models/user/user.model.server");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
 // http handlers
@@ -26,6 +30,15 @@ app.put("/api/project/user/:userId", updateUser);
 app.delete("/api/project/user/:userId", deleteUser);
 app.get("/api/project/checkLogin", checkLogin);
 app.post("/api/project/logout",logout);
+app.get("/project/auth/google",passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+app.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/project/Foodie/clientSide/#!/profile',
+        failureRedirect: '/project/Foodie/clientSide/#!/login'
+    }));
+
+
 function serializeUser(user, done) {
     done(null, user);
 }
@@ -36,6 +49,44 @@ function logout(req,res)
     res.send(200);
 }
 
+
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModelP
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModelP.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 function checkLogin(req,res)
 {
     res.send(req.isAuthenticated() ? req.user : '0');
@@ -65,12 +116,14 @@ function login(req, res) {
 
 function localStrategy(username, password, done) {
     userModelP
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(function (user) {
-                if (!user) {
+            console.log(user.password + "TY"+password);
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                } else {
                     return done(null, false);
                 }
-                return done(null, user);
             },
             function (err) {
                 if (err) {
@@ -78,6 +131,12 @@ function localStrategy(username, password, done) {
                 }
             });
 }
+
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
 
 function getAllUsers(req, res) {
     // console.log("hey here new");
@@ -172,6 +231,7 @@ function updateUser(req, res) {
 
 function createUser(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModelP.createUser(user)
         .then(function (user) {
 

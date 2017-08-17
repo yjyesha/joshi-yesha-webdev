@@ -4,12 +4,16 @@
 var mongoose = require("mongoose");
 var userSchema = mongoose.Schema(
     {
-        username: String,
-        password: String,
+        username: {type: String,required:true},
+        password: {type: String,required:true},
         firstName: String,
         lastName: String,
         email: String,
         phone:String,
+        google: {
+                id: String,
+            token: String
+        },
         role: {type: String, enum: ['Admin', 'HungryUser', 'EateryOwner']},
         followers:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],
         follows:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModelP"}],

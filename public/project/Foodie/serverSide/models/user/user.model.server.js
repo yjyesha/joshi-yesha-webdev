@@ -16,9 +16,15 @@ userModelP.findUserByCredentials = findUserByCredentials;
 userModelP.getAllUsers = getAllUsers;
 userModelP.addFollower = addFollower;
 userModelP.favourtieeatSpot = favourtieeatSpot;
-userModelP.removeFollower = removeFollower
+userModelP.removeFollower = removeFollower;
+userModelP.findUserByGoogleId= findUserByGoogleId;
+
 module.exports = userModelP;
 
+function findUserByGoogleId(googelId)
+{
+    return userModelP.findOne({'google.id':googelId});
+}
 function createUser(user) {
     return userModelP.create(user);
 }
