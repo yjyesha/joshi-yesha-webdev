@@ -11,16 +11,16 @@
         var model = this;
         var userId = sessionUser._id;
 
-
+        model.manageeatSpot=manageeatSpot;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
 
         function init() {
             model.userId = userId;
-            console.log("idhar tak"+userId);
+            console.log("idhar tak" + userId);
             userService.findUserById(userId)
                 .then(function (response) {
-                    console.log(response.username+"username");
+                    console.log(response.username + "username");
                     model.user = response.data;
                 });
             userService.getAllUsers()
@@ -52,5 +52,14 @@
                 });
         }
 
+
+        function manageeatSpot() {
+            if (sessionUser.eateryOwned === null) {
+                $location.url("/eatSpot/new");
+            }
+            else {
+                $location.url(sessionUser.eateryOwned._id + "/eatSpot/edit");
+            }
+        }
     }
 })();

@@ -5,24 +5,25 @@
     //iife
     angular
         .module("WebAppMaker")
-        .controller("websiteEditController", websiteEditController);
+        .controller("eateryEditController", eateryEditController);
 
-    function websiteEditController($routeParams,eatSpotService,$location,sessionUser) {
+    function eateryEditController($routeParams,eatSpotService,$location,sessionUser) {
         var model = this;
 
-        model.updateWebsite=updateWebsite;
-        model.deleteWebsite=deleteWebsite;
+        model.updateeatSpot=updateeatSpot;
+        model.deleteeatSpot=deleteeatSpot;
 
-        var userId = sessionUser.id;
-        var eId =  $routeParams["eId"];
+        var userId = sessionUser._id;
+        var eatSpotId =  $routeParams["eId"];
 
         function init() {
             model.userId = userId;
-            model.eatSpotId = eid;
-            eatSpotService.findeatSpotById(eId)
-                .findWebsitesForUser(userId)
+            model.eatSpotId = eatSpotId;
+            eatSpotService.findeatSpotById(eatSpotId)
                 .then(function (response) {
-                    model.eatSpotId = response;
+                    console.log("responser");
+                    console.log(response);
+                    model.eatSpot = response;
                 });
         }
         init();
@@ -32,15 +33,15 @@
             eatSpotService.updateeatSpot(eatSpotId,eatSpot)
                 .then (function (response)
                 {
-                    $location.url("/")
+                    $location.url("/profile")
                 });
 
         }
 
         function deleteeatSpot() {
-            websiteService.deleteeatSpot(userId,eid)
+            eatSpotService.deleteeatSpot(userId,eatSpotId)
                 .then(function (response) {
-                    $location.url("/user/" +userId + "/eatSpot");
+                    $location.url("/profile");
                 });
         }
     }

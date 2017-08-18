@@ -34,6 +34,7 @@ function findUserById(userId) {
     return userModelP.findById(userId)
         .populate("followers")
         .populate("follows")
+        .populate("eateryOwned")
         .exec();
 }
 
@@ -96,13 +97,18 @@ function removeFollower(userId, fId) {
         });
 }
 
-function addeatSpot(userId, eatSpotId) {
-    console.log(userId + " : " + eatSpotId);
+
+function addeatSpot(userId, eatSpot) {
+    console.log(userId + " : " + eatSpot);
     return userModelP.findById(userId)
         .then(function (user) {
             console.log("jack");
-            user.eatSpots.push(eatSpotId);
-            return user.save();
+            userModelP.findByIdAndUpdate(user._id, {$set: {"eateryOwned": eatSpot._id}},
+                {new: true}, function (error, newUser) {
+                    console.log(newUser);
+                    user = newUser;
+                });
+            return user;
         });
 }
 
@@ -117,22 +123,16 @@ function removeeatSpot(userId, eatSpoteId) {
 }
 
 /*
-function favourtieeatSpot(userId, eatSpotId) {
-    return eatSpotModel.findById(eatSpotId)
-        .then(function (eatSpot) {                    //Alice me Bob
-            eatSpot.favouritedBy.push(userId);
-            eatSpot.save();
-            userModelP.findById(userId)
-                .then(function (user) {                //Bob me ALice
-                    user.eatSpotsLiked.push(eatSpotId);
-                    user.save();
-                    return user;
-                });
-        });
-}
-*/
+ function favourtieeatSpot(userId, eatSpotId) {
+ return  userModelP.findById(userId)
+ .then(function (user) {                //Bob me ALice
+ user.eatSpotsLiked.push(eatSpotId);
+ user.save();
+ return user;
+ });
+ }
 
-
+ */
 function unfavouriteeatSpot(userId, eatSpotId) {
     return userModelP
         .findById(userId)

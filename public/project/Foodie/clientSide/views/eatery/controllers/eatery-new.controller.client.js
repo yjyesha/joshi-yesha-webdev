@@ -24,16 +24,19 @@
         function createeatSpot(eatSpot)
         {
             console.log("controller me");
+            eatSpot._id=eatSpot.name;
             eatSpotService.createeatSpot(userId,eatSpot)
-                .then(function(response)
-                {
-                    var _eatSpot = response;
-                    if(!_eatSpot)
-                    {
+                .then(function(response) {
+                    var _eatSpot = response.data;
+                    console.log(response);
+                    if(!_eatSpot) {
                         model.errorMessage = "some error encountered";
                     }
-                    console.log("xasctviwuhcqbcqwnubow");
-                    $location.url(_eatSpot.id+"/eatSpot/edit");
+                    console.log(_eatSpot);
+                    console.log(_eatSpot._id);
+                    $location.url(_eatSpot._id+"/eatSpot/edit");
+                }, function () {
+                    console.log("Errrrrror");
                 });
         }
     }

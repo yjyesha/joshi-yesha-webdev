@@ -18,19 +18,16 @@ module.exports = eatSpotModel;
 
 function createeatSpot(userId, eatSpot) {
     eatSpot._owner = userId;
-    eatSpot.id = eatSpot.name;
     return eatSpotModel
-        .create(eatSpot)
-        .then(function (eatSpotDoc) {
-            console.log("qwerty");
-            userModelP.addeatSpot(userId, eatSpotDoc.id)
+        .create(eatSpot).then(function (eatSpotDoc) {
+            return userModelP.addeatSpot(userId, eatSpotDoc)
                 .then(function (response) {
+                    console.log("back to eatspot model");
+                    console.log(response);
                     return response;
                 });
-        })
-        .then(function (eatspot) {
-            console.log("here");
-            return eatspot;
+        }, function (error) {
+            console.log(error);
         });
 }
 

@@ -242,7 +242,6 @@ function createUser(req, res) {
     user.password = bcrypt.hashSync(user.password);
     userModelP.createUser(user)
         .then(function (user) {
-
             res.json(user);
         }, function (err) {
             res.sendStatus(404).send(err);

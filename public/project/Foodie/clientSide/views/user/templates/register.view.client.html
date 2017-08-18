@@ -34,6 +34,14 @@
                class="form-control"
                placeholder="verify password"
                required>
+        <label for="role"
+               class="sr-only">
+            as a
+        </label>
+        <select id="role" ng-model="model.user.role">
+            <option value="HungryUser">Hungry User</option>
+            <option value="EateryOwner">Eatery Owner</option>
+        </select>
         <a class="btn btn-lg btn-primary btn-block"
            ng-click="model.createUser(model.user)"
            role="button"

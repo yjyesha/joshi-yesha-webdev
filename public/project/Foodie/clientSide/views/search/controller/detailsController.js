@@ -62,7 +62,7 @@
              .favourtieeatSpot(userId, eatSpotId)
              .then(function (response) {
              console.log(eatSpot.name + "is favourited");
-             $location.url("/user/" + userId);
+             $location.url("/profile");
              });
              }
              });
