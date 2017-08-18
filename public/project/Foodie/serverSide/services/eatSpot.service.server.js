@@ -32,7 +32,7 @@ function createeatSpot(req, res) {
     eatSpotModel.createeatSpot(userId,eatSpot)
         .then(function(response)
         {
-console.log("ju"+response);
+            console.log("ju"+response);
             res.send(response);
         });
 }

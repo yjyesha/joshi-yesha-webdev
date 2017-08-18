@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
 var db = require("../database");
 var userModelP = mongoose.model("UserModelP", userSchema);
-var eatSpotModel = require("../eatSpot/eatSpot.model.server");
+//var eatSpotModel = require("../eatSpot/eatSpot.model.server");
 userModelP.createUser = createUser;
 userModelP.findUserById = findUserById;
 userModelP.updateUser = updateUser;
@@ -15,15 +15,15 @@ userModelP.findUserByUsername = findUserByUsername;
 userModelP.findUserByCredentials = findUserByCredentials;
 userModelP.getAllUsers = getAllUsers;
 userModelP.addFollower = addFollower;
-userModelP.favourtieeatSpot = favourtieeatSpot;
+//userModelP.favourtieeatSpot = favourtieeatSpot;
 userModelP.removeFollower = removeFollower;
-userModelP.findUserByGoogleId= findUserByGoogleId;
+userModelP.findUserByGoogleId = findUserByGoogleId;
+userModelP.addeatSpot = addeatSpot;
 
 module.exports = userModelP;
 
-function findUserByGoogleId(googelId)
-{
-    return userModelP.findOne({'google.id':googelId});
+function findUserByGoogleId(googelId) {
+    return userModelP.findOne({'google.id': googelId});
 }
 function createUser(user) {
     return userModelP.create(user);
@@ -68,7 +68,7 @@ function addFollower(userId, fId) {
         .findById(userId)
         .then(function (user) {
             var index = user.follows.indexOf(fId);
-            if(index<0) {
+            if (index < 0) {
                 user.follows.push(fId);  //duplicate left
                 userModelP.findById(fId)
                     .then(function (user) {
@@ -85,7 +85,7 @@ function removeFollower(userId, fId) {
     return userModelP
         .findById(userId)
         .then(function (user) {
-           var index = user.follows.indexOf(fId);
+            var index = user.follows.indexOf(fId);
             user.follows.splice(index, 1);  //duplicate left
             userModelP.findById(fId)
                 .then(function (user) {
@@ -97,9 +97,10 @@ function removeFollower(userId, fId) {
 }
 
 function addeatSpot(userId, eatSpotId) {
-    return userModelP
-        .findById(userId)
+    console.log(userId + " : " + eatSpotId);
+    return userModelP.findById(userId)
         .then(function (user) {
+            console.log("jack");
             user.eatSpots.push(eatSpotId);
             return user.save();
         });
@@ -115,6 +116,7 @@ function removeeatSpot(userId, eatSpoteId) {
         });
 }
 
+/*
 function favourtieeatSpot(userId, eatSpotId) {
     return eatSpotModel.findById(eatSpotId)
         .then(function (eatSpot) {                    //Alice me Bob
@@ -128,6 +130,7 @@ function favourtieeatSpot(userId, eatSpotId) {
                 });
         });
 }
+*/
 
 
 function unfavouriteeatSpot(userId, eatSpotId) {

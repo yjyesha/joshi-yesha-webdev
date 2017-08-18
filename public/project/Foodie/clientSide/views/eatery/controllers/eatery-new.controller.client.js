@@ -32,6 +32,7 @@
                     {
                         model.errorMessage = "some error encountered";
                     }
+                    console.log("xasctviwuhcqbcqwnubow");
                     $location.url(_eatSpot.id+"/eatSpot/edit");
                 });
         }

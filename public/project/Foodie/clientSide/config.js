@@ -8,7 +8,7 @@
         .config(configuration);
 
     function configuration($routeProvider, $httpProvider) {
-        $httpProvider.defaults.headers.post['Accept'] = 'application/json;charset=utf-8';
+        //$httpProvider.defaults.headers.post['Accept'] = 'application/json;charset=utf-8';
         $routeProvider
 
             .when("/login",
@@ -95,7 +95,7 @@
                         {
                             sessionUser : checkLogin
                         }
-                })
+                });
 
             /*
             .when("/eatery/:wid",
