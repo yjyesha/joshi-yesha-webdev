@@ -29,38 +29,32 @@
     <div class="container-fluid yj-website-list">
         <div class="row">
             <div class="col-md-3 visible-lg visible-md">
-                <!--<ul class="list-group">-->
-                    <!--<li ng-repeat="website in model.websites" class="list-group-item">-->
-                        <!--<a role="button"-->
-                           <!--type="submit"-->
-                           <!--href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>-->
-                        <!--<a role="button"-->
-                           <!--type="submit"-->
-                           <!--href="#!/user/{{model.userId}}/website/{{website._id}}">-->
-                            <!--<span class="pull-right glyphicon glyphicon-cog"></span></a>-->
-                    <!--</li>-->
-                <!--</ul>-->
             </div>
             <div class="col-md-9 col-xs-12">
                 <form action=""
                       method="post"
                       class="">
                     <div class="col-xs-12">
-                        <label for="name">Eatery Name</label>
+                        <label for="name">Name</label>
                         <input class="form-control"
-                               ng-model="model.website.name"
-                               placeholder="Subway"
-                               value="Blogger"
+                               ng-model="model.eatSpot.name"
+                               placeholder="Name"
+                               value="Facebook"
                                id="name"/>
-
-                        <label for="description">Website Description</label>
-                        <textarea id="description"
-                                  ng-model="model.eatSpot.description"
+                        <label for="price">Price: $,$$, or $$$?</label>
+                        <input class="form-control"
+                               ng-model="model.eatSpot.price"
+                               placeholder="Name"
+                               value="Facebook"
+                               id="price"/>
+                        <label for="address">location</label>
+                        <textarea id="address"
+                                  ng-model="model.eatSpot.display_address"
                                   rows="5"
-                                  placeholder="Description"
+                                  placeholder="address"
                                   class="form-control"></textarea>
-                        <a class="btn btn-lg btn-danger btn-block"
-                           ng-click="model.deleteeatSpot()"
+                        <a class="btn btn-danger btn-block"
+                           ng-click="model.deleteeatSpot(model.eatSpot.id)"
                            role="button"
                            type="submit">Delete</a>
                     </div>

@@ -27,13 +27,12 @@
             eatSpotService.createeatSpot(userId,eatSpot)
                 .then(function(response)
                 {
-
                     var _eatSpot = response;
                     if(!_eatSpot)
                     {
                         model.errorMessage = "some error encountered";
                     }
-                    $location.url("/profile");
+                    $location.url(_eatSpot.id+"/eatSpot/edit");
                 });
         }
     }

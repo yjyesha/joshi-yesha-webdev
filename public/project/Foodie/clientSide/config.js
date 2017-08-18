@@ -75,10 +75,10 @@
                     }
             })
 
-            .when("/eatery/edit",
+            .when("/:eId/eatSpot/edit",
                 {
                     templateUrl: "views/eatery/templates/eatery-edit.view.client.html",
-                    controller: "eateryListController",
+                    controller: "eateryEditController",
                     controllerAs: "model",
                     resolve:
                         {
@@ -86,7 +86,7 @@
                         }
                 })
 
-            .when("/eatery/new",
+            .when("/eatSpot/new",
                 {
                     templateUrl: "views/eatery/templates/eatery-new.view.client.html",
                     controller: "eatSpotNewController",

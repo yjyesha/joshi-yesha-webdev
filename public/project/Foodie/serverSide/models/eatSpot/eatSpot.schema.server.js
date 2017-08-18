@@ -7,7 +7,6 @@ var eatSpotSchema = mongoose.Schema(
     {
         _owner: [{type:mongoose.Schema.Types.ObjectId,ref:"UserModel"}],
         name: String,
-        id: String,
         display_address :String,
         favouritedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"UserModel"}],
         rating:[{type:Number,enum:['0','0.5','1','1.5','2','2.5','3','3.5','4','4.5','5']}],

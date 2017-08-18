@@ -7,44 +7,38 @@
         .module("WebAppMaker")
         .controller("websiteEditController", websiteEditController);
 
-    function websiteEditController($routeParams,websiteService,$location) {
+    function websiteEditController($routeParams,eatSpotService,$location,sessionUser) {
         var model = this;
 
         model.updateWebsite=updateWebsite;
         model.deleteWebsite=deleteWebsite;
 
-        var userId =  $routeParams["uid"];
-        var websiteId =  $routeParams["wid"];
+        var userId = sessionUser.id;
+        var eId =  $routeParams["eId"];
 
         function init() {
             model.userId = userId;
-            model.websiteId = websiteId;
-            websiteService
+            model.eatSpotId = eid;
+            eatSpotService.findeatSpotById(eId)
                 .findWebsitesForUser(userId)
                 .then(function (response) {
-                    model.websites = response;
-                });
-            websiteService
-                .findWebsiteById(websiteId)
-                .then(function (response) {
-                    var website = Object.assign({}, response);
-                    model.website = website;
+                    model.eatSpotId = response;
                 });
         }
         init();
 
-        function updateWebsite(website)
+        function updateeatSpot(eatSpot)
         {
-            websiteService.updateWebsite(websiteId,website)
+            eatSpotService.updateeatSpot(eatSpotId,eatSpot)
                 .then (function (response)
                 {
-                    $location.url("/user/"+userId+"/eatSpot");
+                    $location.url("/")
                 });
 
         }
 
-        function deleteWebsite() {
-            websiteService.deleteWebsite(userId,websiteId)
+        function deleteeatSpot() {
+            websiteService.deleteeatSpot(userId,eid)
                 .then(function (response) {
                     $location.url("/user/" +userId + "/eatSpot");
                 });

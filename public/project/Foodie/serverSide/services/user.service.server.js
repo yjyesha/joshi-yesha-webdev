@@ -16,7 +16,7 @@ passport.deserializeUser(deserializeUser);
 var googleConfig = {
     clientID     : "402882654215-bvb3uteguv3vg8s7ue5nn7vfqn4ecb01.apps.googleusercontent.com",
     clientSecret : "EU-xIeoUdPhBx7dNhW_BOt0R",
-    callbackURL  : "http://127.0.0.1/google/callback"
+    callbackURL  : "http://127.0.0.1:3000/google/callback"
 };
 
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));

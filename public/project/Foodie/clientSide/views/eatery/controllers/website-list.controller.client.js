@@ -5,20 +5,19 @@
     //iife
     angular
         .module("WebAppMaker")
-        .controller("websiteListController",websiteListController);
+        .controller("eatSpotViewController",eatSpotViewController);
 
-    function websiteListController($routeParams,websiteService) {
+    function eatSpotViewController($routeParams,eatSpotService,sessionUser) {
         var model = this;
-        var userId = $routeParams["uid"];
-        //  var websiteId = $routeParams["wid"];
+        var userId = sessionUser_id;
+        var eatSpotId = $routeParams["eId"];
 
         function init() {
             //       model.websiteId = websiteId;
             model.userId = userId;
-            websiteService
-                .findWebsitesForUser(userId)
+            eatSpotService.findeatSpotById(eatSpotId)
                 .then(function (response) {
-                    model.websites = response;
+                    model.eatSpot = response;
                 });
         }init();
     }
