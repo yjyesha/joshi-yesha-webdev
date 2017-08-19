@@ -20,11 +20,6 @@
             model.user = sessionUser;
             userService.getAllUsers()
                 .then(function (response) {
-                    Array.prototype.diff = function (a) {
-                        return this.filter(function (i) {
-                            return a.indexOf(i) < 0;
-                        });
-                    };
                     var users = response;
                     console.log(users);
                     var index = -1;
@@ -34,7 +29,6 @@
                             break;
                         }
                     }
-
                     for (var i = 0; i < users.length; i++) {
                         for (var j = 0; j < sessionUser.follows.length; j++) {
                             if (users[j]._id === model.userId) {

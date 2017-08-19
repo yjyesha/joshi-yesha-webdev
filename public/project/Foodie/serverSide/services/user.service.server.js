@@ -8,6 +8,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
@@ -19,14 +20,30 @@ var googleConfig = {
     callbackURL  : "http://127.0.0.1:3000/google/callback"
 };
 
+var facebookConfig = {
+    clientID     : "472434739803455",
+    clientSecret : "066abb27162dda0ed96cf6d6b3e87c9a",
+    callbackURL  : "http://127.0.0.1:3000/facebook/callback",
+    profileFields: ['id', 'displayName', 'email', 'name']
+
+};
+/*
+
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+};
+*/
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 
 // http handlers
 //api is a convention to return data
 app.put("/api/project/follower/:userId", addFollower);
 app.delete("/api/project/follower/:userId", removeFollower);
-app.put("/api/project/favourite/:userId", favourtieeatSpot);
+app.put("/api/project/favourite/:userId", favouriteeatSpot);
 app.get("/api/project/users", getAllUsers);
 app.get("/api/project/user/:userId", getUserById);
 app.post("/api/project/login", passport.authenticate('local'), login);
@@ -37,12 +54,60 @@ app.delete("/api/project/user/:userId", deleteUser);
 app.get("/api/project/checkLogin", checkLogin);
 app.post("/api/project/logout",logout);
 app.get("/project/auth/google",passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get ("/project/auth/facebook", passport.authenticate('facebook', { scope : 'email' }));
+
+app.get('/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/project/Foodie/clientSide/#!/profile',
+        failureRedirect: '/project/Foodie/clientSide/#!/login'
+         }));
 
 app.get('/google/callback',
     passport.authenticate('google', {
         successRedirect: '/project/Foodie/clientSide/#!/profile',
         failureRedirect: '/project/Foodie/clientSide/#!/login'
     }));
+
+
+
+
+function facebookStrategy(token, refreshToken, profile, done) {
+    console.log(profile);
+    userModelP
+        .findUserByFacebookId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newFacebookUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        facebook: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModelP.createUser(newFacebookUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 
 function serializeUser(user, done) {
@@ -166,7 +231,7 @@ function addFollower(req, res) {
         .then(function (users) {
             res.send(users);
         }, function (err) {
-            console.log("nabh");
+            console.log("nabhY");
             res.sendStatus(404).send(err);
         });
 }
@@ -181,23 +246,23 @@ function removeFollower(req, res) {
         .then(function (users) {
             res.send(users);
         }, function (err) {
-            console.log("nabh");
+            console.log("nabhY");
             res.sendStatus(404).send(err);
         });
 }
 
-function favourtieeatSpot(req, res) {
+function favouriteeatSpot(req, res) {
     console.log("fav kiya");
     var userId = req.params.userId;
     var fId = req.body;
     console.log(fId);
     //console.log(follower);
-    userModelP.favourtieeatSpot(userId, fId)
+    userModelP.favouriteeatSpot(userId, fId)
         .then(function (user) {
             console.log("jiahou");
             res.send(user);
         }, function (err) {
-            console.log("nabh");
+            console.log("nabhoipo");
             res.sendStatus(404).send(err);
         });
 }

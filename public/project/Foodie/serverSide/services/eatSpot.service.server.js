@@ -10,7 +10,7 @@ app.get("/api/project/user/:userId/eatSpot", findeatSpotsForUser);
 app.get("/api/project/eatSpot/:eatSpotId", findeatSpotById);
 app.post("/api/project/eat/:userId/createEatSpot", createeatSpot);
 app.put("/api/project/eatSpot/:eatSpotId", updateeatSpot);
-app.delete("/api/project/user/:userId/eatSpot/:eatSpotId", deleteeatSpot);
+app.delete("/api/project/user/:userId/eatSpot", deleteeatSpot);
 
 function findeatSpotsForUser(req, res) {
     var userId = req.params.userId;
@@ -35,7 +35,6 @@ function createeatSpot(req, res) {
 }
 
 function findeatSpotById(req, res) {
-
     var eatSpotId = req.params.eatSpotId;
     console.log(eatSpotId);
     eatSpotModel.findeatSpotById(eatSpotId)

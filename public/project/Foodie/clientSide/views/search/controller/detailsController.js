@@ -10,7 +10,7 @@
         .controller("detailsController", detailsController);
 
 
-    function detailsController($routeParams,userService, foodService, eatSpotService,sessionUser) {
+    function detailsController($location,$routeParams,userService, foodService, eatSpotService,sessionUser) {
         var model = this;
         var eId = $routeParams["eId"];
         var userId = sessionUser._id;
@@ -24,6 +24,18 @@
                 .then(function (response) {
                     model.eatSpot = response.data;
                     console.log(model.eatSpot);
+                    var tempEat = {
+                        _id: model.eatSpot.id,
+                        name: model.eatSpot.name,
+                        location: model.eatSpot.location,
+                        phone: model.eatSpot.phone,
+                        rating: model.eatSpot.rating,
+                        image_url: model.eatSpot.image_url,
+                        price: model.eatSpot.price
+                    };
+                    console.log(tempEat.price);
+                    eatSpotService.createeatSpot(null, tempEat);
+
                 });
         }
 
@@ -31,44 +43,23 @@
 
         function favouriteeatSpot(eatSpot) {
             //eatSpot = model.eatSpot;
-            var eatSpotId = eatSpot.id;
-            var tempEatSpot = {};
-            console.log(eatSpot.id + " is in the controllwe");
-            eatSpotService.findeatSpotById(eatSpot._id)
-             .then(function (response) {
-                 console.log(eatSpot.name + "is found");
-             },function (response) {
-                 console.log("Nahiiiiis found");
-             })();
-             console.log("kuch bhi");
-            console.log("eatspot ka id"+eatSpot);
-             userService
-             .favourtieeatSpot(userId, eatSpot)
-             .then(function (response) {
-             console.log(eatSpot.name + "is favourited");
-             $location.url("/user/" + userId);
-             }
-             , function (error) {
-             console.log("eatSpot is not found");
-             eatSpotService.createeatSpot(userId, eatSpot)
-             .then(function (response) {
-             console.log("eatSpot is created");
-             var _eatSpot = response;
-             if (!_eatSpot) {
-             model.errorMessage = "some error encountered";
-             }
-             else {
-             foodService
-             .favourtieeatSpot(userId, eatSpotId)
-             .then(function (response) {
-             console.log(eatSpot.name + "is favourited");
-             $location.url("/profile");
-             });
-             }
-             });
-             }
-             );
+            // var eatSpotId = eatSpot.id;
+            var tempEat = {
+                _id: eatSpot.id,
+                name: eatSpot.name,
+                location: model.eatSpot.location,
+                phone: model.eatSpot.phone,
+                rating: model.eatSpot.rating,
+                image_url: model.eatSpot.image_url,
+                price: model.eatSpot.price
+            };
+                        userService
+                            .favourtieeatSpot(userId, tempEat)
+                            .then(function (response) {
+                                console.log(tempEat.name + "is favourited");
+                                $location.url("/profile");
+                            });
+                    }
 
-        }
-    }
+                  }
 })();

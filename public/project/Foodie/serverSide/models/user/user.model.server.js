@@ -6,7 +6,6 @@ var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
 var db = require("../database");
 var userModelP = mongoose.model("UserModelP", userSchema);
-//var eatSpotModel = require("../eatSpot/eatSpot.model.server");
 userModelP.createUser = createUser;
 userModelP.findUserById = findUserById;
 userModelP.updateUser = updateUser;
@@ -15,13 +14,19 @@ userModelP.findUserByUsername = findUserByUsername;
 userModelP.findUserByCredentials = findUserByCredentials;
 userModelP.getAllUsers = getAllUsers;
 userModelP.addFollower = addFollower;
-//userModelP.favourtieeatSpot = favourtieeatSpot;
+userModelP.favouriteeatSpot = favouriteeatSpot;
 userModelP.removeFollower = removeFollower;
 userModelP.findUserByGoogleId = findUserByGoogleId;
 userModelP.addeatSpot = addeatSpot;
 userModelP.removeeatSpot = removeeatSpot;
-
+userModelP.findUserByFacebookId = findUserByFacebookId;
 module.exports = userModelP;
+
+
+function findUserByFacebookId(facebookId) {
+    console.log(facebookId);
+    return userModelP.findOne({'facebook.id': facebookId});
+}
 
 function findUserByGoogleId(googelId) {
     return userModelP.findOne({'google.id': googelId});
@@ -36,6 +41,7 @@ function findUserById(userId) {
         .populate("followers")
         .populate("follows")
         .populate("eateryOwned")
+        .populate("eatSpotSLiked")
         .exec();
 }
 
@@ -74,7 +80,10 @@ function addFollower(userId, fId) {
                 user.follows.push(fId);  //duplicate left
                 userModelP.findById(fId)
                     .then(function (user) {
-                        user.followers.push(userId);
+                        var index = user.follows.indexOf(userId);
+                        if (index < 0) {
+                            user.followers.push(userId);
+                        }
                         user.save();
                     });
                 return user.save();
@@ -88,13 +97,18 @@ function removeFollower(userId, fId) {
         .findById(userId)
         .then(function (user) {
             var index = user.follows.indexOf(fId);
-            user.follows.splice(index, 1);  //duplicate left
-            userModelP.findById(fId)
-                .then(function (user) {
-                    user.follows.splice(index, 1);  //duplicate left
-                    userModelP.findById(fId)
-                });
-            return user.save();
+            if (index < 0) {
+                user.follows.splice(index, 1);
+                userModelP.findById(fId)
+                    .then(function (user) {
+                        var index = user.follows.indexOf(usrId);
+                        if (index < 0) {
+                            user.followers.splice(index, 1);
+                            user.save();
+                        }
+                    });
+                return user.save();
+            }
         });
 }
 
@@ -123,17 +137,20 @@ function removeeatSpot(userId, eatSpoteId) {
         });
 }
 
-/*
- function favourtieeatSpot(userId, eatSpotId) {
- return  userModelP.findById(userId)
- .then(function (user) {                //Bob me ALice
- user.eatSpotsLiked.push(eatSpotId);
- user.save();
- return user;
- });
- }
 
- */
+function favouriteeatSpot(userId, eatSpotId) {
+    return userModelP.findById(userId)
+        .then(function (user) {
+            console.log(eatSpotId);//Bob me ALice
+            if (user.eatSpotsLiked.indexOf(eatSpotId._id) < 1) {
+                user.eatSpotsLiked.push(eatSpotId._id);
+            }
+            console.log(user);//Bob me ALice
+            return user.save();
+        });
+}
+
+
 function unfavouriteeatSpot(userId, eatSpotId) {
     return userModelP
         .findById(userId)

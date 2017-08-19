@@ -17,18 +17,29 @@ eatSpotModel.findAlleatSpotsForUser = findAlleatSpotsForUser;
 module.exports = eatSpotModel;
 
 function createeatSpot(userId, eatSpot) {
-    eatSpot._owner = userId;
-    return eatSpotModel
-        .create(eatSpot).then(function (eatSpotDoc) {
-            return userModelP.addeatSpot(userId, eatSpotDoc)
-                .then(function (response) {
-                    console.log("back to eatspot model");
-                    console.log(response);
-                    return eatSpotDoc;
-                });
-        }, function (error) {
-            console.log(error);
-        });
+    if(userId!==null) {
+        eatSpot._owner = userId;
+        return eatSpotModel
+            .create(eatSpot).then(function (eatSpotDoc) {
+                return userModelP.addeatSpot(userId, eatSpotDoc)
+                    .then(function (response) {
+                        console.log("back to eatspot model");
+                        console.log(response);
+                        return eatSpotDoc;
+                    });
+            }, function (error) {
+                console.log(error);
+            });
+    }
+    else
+    {
+        return eatSpotModel
+            .create(eatSpot).then(function (eatSpotDoc) {
+                        console.log("back to eatspot by else model");
+                        console.log(response);
+                        return eatSpotDoc;
+                    });
+    }
 }
 
 function findeatSpotById(eatSpotId) {
@@ -45,6 +56,7 @@ function findAlleatSpotsForUser(userId) {
 function deleteeatSpot(userId, eatSpotId) {
     return eatSpotModel.remove({_id: eatSpotId})
         .then(function (status) {
+            console.log("removed successfully");
             return userModelP.removeeatSpot(userId, eatSpotId)
         });
 }

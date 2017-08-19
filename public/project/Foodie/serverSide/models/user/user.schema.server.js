@@ -14,12 +14,19 @@ var userSchema = mongoose.Schema(
             id: String,
             token: String
         },
-        role: {type: String, enum: ['Admin', 'HungryUser', 'EateryOwner']},
+        facebook: {
+            id:    String,
+            token: String
+        },
+        role: {type: String, enum: ['Admin', 'HungryUser', 'EateryOwner'],default:'HungryUser'},
         followers: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModelP"}],
         follows: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModelP"}],
-        eatSpotsLiked: [{type: mongoose.Schema.Types.ObjectId, ref: "EatSpotModel"}],
+        eatSpotsLiked: [{type: String, ref: "EatSpotModel"}],
         eateryOwned: {type: String, ref: "EatSpotModel"},
-        dateCreated: {type: Date, default: Date.now}
+        dateCreated: {type: Date, default: Date.now},
+        reviewsWritten:{
+
+        }
     }
     , {collection: "userP"}
 );

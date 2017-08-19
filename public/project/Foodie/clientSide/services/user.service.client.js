@@ -70,7 +70,6 @@
             console.log("service ke anda");
             var url = "/api/project/favourite/" + userId;
             console.log("fav in server");
-            console.log(fId);
             return $http.put(url, eatSpot)
                 .then(function (res) {
                     console.log("response toh aaya");
@@ -97,7 +96,7 @@
             var url = "/api/project/user";
             return $http.post(url, user)
                 .then(function (res) {
-                    console.log("to model")
+                    console.log("to model");
                     return res.data;
                 });
         }

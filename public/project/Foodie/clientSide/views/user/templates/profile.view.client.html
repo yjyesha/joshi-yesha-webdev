@@ -37,6 +37,7 @@
             </label>
             <input type="email"
                    id="email"
+                   ng-model="model.user.email"
                    class="form-control"
                    placeholder="yj.yesha@gmail.com"
                    autofocus
@@ -60,7 +61,7 @@
                    placeholder="Joshi"
                    required>
             <div ng-show="model.user.role=='HungryUser'">
-            <button type="button" class="btn-block btn btn-sm btn-info" data-toggle="collapse" data-target="#demo1">Following {{model.user.follows.length}}</button>
+            <button type="button" class="btn-block btn form-control btn-info" data-toggle="collapse" data-target="#demo1">Following {{model.user.follows.length}}</button>
             <div id="demo1" class="collapse">
                 <ul class="list-group">
                     <li ng-repeat="f in model.user.follows" class="list-group-item">
@@ -71,8 +72,8 @@
             </div>
             </div>
             <div ng-show="model.user.role=='HungryUser'">
-            <button type="button" class="btn btn-sm btn-block btn-info" data-toggle="collapse" data-target="#demo2">Followers {{model.user.followers.length}}</button>
-            <div id="demo2" class="collapse">
+            <button type="button" class="btn btn-block btn-info form-control" data-toggle="collapse" data-target="#demo2">Followers {{model.user.followers.length}}</button>
+            <div id="demo2" class=" collapse">
                 <ul class="list-group">
                     <li ng-repeat="f in model.user.followers" class="list-group-item">
                         {{f.username}}<br>
@@ -83,11 +84,11 @@
             </div>
             <h1></h1>
             <div ng-show="model.user.role=='HungryUser'">
-            <button type="button" class="btn btn-sm btn-block btn-info" data-toggle="collapse" data-target="#demo3">EatSpots liked {{model.user.eatSpotsLiked.length}}</button>
+            <button type="button" class="btn btn-block btn-info form-control" data-toggle="collapse" data-target="#demo3">EatSpots liked {{model.user.eatSpotsLiked.length}}</button>
             <div id="demo3" class="collapse">
                 <ul class="list-group">
-                    <li ng-repeat="f in model.user.eatSpotsLiked" class="list-group-item">
-                        {{f.name}}<br>
+                    <li ng-repeat="f in model.user.eatSpotsLiked track by $index " class="list-group-item">
+                        {{f}}<br>
                     </li>
                     <li class="list-group-item" ng-show="!model.user.eatSpotsLiked.length">No Eat Spots favourited</li>
                 </ul>
