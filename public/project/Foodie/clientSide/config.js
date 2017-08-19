@@ -85,6 +85,37 @@
                             sessionUser : checkLogin
                         }
                 })
+            .when("/adminCrud",
+                {
+                    templateUrl: "views/admin/templates/adminHome.view.client.html",
+                    controller: "adminViewController",
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
+                })
+            .when("/adminCrud/edit/:upid",
+                {
+                    templateUrl: "views/admin/templates/adminEdit.view.client.html",
+                    controller: "adminEditController",
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
+                })
+
+            .when("/adminCrud/new",
+                {
+                    templateUrl: "views/admin/templates/adminNew.view.client.html",
+                    controller: "adminNewController",
+                    controllerAs: "model",
+                    resolve:
+                        {
+                            sessionUser : checkLogin
+                        }
+                })
 
             .when("/eatSpot/new",
                 {

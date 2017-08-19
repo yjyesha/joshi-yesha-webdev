@@ -1,0 +1,69 @@
+<div class="navbar navbar-default navbar-fixed-top">
+ <div class="container-fluid">
+  <p class="navbar-text pull-left">
+  </p>
+  <div class="navbar-brand">Admin's New User</div>
+  <p class="navbar-text pull-right">
+  </p>
+ </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+ <div class="container-fluid">
+  <ul class="nav navbar-nav navbar-right">
+   <li><a href="#!/user/{{model.userId}}">
+    <span class="pull-right glyphicon glyphicon-user"></span>
+   </a></li>
+  </ul>
+ </div>
+</nav>
+<div class="container-fluid yj-register col-md-8 col-md-offset-2 col-sm-12">
+ <div ng-show="model.error" class="alert alert-danger">
+  {{model.error}}
+ </div>
+ <form class="form-signin" >
+  <h2 class="form-signin-heading">Add new user</h2>
+  <label for="inputUsername"
+         class="sr-only">
+   username
+  </label>
+  <input type="text"
+         id="inputUsername"
+         ng-model="model.user.username"
+         class="form-control"
+         placeholder="username"
+         required autofocus>
+  <label for="inputPassword"
+         class="sr-only">
+   password
+  </label>
+  <input type="password"
+         ng-model="model.user.password"
+         id="inputPassword"
+         class="form-control"
+         placeholder="password"
+         required>
+  <label for="inputPassword2"
+         class="sr-only">
+   confirm password
+  </label>
+  <input type="password"
+         id="inputPassword2"
+         ng-model="model.user.password2"
+         class="form-control"
+         placeholder="verify password"
+         required>
+  <label for="role"
+         class="sr-only">
+   as a
+  </label>
+  <select id="role" ng-model="model.user.role">
+   <option value="HungryUser">Hungry User</option>
+   <option value="EateryOwner">Eatery Owner</option>
+  </select>
+  <a class="btn btn-sm btn-primary btn-block"
+     ng-click="model.createUser(model.user)"
+     role="button"
+     type="submit">Create User</a>
+ </form>
+
+</div> <!-- /container -->

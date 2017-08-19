@@ -1,28 +1,27 @@
 <div class="yj yj-profile col-md-8 col-md-offset-2 col-sm-12">
     <div class="container-fluid">
         <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
-
-            <div class="navbar-brand">Profile</div>
-            <p class="navbar-text pull-right">
+            <div class="navbar-brand">User's Profile</div>
+            <div class="navbar-text pull-right">
                 <a ng-click="model.updateUser(model.user)" role="button"
                    type="submit">
-                    <span class="glyphicon glyphicon-ok pull-right"></span></a>
-            </p>
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
         </div>
 
-
         <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
-
             <p class="navbar-text pull-right">
-                <a  href="#!/user/{{model.user._id}}/">
-                    <span class="glyphicon glyphicon-user pull-right"></span></a>
+                <a href="#!/profile">
+                    <span class="glyphicon glyphicon-home pull-right"></span></a>
             </p>
 
         </div><!-- /.container-fluid -->
         <div ng-show="model.errorMessage" class="alert alert-danger ">
             {{model.errorMessage}}
         </div>
-        <form class="form-signin" >
+
+        <form class="form-signin">
             <label for="inputUsername">Username</label>
             <input readonly type="text"
                    ng-model="model.user.username"
@@ -36,6 +35,7 @@
             </label>
             <input type="email"
                    id="email"
+                   ng-model="model.user.email"
                    class="form-control"
                    placeholder="yj.yesha@gmail.com"
                    autofocus
@@ -58,22 +58,7 @@
                    class="form-control"
                    placeholder="Joshi"
                    required>
-            <label for="dob">
-                Date of Birth
-            </label>
-            <input type="date" id="dob" class="form-control" required>
-            <a class="btn btn-sm btn-primary btn-block"
-               href="#!/user/{{model.user._id}}/website"
-               role="button"
-               type="submit">Websites</a>
-            <a class="btn btn-sm btn-danger btn-block"
-               ng-click="model.logout()"
-               role="button"
-               type="submit">Logout</a>
-            <a class="btn btn-sm btn-danger btn-block"
-               ng-click="model.deleteUser(model.user._id)"
-               role="button"
-               type="submit">Delete</a>
+
         </form>
     </div> <!-- /container -->
 </div>

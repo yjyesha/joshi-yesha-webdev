@@ -280,7 +280,7 @@ function deleteUser(req, res) {
 function getUserById(req, res) {
     userModelP.findUserById(req.params.userId)
         .then(function (user) {
-            console.log("responss");
+            console.log(user);
             res.json(user);
         }, function (err) {
             console.log("erooooooorr");

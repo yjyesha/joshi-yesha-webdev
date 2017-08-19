@@ -1,0 +1,41 @@
+<div class="col-md-8 col-md-offset-2 col-sm-12 yj-widgetlist">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <p class="navbar-text pull-left">
+                            </p>
+            <div class="navbar-brand">Admin View</div>
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/new">
+                    <span class="glyphicon glyphicon-plus pull-right"></span></a>
+            </p>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/profile">
+                    <span class="pull-right glyphicon glyphicon-user"></span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="center-block"> <a role="button" class="fa fa-user-plus fa-3x" type="submit" href="#!/adminCrud/new"></a>
+    </div>
+    <div class="container-fluid yj-website-list">
+        <div class="website-list">
+            <ul class="list-group">
+                <li ng-repeat="user in model.users" class="list-group-item">
+                    <div ng-show="user.role!='Admin'">
+                        <div>
+                        <h4>{{user.username}}</h4>
+                        <a role="button" class="fa fa-remove" type="submit" ng-click="model.deleteUser(user._id)"></a>
+                            <a role="button" class="fa fa-edit" type="submit" href="#!/adminCrud/edit/{{user._id}}"></a>
+                        </div>
+                        </div>
+                </li>
+                <li class="list-group-item" ng-show="!model.users.length">No users have been created yet</li>
+            </ul>
+        </div>
+    </div> <!-- /container -->
+</div>
