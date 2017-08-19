@@ -10,7 +10,7 @@ app.get("/api/project/user/:userId/eatSpot", findeatSpotsForUser);
 app.get("/api/project/eatSpot/:eatSpotId", findeatSpotById);
 app.post("/api/project/eat/:userId/createEatSpot", createeatSpot);
 app.put("/api/project/eatSpot/:eatSpotId", updateeatSpot);
-app.delete("/api/project/user/:userId/eatSpot", deleteeatSpot);
+app.delete("/api/project/user/:userId/eatSpot/:eatSpotId", deleteeatSpot);
 
 function findeatSpotsForUser(req, res) {
     var userId = req.params.userId;
@@ -58,10 +58,12 @@ function updateeatSpot(req, res) {
 }
 
 function deleteeatSpot(req, res) {
+    var eatSpotId = req.params.eatSpotId;
     var userId = req.params.userId;
-    var eatSpotId = req.body;
-    eatSpotModel.deleteeatSpot(userId, eatSpotId)
+    console.log("into delete eatspot service");
+    eatSpotModel.deleteeatSpot(eatSpotId,userId)
         .then(function (status) {
+            console.log("return delete eatspot controller");
             res.json(status);
         }, function (err) {
             res.sendStatus(404).send(err);

@@ -53,10 +53,15 @@ function findAlleatSpotsForUser(userId) {
     return eatSpotModel.find({_owner: userId});
 }
 
-function deleteeatSpot(userId, eatSpotId) {
+function deleteeatSpot(eatSpotId,userId) {
+    console.log("into delete eatspot model");
+    console.log(eatSpotId);
     return eatSpotModel.remove({_id: eatSpotId})
         .then(function (status) {
             console.log("removed successfully");
-            return userModelP.removeeatSpot(userId, eatSpotId)
+            return userModelP.removeeatSpot(userId)
+                .then(function (response) {
+                    console.log(response);
+                });
         });
 }

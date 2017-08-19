@@ -127,13 +127,17 @@ function addeatSpot(userId, eatSpot) {
         });
 }
 
-function removeeatSpot(userId, eatSpoteId) {
+function removeeatSpot(userId) {
+    console.log("into remove eatspot");
     return userModelP
         .findById(userId)
         .then(function (user) {
-            var index = user.eatSpots.indexOf(eatSpotId);
-            user.eateryOwned.splice(index, 1);
-            return user.save();
+            return userModelP.findById(user._id)
+                .then(function (user) {
+                    delete user.eateryOwned;
+                    console.log(user);
+                    return user.save();
+                });
         });
 }
 

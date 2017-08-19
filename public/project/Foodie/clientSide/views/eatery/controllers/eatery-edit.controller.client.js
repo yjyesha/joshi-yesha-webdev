@@ -40,7 +40,8 @@
 
         }
 
-        function deleteeatSpot() {
+        function deleteeatSpot(eatSpotId) {
+            console.log("into delete eatspot controller");
             eatSpotService.deleteeatSpot(userId,eatSpotId)
                 .then(function (response) {
                     $location.url("/profile");

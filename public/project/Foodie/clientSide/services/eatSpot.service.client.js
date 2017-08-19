@@ -58,8 +58,9 @@
 
         function deleteeatSpot(userId,eatSpotId)
         {
-            var url = "/api/project/user/"+userId+"/eatSpot/";
-            return $http.delete(url,eatSpotId)
+            console.log("before del client");
+            var url = "/api/project/user/"+userId+"/eatSpot/"+eatSpotId;
+            return $http.delete(url)
                 .then(function (response)
                 {
                     console.log("deleted");
