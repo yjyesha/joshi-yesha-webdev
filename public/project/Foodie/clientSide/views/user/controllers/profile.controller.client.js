@@ -54,7 +54,8 @@
 
 
         function manageeatSpot() {
-            if (sessionUser.eateryOwned === null) {
+            console.log(sessionUser);
+            if (!sessionUser.eateryOwned) {
                 $location.url("/eatSpot/new");
             }
             else {

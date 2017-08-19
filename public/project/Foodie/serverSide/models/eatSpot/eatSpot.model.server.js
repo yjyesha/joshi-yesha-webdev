@@ -24,7 +24,7 @@ function createeatSpot(userId, eatSpot) {
                 .then(function (response) {
                     console.log("back to eatspot model");
                     console.log(response);
-                    return response;
+                    return eatSpotDoc;
                 });
         }, function (error) {
             console.log(error);
@@ -32,9 +32,7 @@ function createeatSpot(userId, eatSpot) {
 }
 
 function findeatSpotById(eatSpotId) {
-    return eatSpotModel.findById(eatSpotId)
-        .populate("_user")
-        .exec();
+    return eatSpotModel.findById(eatSpotId);
 }
 
 function updateeatSpot(eatSpotId, eatSpot) {
@@ -47,6 +45,6 @@ function findAlleatSpotsForUser(userId) {
 function deleteeatSpot(userId, eatSpotId) {
     return eatSpotModel.remove({_id: eatSpotId})
         .then(function (status) {
-            return userModel.removeeatSpot(userId, eatSpotId)
+            return userModelP.removeeatSpot(userId, eatSpotId)
         });
 }

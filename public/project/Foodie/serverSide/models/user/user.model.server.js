@@ -19,6 +19,7 @@ userModelP.addFollower = addFollower;
 userModelP.removeFollower = removeFollower;
 userModelP.findUserByGoogleId = findUserByGoogleId;
 userModelP.addeatSpot = addeatSpot;
+userModelP.removeeatSpot = removeeatSpot;
 
 module.exports = userModelP;
 
@@ -117,7 +118,7 @@ function removeeatSpot(userId, eatSpoteId) {
         .findById(userId)
         .then(function (user) {
             var index = user.eatSpots.indexOf(eatSpotId);
-            user.eatSpots.splice(index, 1);
+            user.eateryOwned.splice(index, 1);
             return user.save();
         });
 }

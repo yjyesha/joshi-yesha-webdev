@@ -35,9 +35,12 @@ function createeatSpot(req, res) {
 }
 
 function findeatSpotById(req, res) {
+
     var eatSpotId = req.params.eatSpotId;
+    console.log(eatSpotId);
     eatSpotModel.findeatSpotById(eatSpotId)
         .then(function (eatSpot) {
+            console.log("eatspotmodel se respoinse");
             res.json(eatSpot);
         }, function (err) {
             res.sendStatus(404).send(err);
@@ -57,7 +60,7 @@ function updateeatSpot(req, res) {
 
 function deleteeatSpot(req, res) {
     var userId = req.params.userId;
-    var eatSpotId = req.params.eatSpotId;
+    var eatSpotId = req.body;
     eatSpotModel.deleteeatSpot(userId, eatSpotId)
         .then(function (status) {
             res.json(status);

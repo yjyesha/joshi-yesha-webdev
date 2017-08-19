@@ -19,6 +19,8 @@
         function init() {
             model.userId = userId;
             model.eatSpotId = eatSpotId;
+            console.log("below eatspotId");
+            console.log(eatSpotId);
             eatSpotService.findeatSpotById(eatSpotId)
                 .then(function (response) {
                     console.log("responser");

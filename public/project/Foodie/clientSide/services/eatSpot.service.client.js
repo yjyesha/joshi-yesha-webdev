@@ -58,10 +58,11 @@
 
         function deleteeatSpot(userId,eatSpotId)
         {
-            var url = "/api/project/user/"+userId+"/eatSpot/"+eatSpotId;
+            var url = "/api/project/user/"+userId+"/eatSpot/";
             return $http.delete(url,eatSpotId)
                 .then(function (response)
                 {
+                    console.log("deleted");
                     return response.data;
                 });
         }
