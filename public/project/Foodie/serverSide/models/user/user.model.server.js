@@ -146,7 +146,7 @@ function favouriteeatSpot(userId, eatSpotId) {
     return userModelP.findById(userId)
         .then(function (user) {
             console.log(eatSpotId);//Bob me ALice
-            if (user.eatSpotsLiked.indexOf(eatSpotId._id) < 1) {
+            if (user.eatSpotsLiked.indexOf(eatSpotId.name) < 1) {
                 user.eatSpotsLiked.push(eatSpotId._id);
             }
             console.log(user);//Bob me ALice
