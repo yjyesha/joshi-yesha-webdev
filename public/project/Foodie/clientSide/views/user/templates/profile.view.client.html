@@ -108,6 +108,7 @@
                role="button"
                type="submit">Logout</a>
             <a class="btn btn-danger btn-block"
+               ng-show="model.user.role=='Admin'"
                ng-click="model.deleteUser(model.user._id)"
                role="button"
                type="submit">Delete</a>
