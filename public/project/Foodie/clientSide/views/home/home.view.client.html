@@ -11,8 +11,8 @@
                 <li><a ng-show="currentUser"  href="#!/profile">Profile</a></li>
             </ul>
         </div><!--/.nav-collapse -->
-     <div ng-show="currentUser">
-            <h3>Hey {{currentUser.name}} , it's great to see you again</h3>
+     <div ng-show="sessionUser">
+            <h3>Hey {{sessionUser.firstName}} , it's great to see you again</h3>
         </div>
         <h3>Hangry is always there for you</h3>
         Hangry,a handy application that finds you food spots around in a jiffy.
