@@ -27,9 +27,8 @@
                     <div class="row">
                         <form role="form">
                             <input type="text" ng-model="city" class="form-control" id="city" placeholder="Hangry at?">
-                            <div class="col-md-2">
-                                <button type="submit" ng-click="model.searchFoodSpotByCity(city)" class="btn btn-default btn-primary">Search</button>
-                            </div>
+                            <button type="submit" ng-click="model.searchFoodSpotByCity(city)" class="btn btn-default btn-primary">Search</button>
+
 
                             <!--<button ng-click="model.geoFindMe()" class="btn btn-default btn-primary">Too hungry?Find food nearby</button>-->
                         </form>
@@ -39,10 +38,12 @@
         </div>
 
         <div>
-            <ul ng-repeat="eatery in model.eatSpots.businesses" class="list-group col-sm-6 col-md-3 col-lg-3">
-                <li class="list-group-item">
+            <ul ng-repeat="eatery in model.eatSpots.businesses" class="col-sm-6 col-md-3 col-lg-3">
+                <li>
                     <a href="#!/details/{{eatery.id}}">
-                        <h3>{{eatery.name}}</h3></a>
+                        <h4>{{eatery.name}}</h4></a>
+                </li>
+                <li>
                     <img ng-src="{{eatery.image_url}}" width="200" height="200"/>
                 </li>
             </ul>

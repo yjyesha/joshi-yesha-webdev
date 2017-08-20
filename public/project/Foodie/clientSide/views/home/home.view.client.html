@@ -1,22 +1,21 @@
 <!-- Fixed navbar -->
-    <div class="container">
+    <div class="container-fluid">
+        <div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
+            <div class="navbar-brand">Hangry</div>
+            </div>
+
         <div id="yj-home-header-color" class="navbar-text pull-right">
             <ul class="nav navbar-nav yj-home-header-color">
                 <li><a ng-show="!currentUser" href="#!/login">Login</a></li>
                 <li><a ng-show="!currentUser" href="#!/register">Register</a></li>
                 <li><a ng-show="currentUser"  href="#!/profile">Profile</a></li>
-                <li><a ng-show="currentUser"  href="#!/login">Logout</a></li>
-                <li><a ng-show="currentUser.isAdmin" href="#!/admin">Admin</a></li>
             </ul>
         </div><!--/.nav-collapse -->
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div ng-show="!currentUser" class="jumbotron col-xs-12  col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
-        <h3>Are you new? </h3>
-        <h5>Let's get to know you,go ahead register and join us</h5>
-        <h2>Are you an old friend?</h2> <h5>Login and we can continue where we left</h5>
-        <div ng-show="currentUser">
+     <div ng-show="currentUser">
             <h3>Hey {{currentUser.name}} , it's great to see you again</h3>
         </div>
         <ng-include src="'views/search/search.html'"></ng-include>
-        </div>
+        <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
+
 </div>
+    </div>

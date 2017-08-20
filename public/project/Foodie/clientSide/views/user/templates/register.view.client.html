@@ -1,3 +1,6 @@
+<div class="navbar navbar-default yj-header-navbar navbar-fixed-top">
+    <div class="navbar-brand">Hangry</div>
+</div>
 <div class="container-fluid yj-register col-md-8 col-md-offset-2 col-sm-12">
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}
@@ -38,7 +41,7 @@
                class="sr-only">
             as a
         </label>
-        <select id="role" ng-model="model.user.role">
+        <select id="role" name="Role" ng-model="model.user.role">
             <option value="HungryUser">Hungry User</option>
             <option value="EateryOwner">Eatery Owner</option>
         </select>
@@ -51,5 +54,7 @@
            role="button"
            type="submit">Cancel</a>
     </form>
+    <div class="navbar navbar-default yj-header-navbar navbar-fixed-bottom">
 
+    </div>
 </div> <!-- /container -->

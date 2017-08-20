@@ -3,7 +3,14 @@
     border-color: #428bca;
 }
 
-
+button
+{
+    margin: 2px;
+}
+select
+{
+    margin-bottom:4px;
+}
 .yj-img{
     position: absolute;
     top: 0;

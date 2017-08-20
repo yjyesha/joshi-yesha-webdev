@@ -24,22 +24,31 @@
                     console.log(users);
                     var index = -1;
                     for (var i = 0; i < users.length; i++) {
-                        if (users[i]._id === model.userId) {
+                        if (users[i].role === "Admin") {
                             index = i;
                             break;
                         }
                     }
+                    users.splice(index,1);
+                    for (var i = 0; i < users.length; i++) {
+                        if (users[i]._id === userId) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    users.splice(index,1);
+                    console.log(users);
+                    console.log(sessionUser.follows);
+                    console.log("joi le");
                     for (var i = 0; i < users.length; i++) {
                         for (var j = 0; j < sessionUser.follows.length; j++) {
-                            if (users[j]._id === model.userId) {
+                            if (users[j]._id === sessionUser.follows[j]._id) {
                                 index = i;
-                                break;
+                                users.splice(index, 1);
                             }
                         }
                     }
-                    console.log(index);
-                    users.splice(index, 1);
-                    console.log(users);
+                     console.log(users);
                     //users.diff(sessionUser.follows);
                     model.users = users;
                 });
