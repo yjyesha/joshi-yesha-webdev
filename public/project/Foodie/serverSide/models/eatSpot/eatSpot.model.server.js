@@ -17,7 +17,7 @@ eatSpotModel.findAlleatSpotsForUser = findAlleatSpotsForUser;
 module.exports = eatSpotModel;
 
 function createeatSpot(userId, eatSpot) {
-    if(userId!==null) {
+    if(userId.toString()!=="ByApi") {
         eatSpot._owner = userId;
         return eatSpotModel
             .create(eatSpot).then(function (eatSpotDoc) {

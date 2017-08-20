@@ -20,7 +20,7 @@
             console.log("idhar tak" + userId);
             userService.findUserById(userId)
                 .then(function (response) {
-                    console.log(response.eatSpotsLiked + "khanaaaaaaaaaa");
+                    console.log(response.data);
                     model.user = response.data;
                 });
             userService.getAllUsers()

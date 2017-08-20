@@ -34,7 +34,7 @@
                         price: model.eatSpot.price
                     };
                     console.log(tempEat.price);
-                    eatSpotService.createeatSpot(null, tempEat);
+                    eatSpotService.createeatSpot("ByApi", tempEat);
 
                 });
         }

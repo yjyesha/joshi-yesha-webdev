@@ -87,7 +87,7 @@
             <button type="button" class="btn btn-block btn-info form-control" data-toggle="collapse" data-target="#demo3">EatSpots liked {{model.user.eatSpotsLiked.length}}</button>
             <div id="demo3" class="collapse">
                 <ul class="list-group">
-                    <li ng-repeat="f in model.user.eatSpotsLiked track by $index " class="list-group-item">
+                    <li ng-repeat="f in model.user.eatSpotsLiked " class="list-group-item">
                         {{f}}<br>
                     </li>
                     <li class="list-group-item" ng-show="!model.user.eatSpotsLiked.length">No Eat Spots favourited</li>
